@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ArcadeEngine from 'arcade-js';
-import { APIUserAbortError } from 'arcade-js';
-import { Headers } from 'arcade-js/core';
+import ArcadeAI from 'arcadejs';
+import { APIUserAbortError } from 'arcadejs';
+import { Headers } from 'arcadejs/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {
@@ -20,10 +20,9 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new ArcadeEngine({
+    const client = new ArcadeAI({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
-      apiKey: 'My API Key',
     });
 
     test('they are used in the request', () => {
@@ -52,37 +51,27 @@ describe('instantiate client', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new ArcadeEngine({
-        baseURL: 'http://localhost:5000/',
-        defaultQuery: { apiVersion: 'foo' },
-        apiKey: 'My API Key',
-      });
+      const client = new ArcadeAI({ baseURL: 'http://localhost:5000/', defaultQuery: { apiVersion: 'foo' } });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
 
     test('multiple default query params', () => {
-      const client = new ArcadeEngine({
+      const client = new ArcadeAI({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
-        apiKey: 'My API Key',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
     });
 
     test('overriding with `undefined`', () => {
-      const client = new ArcadeEngine({
-        baseURL: 'http://localhost:5000/',
-        defaultQuery: { hello: 'world' },
-        apiKey: 'My API Key',
-      });
+      const client = new ArcadeAI({ baseURL: 'http://localhost:5000/', defaultQuery: { hello: 'world' } });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
   });
 
   test('custom fetch', async () => {
-    const client = new ArcadeEngine({
+    const client = new ArcadeAI({
       baseURL: 'http://localhost:5000/',
-      apiKey: 'My API Key',
       fetch: (url) => {
         return Promise.resolve(
           new Response(JSON.stringify({ url, custom: true }), {
@@ -97,9 +86,8 @@ describe('instantiate client', () => {
   });
 
   test('custom signal', async () => {
-    const client = new ArcadeEngine({
+    const client = new ArcadeAI({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-      apiKey: 'My API Key',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
           setTimeout(
@@ -124,72 +112,66 @@ describe('instantiate client', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new ArcadeEngine({
-        baseURL: 'http://localhost:5000/custom/path/',
-        apiKey: 'My API Key',
-      });
+      const client = new ArcadeAI({ baseURL: 'http://localhost:5000/custom/path/' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     test('no trailing slash', () => {
-      const client = new ArcadeEngine({ baseURL: 'http://localhost:5000/custom/path', apiKey: 'My API Key' });
+      const client = new ArcadeAI({ baseURL: 'http://localhost:5000/custom/path' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     afterEach(() => {
-      process.env['ARCADE_ENGINE_BASE_URL'] = undefined;
+      process.env['ARCADE_AI_BASE_URL'] = undefined;
     });
 
     test('explicit option', () => {
-      const client = new ArcadeEngine({ baseURL: 'https://example.com', apiKey: 'My API Key' });
+      const client = new ArcadeAI({ baseURL: 'https://example.com' });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
-      process.env['ARCADE_ENGINE_BASE_URL'] = 'https://example.com/from_env';
-      const client = new ArcadeEngine({ apiKey: 'My API Key' });
+      process.env['ARCADE_AI_BASE_URL'] = 'https://example.com/from_env';
+      const client = new ArcadeAI({});
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
-      process.env['ARCADE_ENGINE_BASE_URL'] = ''; // empty
-      const client = new ArcadeEngine({ apiKey: 'My API Key' });
+      process.env['ARCADE_AI_BASE_URL'] = ''; // empty
+      const client = new ArcadeAI({});
       expect(client.baseURL).toEqual('https://api.arcade-ai.com');
     });
 
     test('blank env variable', () => {
-      process.env['ARCADE_ENGINE_BASE_URL'] = '  '; // blank
-      const client = new ArcadeEngine({ apiKey: 'My API Key' });
+      process.env['ARCADE_AI_BASE_URL'] = '  '; // blank
+      const client = new ArcadeAI({});
+      expect(client.baseURL).toEqual('https://api.arcade-ai.com');
+    });
+
+    test('env variable with environment', () => {
+      process.env['ARCADE_AI_BASE_URL'] = 'https://example.com/from_env';
+
+      expect(() => new ArcadeAI({ environment: 'production' })).toThrowErrorMatchingInlineSnapshot(
+        `"Ambiguous URL; The \`baseURL\` option (or ARCADE_AI_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
+      );
+
+      const client = new ArcadeAI({ baseURL: null, environment: 'production' });
       expect(client.baseURL).toEqual('https://api.arcade-ai.com');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new ArcadeEngine({ maxRetries: 4, apiKey: 'My API Key' });
+    const client = new ArcadeAI({ maxRetries: 4 });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new ArcadeEngine({ apiKey: 'My API Key' });
+    const client2 = new ArcadeAI({});
     expect(client2.maxRetries).toEqual(2);
-  });
-
-  test('with environment variable arguments', () => {
-    // set options via env var
-    process.env['ARCADE_API_KEY'] = 'My API Key';
-    const client = new ArcadeEngine();
-    expect(client.apiKey).toBe('My API Key');
-  });
-
-  test('with overriden environment variable arguments', () => {
-    // set options via env var
-    process.env['ARCADE_API_KEY'] = 'another My API Key';
-    const client = new ArcadeEngine({ apiKey: 'My API Key' });
-    expect(client.apiKey).toBe('My API Key');
   });
 });
 
 describe('request building', () => {
-  const client = new ArcadeEngine({ apiKey: 'My API Key' });
+  const client = new ArcadeAI({});
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', () => {
@@ -231,7 +213,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ArcadeEngine({ apiKey: 'My API Key', timeout: 10, fetch: testFetch });
+    const client = new ArcadeAI({ timeout: 10, fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -261,7 +243,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ArcadeEngine({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new ArcadeAI({ fetch: testFetch, maxRetries: 4 });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -285,7 +267,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new ArcadeEngine({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new ArcadeAI({ fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -314,7 +296,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new ArcadeEngine({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new ArcadeAI({ fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -341,7 +323,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ArcadeEngine({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new ArcadeAI({ fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -368,7 +350,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ArcadeEngine({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new ArcadeAI({ fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);

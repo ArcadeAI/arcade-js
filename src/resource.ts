@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { ArcadeEngine } from './index';
+import type { ArcadeAI } from './index';
 
 export class APIResource {
-  protected _client: ArcadeEngine;
+  protected _client: ArcadeAI;
 
-  constructor(client: ArcadeEngine) {
+  constructor(client: ArcadeAI) {
     this._client = client;
   }
 }

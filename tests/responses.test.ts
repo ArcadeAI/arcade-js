@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'arcade-js/core';
-import { Headers } from 'arcade-js/_shims/index';
+import { createResponseHeaders } from 'arcadejs/core';
+import { Headers } from 'arcadejs/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

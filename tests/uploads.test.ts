@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'arcade-js/uploads';
-import { File } from 'arcade-js/_shims/index';
+import { toFile, type ResponseLike } from 'arcadejs/uploads';
+import { File } from 'arcadejs/_shims/index';
 
 class MyClass {
   name: string = 'foo';

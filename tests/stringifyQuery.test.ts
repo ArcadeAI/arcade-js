@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ArcadeEngine } from 'arcade-js';
+import { ArcadeAI } from 'arcadejs';
 
-const { stringifyQuery } = ArcadeEngine.prototype as any;
+const { stringifyQuery } = ArcadeAI.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [
