@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^arcade-ai$': '<rootDir>/src/index.ts',
-    '^arcade-ai/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^arcade-ai/(.*)$': '<rootDir>/src/$1',
+    '^arcade-js$': '<rootDir>/src/index.ts',
+    '^arcade-js/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^arcade-js/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

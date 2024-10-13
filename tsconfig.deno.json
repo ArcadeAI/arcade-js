@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "arcade-ai/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "arcade-ai/*": ["deno/*"],
-      "arcade-ai": ["deno/index.ts"],
+      "arcade-js/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "arcade-js/*": ["deno/*"],
+      "arcade-js": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,

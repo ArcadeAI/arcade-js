@@ -1,5 +1,5 @@
 {
-  "name": "arcade-ai",
+  "name": "arcade-js",
   "version": "0.0.1-alpha.0",
   "description": "The official TypeScript library for the Arcade Engine API",
   "author": "Arcade Engine <contact@arcade-ai.com>",
@@ -60,8 +60,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "arcade-ai": ".",
-    "arcade-ai/*": "./src/*"
+    "arcade-js": ".",
+    "arcade-js/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {
