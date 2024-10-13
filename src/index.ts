@@ -8,9 +8,9 @@ import * as API from './resources/index';
 
 export interface ClientOptions {
   /**
-   * API Key used for authorization
+   * API key used for access to the Arcade API, provided in the Authorization header.
    */
-  bearerToken?: string | undefined;
+  apiKey?: string | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -73,14 +73,14 @@ export interface ClientOptions {
  * API Client for interfacing with the Arcade Engine API.
  */
 export class ArcadeEngine extends Core.APIClient {
-  bearerToken: string;
+  apiKey: string;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Arcade Engine API.
    *
-   * @param {string | undefined} [opts.bearerToken=process.env['BEARER_TOKEN'] ?? undefined]
+   * @param {string | undefined} [opts.apiKey=process.env['ARCADE_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['ARCADE_ENGINE_BASE_URL'] ?? https://api.arcade-ai.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -91,17 +91,17 @@ export class ArcadeEngine extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('ARCADE_ENGINE_BASE_URL'),
-    bearerToken = Core.readEnv('BEARER_TOKEN'),
+    apiKey = Core.readEnv('ARCADE_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
-    if (bearerToken === undefined) {
+    if (apiKey === undefined) {
       throw new Errors.ArcadeEngineError(
-        "The BEARER_TOKEN environment variable is missing or empty; either provide it, or instantiate the ArcadeEngine client with an bearerToken option, like new ArcadeEngine({ bearerToken: 'My Bearer Token' }).",
+        "The ARCADE_API_KEY environment variable is missing or empty; either provide it, or instantiate the ArcadeEngine client with an apiKey option, like new ArcadeEngine({ apiKey: 'My API Key' }).",
       );
     }
 
     const options: ClientOptions = {
-      bearerToken,
+      apiKey,
       ...opts,
       baseURL: baseURL || `https://api.arcade-ai.com`,
     };
@@ -116,12 +116,12 @@ export class ArcadeEngine extends Core.APIClient {
 
     this._options = options;
 
-    this.bearerToken = bearerToken;
+    this.apiKey = apiKey;
   }
 
-  authorization: API.Authorization = new API.Authorization(this);
-  llmCompletions: API.LlmCompletions = new API.LlmCompletions(this);
-  operations: API.Operations = new API.Operations(this);
+  auth: API.Auth = new API.Auth(this);
+  chat: API.Chat = new API.Chat(this);
+  health: API.Health = new API.Health(this);
   tools: API.Tools = new API.Tools(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -136,7 +136,7 @@ export class ArcadeEngine extends Core.APIClient {
   }
 
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
-    return { Authorization: this.bearerToken };
+    return { Authorization: this.apiKey };
   }
 
   static ArcadeEngine = this;
@@ -182,22 +182,22 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace ArcadeEngine {
   export import RequestOptions = Core.RequestOptions;
 
-  export import Authorization = API.Authorization;
-  export import AuthorizationAuthorizeParams = API.AuthorizationAuthorizeParams;
-  export import AuthorizationStatusParams = API.AuthorizationStatusParams;
+  export import Auth = API.Auth;
+  export import AuthAuthorizationParams = API.AuthAuthorizationParams;
+  export import AuthStatusParams = API.AuthStatusParams;
 
-  export import LlmCompletions = API.LlmCompletions;
+  export import Chat = API.Chat;
   export import ChatResponse = API.ChatResponse;
-  export import LlmCompletionCreateParams = API.LlmCompletionCreateParams;
+  export import ChatCompletionsParams = API.ChatCompletionsParams;
 
-  export import Operations = API.Operations;
+  export import Health = API.Health;
   export import HealthSchema = API.HealthSchema;
 
   export import Tools = API.Tools;
   export import Definition = API.Definition;
-  export import ToolResponse = API.ToolResponse;
+  export import Response = API.Response;
+  export import ToolRetrieveParams = API.ToolRetrieveParams;
   export import ToolAuthorizeParams = API.ToolAuthorizeParams;
-  export import ToolDefinitionParams = API.ToolDefinitionParams;
   export import ToolExecuteParams = API.ToolExecuteParams;
 
   export import AuthorizationResponse = API.AuthorizationResponse;

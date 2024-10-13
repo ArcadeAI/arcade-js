@@ -28,7 +28,7 @@ import ArcadeEngine from 'arcade-engine';
 const client = new ArcadeEngine();
 
 async function main() {
-  const chatResponse = await client.llmCompletions.create();
+  const chatResponse = await client.chat.completions();
 
   console.log(chatResponse.id);
 }
@@ -47,7 +47,7 @@ import ArcadeEngine from 'arcade-engine';
 const client = new ArcadeEngine();
 
 async function main() {
-  const chatResponse: ArcadeEngine.ChatResponse = await client.llmCompletions.create();
+  const chatResponse: ArcadeEngine.ChatResponse = await client.chat.completions();
 }
 
 main();
@@ -64,7 +64,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const chatResponse = await client.llmCompletions.create().catch(async (err) => {
+  const chatResponse = await client.chat.completions().catch(async (err) => {
     if (err instanceof ArcadeEngine.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -107,7 +107,7 @@ const client = new ArcadeEngine({
 });
 
 // Or, configure per-request:
-await client.llmCompletions.create({
+await client.chat.completions({
   maxRetries: 5,
 });
 ```
@@ -124,7 +124,7 @@ const client = new ArcadeEngine({
 });
 
 // Override per-request:
-await client.llmCompletions.create({
+await client.chat.completions({
   timeout: 5 * 1000,
 });
 ```
@@ -145,11 +145,11 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new ArcadeEngine();
 
-const response = await client.llmCompletions.create().asResponse();
+const response = await client.chat.completions().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: chatResponse, response: raw } = await client.llmCompletions.create().withResponse();
+const { data: chatResponse, response: raw } = await client.chat.completions().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(chatResponse.id);
 ```
@@ -255,7 +255,7 @@ const client = new ArcadeEngine({
 });
 
 // Override per-request:
-await client.llmCompletions.create({
+await client.chat.completions({
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
