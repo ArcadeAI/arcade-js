@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'arcade-js/core';
-import { Blob } from 'arcade-js/_shims/index';
-import { toFile } from 'arcade-js';
+import { multipartFormRequestOptions, createForm } from 'arcadejs/core';
+import { Blob } from 'arcadejs/_shims/index';
+import { toFile } from 'arcadejs';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

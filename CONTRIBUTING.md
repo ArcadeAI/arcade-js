@@ -42,25 +42,25 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```sh
-$ npm install git+ssh://git@github.com:ArcadeAI/arcade-js.git
+$ npm install git+ssh://git@github.com:stainless-sdks/arcade-engine-node.git
 ```
 
 Alternatively, to link a local copy of the repo:
 
 ```sh
 # Clone
-$ git clone https://www.github.com/ArcadeAI/arcade-js
-$ cd arcade-js
+$ git clone https://www.github.com/stainless-sdks/arcade-engine-node
+$ cd arcade-engine-node
 
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link arcade-js
+$ yarn link arcadejs
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global arcade-js
+$ pnpm link -—global arcadejs
 ```
 
 ## Running tests
@@ -99,7 +99,7 @@ the changes aren't made through the automated pipeline, you may want to make rel
 
 ### Publish with a GitHub workflow
 
-You can release to package managers by using [the `Publish NPM` GitHub action](https://www.github.com/ArcadeAI/arcade-js/actions/workflows/publish-npm.yml). This requires a setup organization or repository secret to be set up.
+You can release to package managers by using [the `Publish NPM` GitHub action](https://www.github.com/stainless-sdks/arcade-engine-node/actions/workflows/publish-npm.yml). This requires a setup organization or repository secret to be set up.
 
 ### Publish manually
 

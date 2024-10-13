@@ -1,8 +1,8 @@
-# Arcade Engine Node API Library
+# Arcade AI Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/arcade-js.svg)](https://npmjs.org/package/arcade-js) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcade-js)
+[![NPM version](https://img.shields.io/npm/v/arcadejs.svg)](https://npmjs.org/package/arcadejs) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcadejs)
 
-This library provides convenient access to the Arcade Engine REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Arcade AI REST API from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found on [arcade-ai.com](https://arcade-ai.com). The full API of this library can be found in [api.md](api.md).
 
@@ -11,11 +11,11 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:ArcadeAI/arcade-js.git
+npm install git+ssh://git@github.com:stainless-sdks/arcade-engine-node.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install arcade-js`
+> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install arcadejs`
 
 ## Usage
 
@@ -23,17 +23,21 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import ArcadeEngine from 'arcade-js';
+import ArcadeAI from 'arcadejs';
 
-const client = new ArcadeEngine();
+const client = new ArcadeAI({
+  environment: 'staging', // defaults to 'production'
+});
 
 async function main() {
-  const authorizationResponse = await client.auth.authorization({
-    auth_requirement: { provider: 'provider' },
-    user_id: 'user_id',
+  const response = await client.tools.execute({
+    inputs: '[object Object]',
+    tool_name: 'Google.ListEmails',
+    tool_version: '0.1.0',
+    user_id: 'dev@arcade-ai.com',
   });
 
-  console.log(authorizationResponse.authorizationID);
+  console.log(response.invocation_id);
 }
 
 main();
@@ -45,16 +49,14 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import ArcadeEngine from 'arcade-js';
+import ArcadeAI from 'arcadejs';
 
-const client = new ArcadeEngine();
+const client = new ArcadeAI({
+  environment: 'staging', // defaults to 'production'
+});
 
 async function main() {
-  const params: ArcadeEngine.AuthAuthorizationParams = {
-    auth_requirement: { provider: 'provider' },
-    user_id: 'user_id',
-  };
-  const authorizationResponse: ArcadeEngine.AuthorizationResponse = await client.auth.authorization(params);
+  const chatResponse: ArcadeAI.ChatResponse = await client.chat.completions();
 }
 
 main();
@@ -71,17 +73,15 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const authorizationResponse = await client.auth
-    .authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' })
-    .catch(async (err) => {
-      if (err instanceof ArcadeEngine.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
+  const chatResponse = await client.chat.completions().catch(async (err) => {
+    if (err instanceof ArcadeAI.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 }
 
 main();
@@ -111,12 +111,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new ArcadeEngine({
+const client = new ArcadeAI({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await client.auth.authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' }, {
+await client.chat.completions({
   maxRetries: 5,
 });
 ```
@@ -128,12 +128,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new ArcadeEngine({
+const client = new ArcadeAI({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await client.auth.authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' }, {
+await client.chat.completions({
   timeout: 5 * 1000,
 });
 ```
@@ -152,19 +152,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const client = new ArcadeEngine();
+const client = new ArcadeAI();
 
-const response = await client.auth
-  .authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' })
-  .asResponse();
+const response = await client.chat.completions().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: authorizationResponse, response: raw } = await client.auth
-  .authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' })
-  .withResponse();
+const { data: chatResponse, response: raw } = await client.chat.completions().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(authorizationResponse.authorizationID);
+console.log(chatResponse.id);
 ```
 
 ### Making custom/undocumented requests
@@ -217,17 +213,17 @@ By default, this library uses `node-fetch` in Node, and expects a global `fetch`
 
 If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
 (for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
-add the following import before your first import `from "ArcadeEngine"`:
+add the following import before your first import `from "ArcadeAI"`:
 
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'arcade-js/shims/web';
-import ArcadeEngine from 'arcade-js';
+import 'arcadejs/shims/web';
+import ArcadeAI from 'arcadejs';
 ```
 
-To do the inverse, add `import "arcade-js/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/ArcadeAI/arcade-js/tree/main/src/_shims#readme)).
+To do the inverse, add `import "arcadejs/shims/node"` (which does import polyfills).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stainless-sdks/arcade-engine-node/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -236,9 +232,9 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import ArcadeEngine from 'arcade-js';
+import ArcadeAI from 'arcadejs';
 
-const client = new ArcadeEngine({
+const client = new ArcadeAI({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
@@ -263,17 +259,14 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const client = new ArcadeEngine({
+const client = new ArcadeAI({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await client.auth.authorization(
-  { auth_requirement: { provider: 'provider' }, user_id: 'user_id' },
-  {
-    httpAgent: new http.Agent({ keepAlive: false }),
-  },
-);
+await client.chat.completions({
+  httpAgent: new http.Agent({ keepAlive: false }),
+});
 ```
 
 ## Semantic versioning
@@ -286,7 +279,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/ArcadeAI/arcade-js/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/arcade-engine-node/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

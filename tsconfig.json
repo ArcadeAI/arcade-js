@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "arcade-js/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "arcade-js/*": ["src/*"],
-      "arcade-js": ["src/index.ts"],
+      "arcadejs/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "arcadejs/*": ["src/*"],
+      "arcadejs": ["src/index.ts"],
     },
     "noEmit": true,
 

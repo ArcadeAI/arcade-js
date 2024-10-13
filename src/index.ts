@@ -6,16 +6,31 @@ import { type Agent } from './_shims/index';
 import * as Core from './core';
 import * as API from './resources/index';
 
+const environments = {
+  production: 'https://api.arcade-ai.com',
+  staging: 'https://dev-api.arcade-ai.com',
+};
+type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
-   * API key used for access to the Arcade API, provided in the Authorization header.
+   * API key used for authorization in header
    */
-  apiKey?: string | undefined;
+  apiKey?: string | null | undefined;
+
+  /**
+   * Specifies the environment to use for the API.
+   *
+   * Each environment maps to a different base URL:
+   * - `production` corresponds to `https://api.arcade-ai.com`
+   * - `staging` corresponds to `https://dev-api.arcade-ai.com`
+   */
+  environment?: Environment;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['ARCADE_ENGINE_BASE_URL'].
+   * Defaults to process.env['ARCADE_AI_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -70,18 +85,19 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Arcade Engine API.
+ * API Client for interfacing with the Arcade AI API.
  */
-export class ArcadeEngine extends Core.APIClient {
-  apiKey: string;
+export class ArcadeAI extends Core.APIClient {
+  apiKey: string | null;
 
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Arcade Engine API.
+   * API Client for interfacing with the Arcade AI API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['ARCADE_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['ARCADE_ENGINE_BASE_URL'] ?? https://api.arcade-ai.com] - Override the default base URL for the API.
+   * @param {string | null | undefined} [opts.apiKey=process.env['ARCADE_API_KEY'] ?? null]
+   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
+   * @param {string} [opts.baseURL=process.env['ARCADE_AI_BASE_URL'] ?? https://api.arcade-ai.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -90,24 +106,25 @@ export class ArcadeEngine extends Core.APIClient {
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = Core.readEnv('ARCADE_ENGINE_BASE_URL'),
-    apiKey = Core.readEnv('ARCADE_API_KEY'),
+    baseURL = Core.readEnv('ARCADE_AI_BASE_URL'),
+    apiKey = Core.readEnv('ARCADE_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (apiKey === undefined) {
-      throw new Errors.ArcadeEngineError(
-        "The ARCADE_API_KEY environment variable is missing or empty; either provide it, or instantiate the ArcadeEngine client with an apiKey option, like new ArcadeEngine({ apiKey: 'My API Key' }).",
-      );
-    }
-
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://api.arcade-ai.com`,
+      baseURL,
+      environment: opts.environment ?? 'production',
     };
 
+    if (baseURL && opts.environment) {
+      throw new Errors.ArcadeAIError(
+        'Ambiguous URL; The `baseURL` option (or ARCADE_AI_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
+    }
+
     super({
-      baseURL: options.baseURL!,
+      baseURL: options.baseURL || environments[options.environment || 'production'],
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -135,14 +152,30 @@ export class ArcadeEngine extends Core.APIClient {
     };
   }
 
+  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
+    if (this.apiKey && headers['authorization']) {
+      return;
+    }
+    if (customHeaders['authorization'] === null) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
+    );
+  }
+
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.apiKey == null) {
+      return {};
+    }
     return { Authorization: this.apiKey };
   }
 
-  static ArcadeEngine = this;
+  static ArcadeAI = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static ArcadeEngineError = Errors.ArcadeEngineError;
+  static ArcadeAIError = Errors.ArcadeAIError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -161,7 +194,7 @@ export class ArcadeEngine extends Core.APIClient {
 }
 
 export const {
-  ArcadeEngineError,
+  ArcadeAIError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -179,7 +212,7 @@ export const {
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace ArcadeEngine {
+export namespace ArcadeAI {
   export import RequestOptions = Core.RequestOptions;
 
   export import Auth = API.Auth;
@@ -203,4 +236,4 @@ export namespace ArcadeEngine {
   export import AuthorizationResponse = API.AuthorizationResponse;
 }
 
-export default ArcadeEngine;
+export default ArcadeAI;
