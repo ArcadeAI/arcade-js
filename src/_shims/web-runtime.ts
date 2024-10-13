@@ -9,9 +9,9 @@ export function getRuntime({ manuallyImported }: { manuallyImported?: boolean } 
   const recommendation =
     manuallyImported ?
       `You may need to use polyfills`
-    : `Add one of these imports before your first \`import … from 'arcade-engine'\`:
-- \`import 'arcade-engine/shims/node'\` (if you're running on Node)
-- \`import 'arcade-engine/shims/web'\` (otherwise)
+    : `Add one of these imports before your first \`import … from 'arcade-ai'\`:
+- \`import 'arcade-ai/shims/node'\` (if you're running on Node)
+- \`import 'arcade-ai/shims/web'\` (otherwise)
 `;
 
   let _fetch, _Request, _Response, _Headers;

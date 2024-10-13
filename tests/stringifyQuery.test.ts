@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ArcadeEngine } from 'arcade-engine';
+import { ArcadeEngine } from 'arcade-ai';
 
 const { stringifyQuery } = ArcadeEngine.prototype as any;
 
