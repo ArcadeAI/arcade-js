@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'arcade-engine/core';
-import { Headers } from 'arcade-engine/_shims/index';
+import { createResponseHeaders } from 'arcade-ai/core';
+import { Headers } from 'arcade-ai/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

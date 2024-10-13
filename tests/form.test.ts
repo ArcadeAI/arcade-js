@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'arcade-engine/core';
-import { Blob } from 'arcade-engine/_shims/index';
-import { toFile } from 'arcade-engine';
+import { multipartFormRequestOptions, createForm } from 'arcade-ai/core';
+import { Blob } from 'arcade-ai/_shims/index';
+import { toFile } from 'arcade-ai';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

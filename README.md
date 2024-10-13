@@ -1,6 +1,6 @@
 # Arcade Engine Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/arcade-engine.svg)](https://npmjs.org/package/arcade-engine) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcade-engine)
+[![NPM version](https://img.shields.io/npm/v/arcade-ai.svg)](https://npmjs.org/package/arcade-ai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcade-ai)
 
 This library provides convenient access to the Arcade Engine REST API from server-side TypeScript or JavaScript.
 
@@ -11,11 +11,8 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:ArcadeAI/arcade-js.git
+npm install arcade-ai
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install arcade-engine`
 
 ## Usage
 
@@ -23,7 +20,7 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import ArcadeEngine from 'arcade-engine';
+import ArcadeEngine from 'arcade-ai';
 
 const client = new ArcadeEngine();
 
@@ -42,7 +39,7 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import ArcadeEngine from 'arcade-engine';
+import ArcadeEngine from 'arcade-ai';
 
 const client = new ArcadeEngine();
 
@@ -209,11 +206,11 @@ add the following import before your first import `from "ArcadeEngine"`:
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'arcade-engine/shims/web';
-import ArcadeEngine from 'arcade-engine';
+import 'arcade-ai/shims/web';
+import ArcadeEngine from 'arcade-ai';
 ```
 
-To do the inverse, add `import "arcade-engine/shims/node"` (which does import polyfills).
+To do the inverse, add `import "arcade-ai/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/ArcadeAI/arcade-js/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
@@ -223,7 +220,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import ArcadeEngine from 'arcade-engine';
+import ArcadeEngine from 'arcade-ai';
 
 const client = new ArcadeEngine({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {

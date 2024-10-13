@@ -1,9 +1,9 @@
 # 👋 Wondering what everything in here does?
 
-`arcade-engine` supports a wide variety of runtime environments like Node.js, Deno, Bun, browsers, and various
+`arcade-ai` supports a wide variety of runtime environments like Node.js, Deno, Bun, browsers, and various
 edge runtimes, as well as both CommonJS (CJS) and EcmaScript Modules (ESM).
 
-To do this, `arcade-engine` provides shims for either using `node-fetch` when in Node (because `fetch` is still experimental there) or the global `fetch` API built into the environment when not in Node.
+To do this, `arcade-ai` provides shims for either using `node-fetch` when in Node (because `fetch` is still experimental there) or the global `fetch` API built into the environment when not in Node.
 
 It uses [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) to
 automatically select the correct shims for each environment. However, conditional exports are a fairly new
@@ -15,32 +15,32 @@ getting the wrong raw `Response` type from `.asResponse()`, for example.
 
 The user can work around these issues by manually importing one of:
 
-- `import 'arcade-engine/shims/node'`
-- `import 'arcade-engine/shims/web'`
+- `import 'arcade-ai/shims/node'`
+- `import 'arcade-ai/shims/web'`
 
 All of the code here in `_shims` handles selecting the automatic default shims or manual overrides.
 
 ### How it works - Runtime
 
-Runtime shims get installed by calling `setShims` exported by `arcade-engine/_shims/registry`.
+Runtime shims get installed by calling `setShims` exported by `arcade-ai/_shims/registry`.
 
-Manually importing `arcade-engine/shims/node` or `arcade-engine/shims/web`, calls `setShims` with the respective runtime shims.
+Manually importing `arcade-ai/shims/node` or `arcade-ai/shims/web`, calls `setShims` with the respective runtime shims.
 
-All client code imports shims from `arcade-engine/_shims/index`, which:
+All client code imports shims from `arcade-ai/_shims/index`, which:
 
 - checks if shims have been set manually
-- if not, calls `setShims` with the shims from `arcade-engine/_shims/auto/runtime`
-- re-exports the installed shims from `arcade-engine/_shims/registry`.
+- if not, calls `setShims` with the shims from `arcade-ai/_shims/auto/runtime`
+- re-exports the installed shims from `arcade-ai/_shims/registry`.
 
-`arcade-engine/_shims/auto/runtime` exports web runtime shims.
-If the `node` export condition is set, the export map replaces it with `arcade-engine/_shims/auto/runtime-node`.
+`arcade-ai/_shims/auto/runtime` exports web runtime shims.
+If the `node` export condition is set, the export map replaces it with `arcade-ai/_shims/auto/runtime-node`.
 
 ### How it works - Type time
 
-All client code imports shim types from `arcade-engine/_shims/index`, which selects the manual types from `arcade-engine/_shims/manual-types` if they have been declared, otherwise it exports the auto types from `arcade-engine/_shims/auto/types`.
+All client code imports shim types from `arcade-ai/_shims/index`, which selects the manual types from `arcade-ai/_shims/manual-types` if they have been declared, otherwise it exports the auto types from `arcade-ai/_shims/auto/types`.
 
-`arcade-engine/_shims/manual-types` exports an empty namespace.
-Manually importing `arcade-engine/shims/node` or `arcade-engine/shims/web` merges declarations into this empty namespace, so they get picked up by `arcade-engine/_shims/index`.
+`arcade-ai/_shims/manual-types` exports an empty namespace.
+Manually importing `arcade-ai/shims/node` or `arcade-ai/shims/web` merges declarations into this empty namespace, so they get picked up by `arcade-ai/_shims/index`.
 
-`arcade-engine/_shims/auto/types` exports web type definitions.
-If the `node` export condition is set, the export map replaces it with `arcade-engine/_shims/auto/types-node`, though TS only picks this up if `"moduleResolution": "nodenext"` or `"moduleResolution": "bundler"`.
+`arcade-ai/_shims/auto/types` exports web type definitions.
+If the `node` export condition is set, the export map replaces it with `arcade-ai/_shims/auto/types-node`, though TS only picks this up if `"moduleResolution": "nodenext"` or `"moduleResolution": "bundler"`.

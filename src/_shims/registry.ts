@@ -42,12 +42,12 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
     throw new Error(
-      `you must \`import 'arcade-engine/shims/${shims.kind}'\` before importing anything else from arcade-engine`,
+      `you must \`import 'arcade-ai/shims/${shims.kind}'\` before importing anything else from arcade-ai`,
     );
   }
   if (kind) {
     throw new Error(
-      `can't \`import 'arcade-engine/shims/${shims.kind}'\` after \`import 'arcade-engine/shims/${kind}'\``,
+      `can't \`import 'arcade-ai/shims/${shims.kind}'\` after \`import 'arcade-ai/shims/${kind}'\``,
     );
   }
   auto = options.auto;
