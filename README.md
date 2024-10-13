@@ -11,8 +11,11 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install arcadejs
+npm install git+ssh://git@github.com:ArcadeAI/arcade-js.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install arcadejs`
 
 ## Usage
 
@@ -23,18 +26,19 @@ The full API of this library can be found in [api.md](api.md).
 import ArcadeAI from 'arcadejs';
 
 const client = new ArcadeAI({
+  apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
   environment: 'staging', // defaults to 'production'
 });
 
 async function main() {
-  const response = await client.tools.execute({
+  const toolResponse = await client.tools.execute({
     inputs: '[object Object]',
     tool_name: 'Google.ListEmails',
     tool_version: '0.1.0',
-    user_id: 'dev@arcade-ai.com',
+    user_id: 'user@example.com',
   });
 
-  console.log(response.invocation_id);
+  console.log(toolResponse.invocation_id);
 }
 
 main();
@@ -49,11 +53,15 @@ This library includes TypeScript definitions for all request params and response
 import ArcadeAI from 'arcadejs';
 
 const client = new ArcadeAI({
+  apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
   environment: 'staging', // defaults to 'production'
 });
 
 async function main() {
-  const chatResponse: ArcadeAI.ChatResponse = await client.chat.completions();
+  const params: ArcadeAI.ChatCompletionsParams = {
+    messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }],
+  };
+  const chatResponse: ArcadeAI.ChatResponse = await client.chat.completions(params);
 }
 
 main();
@@ -70,15 +78,17 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const chatResponse = await client.chat.completions().catch(async (err) => {
-    if (err instanceof ArcadeAI.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+  const chatResponse = await client.chat
+    .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
+    .catch(async (err) => {
+      if (err instanceof ArcadeAI.APIError) {
+        console.log(err.status); // 400
+        console.log(err.name); // BadRequestError
+        console.log(err.headers); // {server: 'nginx', ...}
+      } else {
+        throw err;
+      }
+    });
 }
 
 main();
@@ -113,7 +123,7 @@ const client = new ArcadeAI({
 });
 
 // Or, configure per-request:
-await client.chat.completions({
+await client.chat.completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] }, {
   maxRetries: 5,
 });
 ```
@@ -130,7 +140,7 @@ const client = new ArcadeAI({
 });
 
 // Override per-request:
-await client.chat.completions({
+await client.chat.completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] }, {
   timeout: 5 * 1000,
 });
 ```
@@ -151,11 +161,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new ArcadeAI();
 
-const response = await client.chat.completions().asResponse();
+const response = await client.chat
+  .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: chatResponse, response: raw } = await client.chat.completions().withResponse();
+const { data: chatResponse, response: raw } = await client.chat
+  .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(chatResponse.id);
 ```
@@ -261,9 +275,12 @@ const client = new ArcadeAI({
 });
 
 // Override per-request:
-await client.chat.completions({
-  httpAgent: new http.Agent({ keepAlive: false }),
-});
+await client.chat.completions(
+  { messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] },
+  {
+    httpAgent: new http.Agent({ keepAlive: false }),
+  },
+);
 ```
 
 ## Semantic versioning

@@ -16,7 +16,7 @@ export interface ClientOptions {
   /**
    * API key used for authorization in header
    */
-  apiKey?: string | null | undefined;
+  apiKey?: string | undefined;
 
   /**
    * Specifies the environment to use for the API.
@@ -88,14 +88,14 @@ export interface ClientOptions {
  * API Client for interfacing with the Arcade AI API.
  */
 export class ArcadeAI extends Core.APIClient {
-  apiKey: string | null;
+  apiKey: string;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Arcade AI API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['ARCADE_API_KEY'] ?? null]
+   * @param {string | undefined} [opts.apiKey=process.env['ARCADE_API_KEY'] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['ARCADE_AI_BASE_URL'] ?? https://api.arcade-ai.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
@@ -107,9 +107,15 @@ export class ArcadeAI extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('ARCADE_AI_BASE_URL'),
-    apiKey = Core.readEnv('ARCADE_API_KEY') ?? null,
+    apiKey = Core.readEnv('ARCADE_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.ArcadeAIError(
+        "The ARCADE_API_KEY environment variable is missing or empty; either provide it, or instantiate the ArcadeAI client with an apiKey option, like new ArcadeAI({ apiKey: 'My API Key' }).",
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
       ...opts,
@@ -132,6 +138,7 @@ export class ArcadeAI extends Core.APIClient {
     });
 
     this._options = options;
+    this.idempotencyHeader = 'Idempotency-Key';
 
     this.apiKey = apiKey;
   }
@@ -152,23 +159,7 @@ export class ArcadeAI extends Core.APIClient {
     };
   }
 
-  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
-    if (this.apiKey && headers['authorization']) {
-      return;
-    }
-    if (customHeaders['authorization'] === null) {
-      return;
-    }
-
-    throw new Error(
-      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
-    );
-  }
-
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
-    if (this.apiKey == null) {
-      return {};
-    }
     return { Authorization: this.apiKey };
   }
 
@@ -216,10 +207,13 @@ export namespace ArcadeAI {
   export import RequestOptions = Core.RequestOptions;
 
   export import Auth = API.Auth;
-  export import AuthAuthorizationParams = API.AuthAuthorizationParams;
+  export import AuthorizationResponse = API.AuthorizationResponse;
+  export import AuthAuthorizeParams = API.AuthAuthorizeParams;
   export import AuthStatusParams = API.AuthStatusParams;
 
   export import Chat = API.Chat;
+  export import ChatMessage = API.ChatMessage;
+  export import ChatRequest = API.ChatRequest;
   export import ChatResponse = API.ChatResponse;
   export import ChatCompletionsParams = API.ChatCompletionsParams;
 
@@ -227,13 +221,15 @@ export namespace ArcadeAI {
   export import HealthSchema = API.HealthSchema;
 
   export import Tools = API.Tools;
-  export import Definition = API.Definition;
-  export import Response = API.Response;
-  export import ToolRetrieveParams = API.ToolRetrieveParams;
+  export import AuthorizeToolRequest = API.AuthorizeToolRequest;
+  export import ExecuteToolRequest = API.ExecuteToolRequest;
+  export import ToolDefinition = API.ToolDefinition;
+  export import ToolResponse = API.ToolResponse;
   export import ToolAuthorizeParams = API.ToolAuthorizeParams;
   export import ToolExecuteParams = API.ToolExecuteParams;
+  export import ToolRetrieveDefinitionParams = API.ToolRetrieveDefinitionParams;
 
-  export import AuthorizationResponse = API.AuthorizationResponse;
+  export import Error = API.Error;
 }
 
 export default ArcadeAI;

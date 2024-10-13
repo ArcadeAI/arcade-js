@@ -3,36 +3,63 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as ToolsAPI from './tools';
-import * as Shared from './shared';
+import * as AuthAPI from './auth';
 
 export class Tools extends APIResource {
-  /**
-   * Returns the arcade tool specification for a specific tool
-   */
-  retrieve(query: ToolRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Definition> {
-    return this._client.get('/v1/tools/definition', { query, ...options });
-  }
-
   /**
    * Authorizes a user for a specific tool by name
    */
   authorize(
     body: ToolAuthorizeParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizationResponse> {
+  ): Core.APIPromise<AuthAPI.AuthorizationResponse> {
     return this._client.post('/v1/tools/authorize', { body, ...options });
   }
 
   /**
    * Executes a tool by name and arguments
    */
-  execute(body: ToolExecuteParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+  execute(body: ToolExecuteParams, options?: Core.RequestOptions): Core.APIPromise<ToolResponse> {
     return this._client.post('/v1/tools/execute', { body, ...options });
+  }
+
+  /**
+   * Returns the arcade tool specification for a specific tool
+   */
+  retrieveDefinition(
+    query: ToolRetrieveDefinitionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ToolDefinition> {
+    return this._client.get('/v1/tools/definition', { query, ...options });
   }
 }
 
-export interface Definition {
-  inputs: Definition.Inputs;
+export interface AuthorizeToolRequest {
+  tool_name: string;
+
+  user_id: string;
+
+  /**
+   * Optional: if not provided, latest version is assumed
+   */
+  tool_version?: string;
+}
+
+export interface ExecuteToolRequest {
+  /**
+   * Serialized JSON string
+   */
+  inputs: string;
+
+  tool_name: string;
+
+  tool_version: string;
+
+  user_id: string;
+}
+
+export interface ToolDefinition {
+  inputs: ToolDefinition.Inputs;
 
   name: string;
 
@@ -40,12 +67,12 @@ export interface Definition {
 
   description?: string;
 
-  output?: Definition.Output;
+  output?: ToolDefinition.Output;
 
-  requirements?: Definition.Requirements;
+  requirements?: ToolDefinition.Requirements;
 }
 
-export namespace Definition {
+export namespace ToolDefinition {
   export interface Inputs {
     parameters?: Array<Inputs.Parameter>;
   }
@@ -113,19 +140,19 @@ export namespace Definition {
   }
 }
 
-export interface Response {
+export interface ToolResponse {
   invocation_id: string;
 
   duration?: number;
 
-  finished_at?: Response.FinishedAt;
+  finished_at?: ToolResponse.FinishedAt;
 
-  output?: Response.Output;
+  output?: ToolResponse.Output;
 
   success?: boolean;
 }
 
-export namespace Response {
+export namespace ToolResponse {
   export interface FinishedAt {
     'time.Time'?: string;
   }
@@ -149,18 +176,6 @@ export namespace Response {
       retry_after_ms?: number;
     }
   }
-}
-
-export interface ToolRetrieveParams {
-  /**
-   * Director ID
-   */
-  director_id: string;
-
-  /**
-   * Tool ID
-   */
-  tool_id: string;
 }
 
 export interface ToolAuthorizeParams {
@@ -187,10 +202,24 @@ export interface ToolExecuteParams {
   user_id: string;
 }
 
+export interface ToolRetrieveDefinitionParams {
+  /**
+   * Director ID
+   */
+  director_id: string;
+
+  /**
+   * Tool ID
+   */
+  tool_id: string;
+}
+
 export namespace Tools {
-  export import Definition = ToolsAPI.Definition;
-  export import Response = ToolsAPI.Response;
-  export import ToolRetrieveParams = ToolsAPI.ToolRetrieveParams;
+  export import AuthorizeToolRequest = ToolsAPI.AuthorizeToolRequest;
+  export import ExecuteToolRequest = ToolsAPI.ExecuteToolRequest;
+  export import ToolDefinition = ToolsAPI.ToolDefinition;
+  export import ToolResponse = ToolsAPI.ToolResponse;
   export import ToolAuthorizeParams = ToolsAPI.ToolAuthorizeParams;
   export import ToolExecuteParams = ToolsAPI.ToolExecuteParams;
+  export import ToolRetrieveDefinitionParams = ToolsAPI.ToolRetrieveDefinitionParams;
 }
