@@ -3,11 +3,14 @@
 import ArcadeAI from 'arcadejs';
 import { Response } from 'node-fetch';
 
-const client = new ArcadeAI({ baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010' });
+const client = new ArcadeAI({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource auth', () => {
-  test('authorization: only required params', async () => {
-    const responsePromise = client.auth.authorization({
+  test('authorize: only required params', async () => {
+    const responsePromise = client.auth.authorize({
       auth_requirement: { provider: 'provider' },
       user_id: 'user_id',
     });
@@ -20,8 +23,8 @@ describe('resource auth', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('authorization: required and optional params', async () => {
-    const response = await client.auth.authorization({
+  test('authorize: required and optional params', async () => {
+    const response = await client.auth.authorize({
       auth_requirement: {
         provider: 'provider',
         oauth2: { authority: 'authority', scopes: ['string', 'string', 'string'] },

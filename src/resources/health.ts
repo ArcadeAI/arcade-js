@@ -8,7 +8,7 @@ export class Health extends APIResource {
   /**
    * Engine Health
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<HealthSchema> {
+  check(options?: Core.RequestOptions): Core.APIPromise<HealthSchema> {
     return this._client.get('/v1/health', options);
   }
 }
