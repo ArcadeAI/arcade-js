@@ -7,6 +7,13 @@ import * as Shared from './shared';
 
 export class Tools extends APIResource {
   /**
+   * Returns the arcade tool specification for a specific tool
+   */
+  retrieve(query: ToolRetrieveParams, options?: Core.RequestOptions): Core.APIPromise<Definition> {
+    return this._client.get('/v1/tools/definition', { query, ...options });
+  }
+
+  /**
    * Authorizes a user for a specific tool by name
    */
   authorize(
@@ -17,16 +24,9 @@ export class Tools extends APIResource {
   }
 
   /**
-   * Returns the arcade tool specification for a specific tool
-   */
-  definition(query: ToolDefinitionParams, options?: Core.RequestOptions): Core.APIPromise<Definition> {
-    return this._client.get('/v1/tools/definition', { query, ...options });
-  }
-
-  /**
    * Executes a tool by name and arguments
    */
-  execute(body: ToolExecuteParams, options?: Core.RequestOptions): Core.APIPromise<ToolResponse> {
+  execute(body: ToolExecuteParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
     return this._client.post('/v1/tools/execute', { body, ...options });
   }
 }
@@ -113,19 +113,19 @@ export namespace Definition {
   }
 }
 
-export interface ToolResponse {
+export interface Response {
   invocation_id: string;
 
   duration?: number;
 
-  finished_at?: ToolResponse.FinishedAt;
+  finished_at?: Response.FinishedAt;
 
-  output?: ToolResponse.Output;
+  output?: Response.Output;
 
   success?: boolean;
 }
 
-export namespace ToolResponse {
+export namespace Response {
   export interface FinishedAt {
     'time.Time'?: string;
   }
@@ -151,18 +151,7 @@ export namespace ToolResponse {
   }
 }
 
-export interface ToolAuthorizeParams {
-  tool_name: string;
-
-  user_id: string;
-
-  /**
-   * Optional: if not provided, latest version is assumed
-   */
-  tool_version?: string;
-}
-
-export interface ToolDefinitionParams {
+export interface ToolRetrieveParams {
   /**
    * Director ID
    */
@@ -172,6 +161,17 @@ export interface ToolDefinitionParams {
    * Tool ID
    */
   tool_id: string;
+}
+
+export interface ToolAuthorizeParams {
+  tool_name: string;
+
+  user_id: string;
+
+  /**
+   * Optional: if not provided, latest version is assumed
+   */
+  tool_version?: string;
 }
 
 export interface ToolExecuteParams {
@@ -189,8 +189,8 @@ export interface ToolExecuteParams {
 
 export namespace Tools {
   export import Definition = ToolsAPI.Definition;
-  export import ToolResponse = ToolsAPI.ToolResponse;
+  export import Response = ToolsAPI.Response;
+  export import ToolRetrieveParams = ToolsAPI.ToolRetrieveParams;
   export import ToolAuthorizeParams = ToolsAPI.ToolAuthorizeParams;
-  export import ToolDefinitionParams = ToolsAPI.ToolDefinitionParams;
   export import ToolExecuteParams = ToolsAPI.ToolExecuteParams;
 }
