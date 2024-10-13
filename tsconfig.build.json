@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "arcade-ai/*": ["dist/src/*"],
-      "arcade-ai": ["dist/src/index.ts"],
+      "arcade-js/*": ["dist/src/*"],
+      "arcade-js": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

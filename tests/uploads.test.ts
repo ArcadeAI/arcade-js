@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'arcade-ai/uploads';
-import { File } from 'arcade-ai/_shims/index';
+import { toFile, type ResponseLike } from 'arcade-js/uploads';
+import { File } from 'arcade-js/_shims/index';
 
 class MyClass {
   name: string = 'foo';

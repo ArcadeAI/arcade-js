@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'arcade-ai/shims/node'
- *   import 'arcade-ai/shims/web'
+ *   import 'arcade-js/shims/node'
+ *   import 'arcade-js/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */

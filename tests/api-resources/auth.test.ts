@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ArcadeEngine from 'arcade-ai';
+import ArcadeEngine from 'arcade-js';
 import { Response } from 'node-fetch';
 
 const client = new ArcadeEngine({

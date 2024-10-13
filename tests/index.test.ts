@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ArcadeEngine from 'arcade-ai';
-import { APIUserAbortError } from 'arcade-ai';
-import { Headers } from 'arcade-ai/core';
+import ArcadeEngine from 'arcade-js';
+import { APIUserAbortError } from 'arcade-js';
+import { Headers } from 'arcade-js/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {

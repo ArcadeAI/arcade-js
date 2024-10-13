@@ -1,6 +1,6 @@
 # Arcade Engine Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/arcade-ai.svg)](https://npmjs.org/package/arcade-ai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcade-ai)
+[![NPM version](https://img.shields.io/npm/v/arcade-js.svg)](https://npmjs.org/package/arcade-js) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcade-js)
 
 This library provides convenient access to the Arcade Engine REST API from server-side TypeScript or JavaScript.
 
@@ -11,8 +11,11 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install arcade-ai
+npm install git+ssh://git@github.com:ArcadeAI/arcade-js.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install arcade-js`
 
 ## Usage
 
@@ -20,14 +23,17 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import ArcadeEngine from 'arcade-ai';
+import ArcadeEngine from 'arcade-js';
 
 const client = new ArcadeEngine();
 
 async function main() {
-  const chatResponse = await client.chat.completions();
+  const authorizationResponse = await client.auth.authorization({
+    auth_requirement: { provider: 'provider' },
+    user_id: 'user_id',
+  });
 
-  console.log(chatResponse.id);
+  console.log(authorizationResponse.authorizationID);
 }
 
 main();
@@ -39,12 +45,16 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import ArcadeEngine from 'arcade-ai';
+import ArcadeEngine from 'arcade-js';
 
 const client = new ArcadeEngine();
 
 async function main() {
-  const chatResponse: ArcadeEngine.ChatResponse = await client.chat.completions();
+  const params: ArcadeEngine.AuthAuthorizationParams = {
+    auth_requirement: { provider: 'provider' },
+    user_id: 'user_id',
+  };
+  const authorizationResponse: ArcadeEngine.AuthorizationResponse = await client.auth.authorization(params);
 }
 
 main();
@@ -61,15 +71,17 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const chatResponse = await client.chat.completions().catch(async (err) => {
-    if (err instanceof ArcadeEngine.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+  const authorizationResponse = await client.auth
+    .authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' })
+    .catch(async (err) => {
+      if (err instanceof ArcadeEngine.APIError) {
+        console.log(err.status); // 400
+        console.log(err.name); // BadRequestError
+        console.log(err.headers); // {server: 'nginx', ...}
+      } else {
+        throw err;
+      }
+    });
 }
 
 main();
@@ -104,7 +116,7 @@ const client = new ArcadeEngine({
 });
 
 // Or, configure per-request:
-await client.chat.completions({
+await client.auth.authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' }, {
   maxRetries: 5,
 });
 ```
@@ -121,7 +133,7 @@ const client = new ArcadeEngine({
 });
 
 // Override per-request:
-await client.chat.completions({
+await client.auth.authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -142,13 +154,17 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new ArcadeEngine();
 
-const response = await client.chat.completions().asResponse();
+const response = await client.auth
+  .authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: chatResponse, response: raw } = await client.chat.completions().withResponse();
+const { data: authorizationResponse, response: raw } = await client.auth
+  .authorization({ auth_requirement: { provider: 'provider' }, user_id: 'user_id' })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(chatResponse.id);
+console.log(authorizationResponse.authorizationID);
 ```
 
 ### Making custom/undocumented requests
@@ -206,11 +222,11 @@ add the following import before your first import `from "ArcadeEngine"`:
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'arcade-ai/shims/web';
-import ArcadeEngine from 'arcade-ai';
+import 'arcade-js/shims/web';
+import ArcadeEngine from 'arcade-js';
 ```
 
-To do the inverse, add `import "arcade-ai/shims/node"` (which does import polyfills).
+To do the inverse, add `import "arcade-js/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/ArcadeAI/arcade-js/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
@@ -220,7 +236,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import ArcadeEngine from 'arcade-ai';
+import ArcadeEngine from 'arcade-js';
 
 const client = new ArcadeEngine({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
@@ -252,9 +268,12 @@ const client = new ArcadeEngine({
 });
 
 // Override per-request:
-await client.chat.completions({
-  httpAgent: new http.Agent({ keepAlive: false }),
-});
+await client.auth.authorization(
+  { auth_requirement: { provider: 'provider' }, user_id: 'user_id' },
+  {
+    httpAgent: new http.Agent({ keepAlive: false }),
+  },
+);
 ```
 
 ## Semantic versioning
