@@ -1,12 +1,12 @@
 {
   "name": "arcadejs",
-  "version": "0.0.1-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "The official TypeScript library for the Arcade AI API",
   "author": "Arcade AI <contact@arcade-ai.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:stainless-sdks/arcade-engine-node",
+  "repository": "github:ArcadeAI/arcade-js",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
