@@ -1,8 +1,8 @@
-# Arcade AI Node API Library
+# Arcade Node API Library
 
 [![NPM version](https://img.shields.io/npm/v/arcadejs.svg)](https://npmjs.org/package/arcadejs) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcadejs)
 
-This library provides convenient access to the Arcade AI REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Arcade REST API from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found on [arcade-ai.com](https://arcade-ai.com). The full API of this library can be found in [api.md](api.md).
 
@@ -23,11 +23,10 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import ArcadeAI from 'arcadejs';
+import Arcade from 'arcadejs';
 
-const client = new ArcadeAI({
+const client = new Arcade({
   apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
-  environment: 'staging', // defaults to 'production'
 });
 
 async function main() {
@@ -50,18 +49,17 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import ArcadeAI from 'arcadejs';
+import Arcade from 'arcadejs';
 
-const client = new ArcadeAI({
+const client = new Arcade({
   apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
-  environment: 'staging', // defaults to 'production'
 });
 
 async function main() {
-  const params: ArcadeAI.ChatCompletionsParams = {
+  const params: Arcade.ChatCompletionsParams = {
     messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }],
   };
-  const chatResponse: ArcadeAI.ChatResponse = await client.chat.completions(params);
+  const chatResponse: Arcade.ChatResponse = await client.chat.completions(params);
 }
 
 main();
@@ -81,7 +79,7 @@ async function main() {
   const chatResponse = await client.chat
     .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
     .catch(async (err) => {
-      if (err instanceof ArcadeAI.APIError) {
+      if (err instanceof Arcade.APIError) {
         console.log(err.status); // 400
         console.log(err.name); // BadRequestError
         console.log(err.headers); // {server: 'nginx', ...}
@@ -118,7 +116,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new ArcadeAI({
+const client = new Arcade({
   maxRetries: 0, // default is 2
 });
 
@@ -135,7 +133,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new ArcadeAI({
+const client = new Arcade({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -159,7 +157,7 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const client = new ArcadeAI();
+const client = new Arcade();
 
 const response = await client.chat
   .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
@@ -224,13 +222,13 @@ By default, this library uses `node-fetch` in Node, and expects a global `fetch`
 
 If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
 (for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
-add the following import before your first import `from "ArcadeAI"`:
+add the following import before your first import `from "Arcade"`:
 
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
 import 'arcadejs/shims/web';
-import ArcadeAI from 'arcadejs';
+import Arcade from 'arcadejs';
 ```
 
 To do the inverse, add `import "arcadejs/shims/node"` (which does import polyfills).
@@ -243,9 +241,9 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import ArcadeAI from 'arcadejs';
+import Arcade from 'arcadejs';
 
-const client = new ArcadeAI({
+const client = new Arcade({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
@@ -270,7 +268,7 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const client = new ArcadeAI({
+const client = new Arcade({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
