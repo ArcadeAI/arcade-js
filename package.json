@@ -1,8 +1,8 @@
 {
   "name": "arcadejs",
-  "version": "0.1.0-alpha.1",
-  "description": "The official TypeScript library for the Arcade AI API",
-  "author": "Arcade AI <contact@arcade-ai.com>",
+  "version": "0.1.0-alpha.2",
+  "description": "The official TypeScript library for the Arcade API",
+  "author": "Arcade <contact@arcade-ai.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",

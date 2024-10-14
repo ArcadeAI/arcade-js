@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as AuthAPI from './auth';
+import * as Shared from './shared';
 
 export class Auth extends APIResource {
   /**
@@ -11,33 +12,42 @@ export class Auth extends APIResource {
   authorize(
     body: AuthAuthorizeParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<AuthorizationResponse> {
+  ): Core.APIPromise<Shared.AuthorizationResponse> {
     return this._client.post('/v1/auth/authorize', { body, ...options });
   }
 
   /**
-   * Checks the status of an ongoing authorization process for a specific tool
+   * Checks the status of an ongoing authorization process for a specific tool. If
+   * 'wait' param is present, does not respond until either the auth status becomes
+   * completed or the timeout is reached.
    */
-  status(query: AuthStatusParams, options?: Core.RequestOptions): Core.APIPromise<AuthorizationResponse> {
+  status(
+    query: AuthStatusParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.AuthorizationResponse> {
     return this._client.get('/v1/auth/status', { query, ...options });
   }
 }
 
-export interface AuthorizationResponse {
-  authorizationID?: string;
+export interface AuthRequest {
+  auth_requirement: AuthRequest.AuthRequirement;
 
-  authorizationURL?: string;
-
-  context?: AuthorizationResponse.Context;
-
-  scopes?: Array<string>;
-
-  status?: string;
+  user_id: string;
 }
 
-export namespace AuthorizationResponse {
-  export interface Context {
-    token?: string;
+export namespace AuthRequest {
+  export interface AuthRequirement {
+    oauth2?: AuthRequirement.Oauth2;
+
+    provider_id?: string;
+
+    provider_type?: string;
+  }
+
+  export namespace AuthRequirement {
+    export interface Oauth2 {
+      scopes?: Array<string>;
+    }
   }
 }
 
@@ -49,15 +59,15 @@ export interface AuthAuthorizeParams {
 
 export namespace AuthAuthorizeParams {
   export interface AuthRequirement {
-    provider: string;
-
     oauth2?: AuthRequirement.Oauth2;
+
+    provider_id?: string;
+
+    provider_type?: string;
   }
 
   export namespace AuthRequirement {
     export interface Oauth2 {
-      authority?: string;
-
       scopes?: Array<string>;
     }
   }
@@ -67,16 +77,21 @@ export interface AuthStatusParams {
   /**
    * Authorization ID
    */
-  authorizationID: string;
+  authorizationId: string;
 
   /**
    * Scopes
    */
   scopes?: string;
+
+  /**
+   * Timeout in seconds (max 60)
+   */
+  wait?: number;
 }
 
 export namespace Auth {
-  export import AuthorizationResponse = AuthAPI.AuthorizationResponse;
+  export import AuthRequest = AuthAPI.AuthRequest;
   export import AuthAuthorizeParams = AuthAPI.AuthAuthorizeParams;
   export import AuthStatusParams = AuthAPI.AuthStatusParams;
 }

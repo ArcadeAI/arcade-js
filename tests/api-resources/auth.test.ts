@@ -1,19 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ArcadeAI from 'arcadejs';
+import Arcade from 'arcadejs';
 import { Response } from 'node-fetch';
 
-const client = new ArcadeAI({
+const client = new Arcade({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource auth', () => {
   test('authorize: only required params', async () => {
-    const responsePromise = client.auth.authorize({
-      auth_requirement: { provider: 'provider' },
-      user_id: 'user_id',
-    });
+    const responsePromise = client.auth.authorize({ auth_requirement: {}, user_id: 'user_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -26,15 +23,16 @@ describe('resource auth', () => {
   test('authorize: required and optional params', async () => {
     const response = await client.auth.authorize({
       auth_requirement: {
-        provider: 'provider',
-        oauth2: { authority: 'authority', scopes: ['string', 'string', 'string'] },
+        oauth2: { scopes: ['string', 'string', 'string'] },
+        provider_id: 'provider_id',
+        provider_type: 'provider_type',
       },
       user_id: 'user_id',
     });
   });
 
   test('status: only required params', async () => {
-    const responsePromise = client.auth.status({ authorizationID: 'authorizationID' });
+    const responsePromise = client.auth.status({ authorizationId: 'authorizationId' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -45,6 +43,10 @@ describe('resource auth', () => {
   });
 
   test('status: required and optional params', async () => {
-    const response = await client.auth.status({ authorizationID: 'authorizationID', scopes: 'scopes' });
+    const response = await client.auth.status({
+      authorizationId: 'authorizationId',
+      scopes: 'scopes',
+      wait: 0,
+    });
   });
 });

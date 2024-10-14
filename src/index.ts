@@ -6,12 +6,6 @@ import { type Agent } from './_shims/index';
 import * as Core from './core';
 import * as API from './resources/index';
 
-const environments = {
-  production: 'https://api.arcade-ai.com',
-  staging: 'https://dev-api.arcade-ai.com',
-};
-type Environment = keyof typeof environments;
-
 export interface ClientOptions {
   /**
    * API key used for authorization in header
@@ -19,18 +13,9 @@ export interface ClientOptions {
   apiKey?: string | undefined;
 
   /**
-   * Specifies the environment to use for the API.
-   *
-   * Each environment maps to a different base URL:
-   * - `production` corresponds to `https://api.arcade-ai.com`
-   * - `staging` corresponds to `https://dev-api.arcade-ai.com`
-   */
-  environment?: Environment;
-
-  /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['ARCADE_AI_BASE_URL'].
+   * Defaults to process.env['ARCADE_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -85,19 +70,18 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Arcade AI API.
+ * API Client for interfacing with the Arcade API.
  */
-export class ArcadeAI extends Core.APIClient {
+export class Arcade extends Core.APIClient {
   apiKey: string;
 
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Arcade AI API.
+   * API Client for interfacing with the Arcade API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['ARCADE_API_KEY'] ?? undefined]
-   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
-   * @param {string} [opts.baseURL=process.env['ARCADE_AI_BASE_URL'] ?? https://api.arcade-ai.com] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['ARCADE_BASE_URL'] ?? https://api.arcade-ai.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -106,31 +90,24 @@ export class ArcadeAI extends Core.APIClient {
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = Core.readEnv('ARCADE_AI_BASE_URL'),
+    baseURL = Core.readEnv('ARCADE_BASE_URL'),
     apiKey = Core.readEnv('ARCADE_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.ArcadeAIError(
-        "The ARCADE_API_KEY environment variable is missing or empty; either provide it, or instantiate the ArcadeAI client with an apiKey option, like new ArcadeAI({ apiKey: 'My API Key' }).",
+      throw new Errors.ArcadeError(
+        "The ARCADE_API_KEY environment variable is missing or empty; either provide it, or instantiate the Arcade client with an apiKey option, like new Arcade({ apiKey: 'My API Key' }).",
       );
     }
 
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL,
-      environment: opts.environment ?? 'production',
+      baseURL: baseURL || `https://api.arcade-ai.com`,
     };
 
-    if (baseURL && opts.environment) {
-      throw new Errors.ArcadeAIError(
-        'Ambiguous URL; The `baseURL` option (or ARCADE_AI_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
-      );
-    }
-
     super({
-      baseURL: options.baseURL || environments[options.environment || 'production'],
+      baseURL: options.baseURL!,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -144,8 +121,8 @@ export class ArcadeAI extends Core.APIClient {
   }
 
   auth: API.Auth = new API.Auth(this);
-  chat: API.Chat = new API.Chat(this);
   health: API.Health = new API.Health(this);
+  chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -163,10 +140,10 @@ export class ArcadeAI extends Core.APIClient {
     return { Authorization: this.apiKey };
   }
 
-  static ArcadeAI = this;
+  static Arcade = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static ArcadeAIError = Errors.ArcadeAIError;
+  static ArcadeError = Errors.ArcadeError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -185,7 +162,7 @@ export class ArcadeAI extends Core.APIClient {
 }
 
 export const {
-  ArcadeAIError,
+  ArcadeError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -203,33 +180,43 @@ export const {
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace ArcadeAI {
+export namespace Arcade {
   export import RequestOptions = Core.RequestOptions;
 
   export import Auth = API.Auth;
-  export import AuthorizationResponse = API.AuthorizationResponse;
+  export import AuthRequest = API.AuthRequest;
   export import AuthAuthorizeParams = API.AuthAuthorizeParams;
   export import AuthStatusParams = API.AuthStatusParams;
+
+  export import Health = API.Health;
+  export import HealthSchema = API.HealthSchema;
 
   export import Chat = API.Chat;
   export import ChatMessage = API.ChatMessage;
   export import ChatRequest = API.ChatRequest;
   export import ChatResponse = API.ChatResponse;
-  export import ChatCompletionsParams = API.ChatCompletionsParams;
-
-  export import Health = API.Health;
-  export import HealthSchema = API.HealthSchema;
+  export import Choice = API.Choice;
+  export import Usage = API.Usage;
 
   export import Tools = API.Tools;
   export import AuthorizeToolRequest = API.AuthorizeToolRequest;
   export import ExecuteToolRequest = API.ExecuteToolRequest;
-  export import ToolDefinition = API.ToolDefinition;
-  export import ToolResponse = API.ToolResponse;
+  export import Inputs = API.Inputs;
+  export import Output = API.Output;
+  export import Parameter = API.Parameter;
+  export import Requirements = API.Requirements;
+  export import Response = API.Response;
+  export import ResponseOutput = API.ResponseOutput;
+  export import ToolkitDefinition = API.ToolkitDefinition;
+  export import ValueSchema = API.ValueSchema;
+  export import ToolListResponse = API.ToolListResponse;
+  export import ToolListParams = API.ToolListParams;
   export import ToolAuthorizeParams = API.ToolAuthorizeParams;
   export import ToolExecuteParams = API.ToolExecuteParams;
-  export import ToolRetrieveDefinitionParams = API.ToolRetrieveDefinitionParams;
 
+  export import AuthorizationResponse = API.AuthorizationResponse;
   export import Error = API.Error;
+  export import ToolDefinition = API.ToolDefinition;
 }
 
-export default ArcadeAI;
+export default Arcade;

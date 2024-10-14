@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2024-10-14)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/ArcadeAI/arcade-js/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** api update ([#14](https://github.com/ArcadeAI/arcade-js/issues/14)) ([1151f08](https://github.com/ArcadeAI/arcade-js/commit/1151f0877fc108e73fe905b293e40ae51d3c4742))
+* **api:** api update ([#16](https://github.com/ArcadeAI/arcade-js/issues/16)) ([6a914f3](https://github.com/ArcadeAI/arcade-js/commit/6a914f3ad24f0a794faee60ed67759ef4448178e))
+* **api:** api update ([#17](https://github.com/ArcadeAI/arcade-js/issues/17)) ([4875282](https://github.com/ArcadeAI/arcade-js/commit/4875282c44ab8fe24b72e2bf43e6b7b28c211d48))
+
 ## 0.1.0-alpha.1 (2024-10-13)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/ArcadeAI/arcade-js/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
