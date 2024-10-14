@@ -2,9 +2,9 @@
 
 import { castToError, Headers } from './core';
 
-export class ArcadeAIError extends Error {}
+export class ArcadeError extends Error {}
 
-export class APIError extends ArcadeAIError {
+export class APIError extends ArcadeError {
   readonly status: number | undefined;
   readonly headers: Headers | undefined;
   readonly error: Object | undefined;

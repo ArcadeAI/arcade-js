@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ArcadeAI from 'arcadejs';
+import Arcade from 'arcadejs';
 import { Response } from 'node-fetch';
 
-const client = new ArcadeAI({
+const client = new Arcade({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
