@@ -121,8 +121,8 @@ export class Arcade extends Core.APIClient {
   }
 
   auth: API.Auth = new API.Auth(this);
-  chat: API.Chat = new API.Chat(this);
   health: API.Health = new API.Health(this);
+  chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -184,29 +184,39 @@ export namespace Arcade {
   export import RequestOptions = Core.RequestOptions;
 
   export import Auth = API.Auth;
-  export import AuthorizationResponse = API.AuthorizationResponse;
+  export import AuthRequest = API.AuthRequest;
   export import AuthAuthorizeParams = API.AuthAuthorizeParams;
   export import AuthStatusParams = API.AuthStatusParams;
+
+  export import Health = API.Health;
+  export import HealthSchema = API.HealthSchema;
 
   export import Chat = API.Chat;
   export import ChatMessage = API.ChatMessage;
   export import ChatRequest = API.ChatRequest;
   export import ChatResponse = API.ChatResponse;
-  export import ChatCompletionsParams = API.ChatCompletionsParams;
-
-  export import Health = API.Health;
-  export import HealthSchema = API.HealthSchema;
+  export import Choice = API.Choice;
+  export import Usage = API.Usage;
 
   export import Tools = API.Tools;
   export import AuthorizeToolRequest = API.AuthorizeToolRequest;
   export import ExecuteToolRequest = API.ExecuteToolRequest;
-  export import ToolDefinition = API.ToolDefinition;
-  export import ToolResponse = API.ToolResponse;
+  export import Inputs = API.Inputs;
+  export import Output = API.Output;
+  export import Parameter = API.Parameter;
+  export import Requirements = API.Requirements;
+  export import Response = API.Response;
+  export import ResponseOutput = API.ResponseOutput;
+  export import ToolkitDefinition = API.ToolkitDefinition;
+  export import ValueSchema = API.ValueSchema;
+  export import ToolListResponse = API.ToolListResponse;
+  export import ToolListParams = API.ToolListParams;
   export import ToolAuthorizeParams = API.ToolAuthorizeParams;
   export import ToolExecuteParams = API.ToolExecuteParams;
-  export import ToolRetrieveDefinitionParams = API.ToolRetrieveDefinitionParams;
 
+  export import AuthorizationResponse = API.AuthorizationResponse;
   export import Error = API.Error;
+  export import ToolDefinition = API.ToolDefinition;
 }
 
 export default Arcade;

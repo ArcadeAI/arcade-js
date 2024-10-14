@@ -30,14 +30,14 @@ const client = new Arcade({
 });
 
 async function main() {
-  const toolResponse = await client.tools.execute({
-    inputs: '[object Object]',
+  const response = await client.tools.execute({
     tool_name: 'Google.ListEmails',
+    inputs: '{"n_emails": 10}',
     tool_version: '0.1.0',
     user_id: 'user@example.com',
   });
 
-  console.log(toolResponse.invocation_id);
+  console.log(response.invocation_id);
 }
 
 main();
@@ -56,10 +56,10 @@ const client = new Arcade({
 });
 
 async function main() {
-  const params: Arcade.ChatCompletionsParams = {
+  const params: Arcade.Chat.CompletionCompletionsParams = {
     messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }],
   };
-  const chatResponse: Arcade.ChatResponse = await client.chat.completions(params);
+  const chatResponse: Arcade.ChatResponse = await client.chat.completions.completions(params);
 }
 
 main();
@@ -76,7 +76,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const chatResponse = await client.chat
+  const chatResponse = await client.chat.completions
     .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
     .catch(async (err) => {
       if (err instanceof Arcade.APIError) {
@@ -121,7 +121,7 @@ const client = new Arcade({
 });
 
 // Or, configure per-request:
-await client.chat.completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] }, {
+await client.chat.completions.completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] }, {
   maxRetries: 5,
 });
 ```
@@ -138,7 +138,7 @@ const client = new Arcade({
 });
 
 // Override per-request:
-await client.chat.completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] }, {
+await client.chat.completions.completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] }, {
   timeout: 5 * 1000,
 });
 ```
@@ -159,13 +159,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new Arcade();
 
-const response = await client.chat
+const response = await client.chat.completions
   .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: chatResponse, response: raw } = await client.chat
+const { data: chatResponse, response: raw } = await client.chat.completions
   .completions({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
@@ -273,7 +273,7 @@ const client = new Arcade({
 });
 
 // Override per-request:
-await client.chat.completions(
+await client.chat.completions.completions(
   { messages: [{ role: 'user', content: 'Hello, how can I use Arcade AI?' }] },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
