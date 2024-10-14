@@ -9,8 +9,8 @@ const client = new Arcade({
 });
 
 describe('resource completions', () => {
-  test('completions', async () => {
-    const responsePromise = client.chat.completions.completions({});
+  test('create', async () => {
+    const responsePromise = client.chat.completions.create({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
