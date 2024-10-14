@@ -182,5 +182,5 @@ export namespace Chat {
   export import Choice = ChatAPI.Choice;
   export import Usage = ChatAPI.Usage;
   export import Completions = CompletionsAPI.Completions;
-  export import CompletionCompletionsParams = CompletionsAPI.CompletionCompletionsParams;
+  export import CompletionCreateParams = CompletionsAPI.CompletionCreateParams;
 }

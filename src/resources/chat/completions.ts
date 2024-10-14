@@ -9,15 +9,12 @@ export class Completions extends APIResource {
   /**
    * Talk to different LLM Chat APIs via OpenAI's API
    */
-  completions(
-    body: CompletionCompletionsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatAPI.ChatResponse> {
+  create(body: CompletionCreateParams, options?: Core.RequestOptions): Core.APIPromise<ChatAPI.ChatResponse> {
     return this._client.post('/v1/chat/completions', { body, ...options });
   }
 }
 
-export interface CompletionCompletionsParams {
+export interface CompletionCreateParams {
   frequency_penalty?: number;
 
   /**
@@ -62,7 +59,7 @@ export interface CompletionCompletionsParams {
   /**
    * Options for streaming response. Only set this when you set stream: true.
    */
-  stream_options?: CompletionCompletionsParams.StreamOptions;
+  stream_options?: CompletionCreateParams.StreamOptions;
 
   temperature?: number;
 
@@ -85,7 +82,7 @@ export interface CompletionCompletionsParams {
   user?: string;
 }
 
-export namespace CompletionCompletionsParams {
+export namespace CompletionCreateParams {
   /**
    * Options for streaming response. Only set this when you set stream: true.
    */
@@ -101,5 +98,5 @@ export namespace CompletionCompletionsParams {
 }
 
 export namespace Completions {
-  export import CompletionCompletionsParams = CompletionsAPI.CompletionCompletionsParams;
+  export import CompletionCreateParams = CompletionsAPI.CompletionCreateParams;
 }
