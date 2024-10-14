@@ -192,7 +192,7 @@ describe('idempotency', () => {
       apiKey: 'My API Key',
     });
     await client.auth.authorize(
-      { auth_requirement: { provider: 'provider' }, user_id: 'user_id' },
+      { auth_requirement: {}, user_id: 'user_id' },
       { idempotencyKey: 'my-idempotency-key' },
     );
   });
