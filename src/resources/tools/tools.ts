@@ -137,7 +137,7 @@ export interface ResponseOutput {
 
   requires_authorization?: Shared.AuthorizationResponse;
 
-  value?: unknown;
+  value?: Record<string, unknown>;
 }
 
 export namespace ResponseOutput {
