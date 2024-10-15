@@ -84,7 +84,7 @@ export interface ChatRequest {
   /**
    * Disable the default behavior of parallel tool calls by setting it: false.
    */
-  parallel_tool_calls?: unknown;
+  parallel_tool_calls?: boolean;
 
   presence_penalty?: number;
 
@@ -106,9 +106,9 @@ export interface ChatRequest {
   /**
    * This can be either a string or an ToolChoice object.
    */
-  tool_choice?: unknown;
+  tool_choice?: Record<string, unknown>;
 
-  tools?: unknown;
+  tools?: Record<string, unknown>;
 
   /**
    * TopLogProbs is an integer between 0 and 5 specifying the number of most likely
@@ -158,7 +158,7 @@ export interface Choice {
 
   index?: number;
 
-  logprobs?: unknown;
+  logprobs?: Record<string, unknown>;
 
   message?: ChatMessage;
 
