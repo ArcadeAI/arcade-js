@@ -44,7 +44,7 @@ export interface CompletionCreateParams {
   /**
    * Disable the default behavior of parallel tool calls by setting it: false.
    */
-  parallel_tool_calls?: unknown;
+  parallel_tool_calls?: boolean;
 
   presence_penalty?: number;
 
