@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as ToolsAPI from './tools/tools';
+import * as ToolsAPI from './tools';
+import { OffsetPage } from '../pagination';
 
 export interface AuthorizationResponse {
   authorization_id?: string;
@@ -11,7 +12,7 @@ export interface AuthorizationResponse {
 
   scopes?: Array<string>;
 
-  status?: string;
+  status?: 'pending' | 'completed' | 'failed';
 }
 
 export namespace AuthorizationResponse {
@@ -41,3 +42,5 @@ export interface ToolDefinition {
 
   requirements?: ToolsAPI.Requirements;
 }
+
+export class ToolDefinitionsOffsetPage extends OffsetPage<ToolDefinition> {}
