@@ -85,7 +85,7 @@ export interface AuthStatusParams {
   scopes?: string;
 
   /**
-   * Timeout in seconds (max 60)
+   * Timeout in seconds (max 59)
    */
   wait?: number;
 }

@@ -47,26 +47,20 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/tools/tools.ts">AuthorizeToolRequest</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ExecuteToolRequest</a></code>
-- <code><a href="./src/resources/tools/tools.ts">Inputs</a></code>
-- <code><a href="./src/resources/tools/tools.ts">Output</a></code>
-- <code><a href="./src/resources/tools/tools.ts">Parameter</a></code>
-- <code><a href="./src/resources/tools/tools.ts">Requirements</a></code>
-- <code><a href="./src/resources/tools/tools.ts">Response</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ResponseOutput</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ToolkitDefinition</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ValueSchema</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ToolListResponse</a></code>
+- <code><a href="./src/resources/tools.ts">AuthorizeToolRequest</a></code>
+- <code><a href="./src/resources/tools.ts">ExecuteToolRequest</a></code>
+- <code><a href="./src/resources/tools.ts">Inputs</a></code>
+- <code><a href="./src/resources/tools.ts">Output</a></code>
+- <code><a href="./src/resources/tools.ts">Parameter</a></code>
+- <code><a href="./src/resources/tools.ts">Requirements</a></code>
+- <code><a href="./src/resources/tools.ts">Response</a></code>
+- <code><a href="./src/resources/tools.ts">ResponseOutput</a></code>
+- <code><a href="./src/resources/tools.ts">ToolkitDefinition</a></code>
+- <code><a href="./src/resources/tools.ts">ValueSchema</a></code>
 
 Methods:
 
-- <code title="get /v1/tools/list">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolListResponse</code>
-- <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools/tools.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
-- <code title="post /v1/tools/execute">client.tools.<a href="./src/resources/tools/tools.ts">execute</a>({ ...params }) -> Response</code>
-
-## Definition
-
-Methods:
-
-- <code title="get /v1/tools/definition">client.tools.definition.<a href="./src/resources/tools/definition.ts">get</a>({ ...params }) -> ToolDefinition</code>
+- <code title="get /v1/tools/list">client.tools.<a href="./src/resources/tools.ts">list</a>({ ...params }) -> ToolDefinitionsOffsetPage</code>
+- <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
+- <code title="post /v1/tools/execute">client.tools.<a href="./src/resources/tools.ts">execute</a>({ ...params }) -> Response</code>
+- <code title="get /v1/tools/definition">client.tools.<a href="./src/resources/tools.ts">get</a>({ ...params }) -> ToolDefinition</code>
