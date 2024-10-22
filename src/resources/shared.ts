@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as ToolsAPI from './tools';
+import * as ToolsAPI from './tools/tools';
 import { OffsetPage } from '../pagination';
 
 export interface AuthorizationResponse {

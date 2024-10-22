@@ -5,24 +5,29 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ToolsAPI from './tools';
 import * as Shared from '../shared';
-import * as DefinitionAPI from './definition';
+import { ToolDefinitionsOffsetPage } from '../shared';
+import * as FormattedAPI from './formatted';
+import { type OffsetPageParams } from '../../pagination';
 
 export class Tools extends APIResource {
-  definition: DefinitionAPI.Definition = new DefinitionAPI.Definition(this._client);
+  formatted: FormattedAPI.Formatted = new FormattedAPI.Formatted(this._client);
 
   /**
-   * Returns a list of tools, optionally filtered by toolkit or auth provider
+   * Returns a page of tools, optionally filtered by toolkit
    */
-  list(query?: ToolListParams, options?: Core.RequestOptions): Core.APIPromise<ToolListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<ToolListResponse>;
+  list(
+    query?: ToolListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, Shared.ToolDefinition>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ToolDefinitionsOffsetPage, Shared.ToolDefinition>;
   list(
     query: ToolListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ToolListResponse> {
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, Shared.ToolDefinition> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.get('/v1/tools/list', { query, ...options });
+    return this._client.getAPIList('/v1/tools/list', ToolDefinitionsOffsetPage, { query, ...options });
   }
 
   /**
@@ -40,6 +45,13 @@ export class Tools extends APIResource {
    */
   execute(body: ToolExecuteParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
     return this._client.post('/v1/tools/execute', { body, ...options });
+  }
+
+  /**
+   * Returns the arcade tool specification for a specific tool
+   */
+  get(query: ToolGetParams, options?: Core.RequestOptions): Core.APIPromise<Shared.ToolDefinition> {
+    return this._client.get('/v1/tools/definition', { query, ...options });
   }
 }
 
@@ -137,7 +149,7 @@ export interface ResponseOutput {
 
   requires_authorization?: Shared.AuthorizationResponse;
 
-  value?: Record<string, unknown>;
+  value?: unknown;
 }
 
 export namespace ResponseOutput {
@@ -170,11 +182,9 @@ export interface ValueSchema {
   inner_val_type?: string;
 }
 
-export type ToolListResponse = Array<Shared.ToolDefinition>;
-
-export interface ToolListParams {
+export interface ToolListParams extends OffsetPageParams {
   /**
-   * Toolkit Name
+   * Toolkit name
    */
   toolkit?: string;
 }
@@ -206,6 +216,13 @@ export interface ToolExecuteParams {
   user_id?: string;
 }
 
+export interface ToolGetParams {
+  /**
+   * Tool ID
+   */
+  toolId: string;
+}
+
 export namespace Tools {
   export import AuthorizeToolRequest = ToolsAPI.AuthorizeToolRequest;
   export import ExecuteToolRequest = ToolsAPI.ExecuteToolRequest;
@@ -217,10 +234,16 @@ export namespace Tools {
   export import ResponseOutput = ToolsAPI.ResponseOutput;
   export import ToolkitDefinition = ToolsAPI.ToolkitDefinition;
   export import ValueSchema = ToolsAPI.ValueSchema;
-  export import ToolListResponse = ToolsAPI.ToolListResponse;
   export import ToolListParams = ToolsAPI.ToolListParams;
   export import ToolAuthorizeParams = ToolsAPI.ToolAuthorizeParams;
   export import ToolExecuteParams = ToolsAPI.ToolExecuteParams;
-  export import Definition = DefinitionAPI.Definition;
-  export import DefinitionGetParams = DefinitionAPI.DefinitionGetParams;
+  export import ToolGetParams = ToolsAPI.ToolGetParams;
+  export import Formatted = FormattedAPI.Formatted;
+  export import FormattedListResponse = FormattedAPI.FormattedListResponse;
+  export import FormattedGetResponse = FormattedAPI.FormattedGetResponse;
+  export import FormattedListResponsesOffsetPage = FormattedAPI.FormattedListResponsesOffsetPage;
+  export import FormattedListParams = FormattedAPI.FormattedListParams;
+  export import FormattedGetParams = FormattedAPI.FormattedGetParams;
 }
+
+export { ToolDefinitionsOffsetPage };
