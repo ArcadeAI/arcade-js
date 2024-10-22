@@ -18,6 +18,6 @@ export {
   ToolExecuteParams,
   ToolGetParams,
   Tools,
-} from './tools';
+} from './tools/tools';
 export { ChatMessage, ChatRequest, ChatResponse, Choice, Usage, Chat } from './chat/chat';
 export { HealthSchema, Health } from './health';
