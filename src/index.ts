@@ -4,6 +4,7 @@ import * as Errors from './error';
 import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
+import * as Pagination from './pagination';
 import * as API from './resources/index';
 
 export interface ClientOptions {
@@ -183,6 +184,10 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Arcade {
   export import RequestOptions = Core.RequestOptions;
 
+  export import OffsetPage = Pagination.OffsetPage;
+  export import OffsetPageParams = Pagination.OffsetPageParams;
+  export import OffsetPageResponse = Pagination.OffsetPageResponse;
+
   export import Auth = API.Auth;
   export import AuthRequest = API.AuthRequest;
   export import AuthAuthorizeParams = API.AuthAuthorizeParams;
@@ -209,10 +214,10 @@ export namespace Arcade {
   export import ResponseOutput = API.ResponseOutput;
   export import ToolkitDefinition = API.ToolkitDefinition;
   export import ValueSchema = API.ValueSchema;
-  export import ToolListResponse = API.ToolListResponse;
   export import ToolListParams = API.ToolListParams;
   export import ToolAuthorizeParams = API.ToolAuthorizeParams;
   export import ToolExecuteParams = API.ToolExecuteParams;
+  export import ToolGetParams = API.ToolGetParams;
 
   export import AuthorizationResponse = API.AuthorizationResponse;
   export import Error = API.Error;
