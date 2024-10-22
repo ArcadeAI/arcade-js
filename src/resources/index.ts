@@ -13,11 +13,11 @@ export {
   ResponseOutput,
   ToolkitDefinition,
   ValueSchema,
-  ToolListResponse,
   ToolListParams,
   ToolAuthorizeParams,
   ToolExecuteParams,
+  ToolGetParams,
   Tools,
-} from './tools/tools';
+} from './tools';
 export { ChatMessage, ChatRequest, ChatResponse, Choice, Usage, Chat } from './chat/chat';
 export { HealthSchema, Health } from './health';
