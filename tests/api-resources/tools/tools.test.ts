@@ -67,7 +67,7 @@ describe('resource tools', () => {
   test('execute: required and optional params', async () => {
     const response = await client.tools.execute({
       tool_name: 'tool_name',
-      inputs: 'inputs',
+      inputs: {},
       tool_version: 'tool_version',
       user_id: 'user_id',
     });
