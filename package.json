@@ -1,5 +1,5 @@
 {
-  "name": "arcadejs",
+  "name": "@arcadeai/arcadejs",
   "version": "0.1.0",
   "description": "The official TypeScript library for the Arcade API",
   "author": "Arcade <contact@arcade-ai.com>",
@@ -60,8 +60,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "arcadejs": ".",
-    "arcadejs/*": "./src/*"
+    "@arcadeai/arcadejs": ".",
+    "@arcadeai/arcadejs/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {

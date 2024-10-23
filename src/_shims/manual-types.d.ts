@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'arcadejs/shims/node'
- *   import 'arcadejs/shims/web'
+ *   import '@arcadeai/arcadejs/shims/node'
+ *   import '@arcadeai/arcadejs/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */
