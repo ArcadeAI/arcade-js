@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "arcadejs/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "arcadejs/*": ["deno/*"],
-      "arcadejs": ["deno/index.ts"],
+      "@arcadeai/arcadejs/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "@arcadeai/arcadejs/*": ["deno/*"],
+      "@arcadeai/arcadejs": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,

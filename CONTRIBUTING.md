@@ -55,12 +55,12 @@ $ cd arcade-js
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link arcadejs
+$ yarn link @arcadeai/arcadejs
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global arcadejs
+$ pnpm link -—global @arcadeai/arcadejs
 ```
 
 ## Running tests
