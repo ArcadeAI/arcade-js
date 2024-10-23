@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from '@arcadeai/arcadejs/uploads';
-import { File } from '@arcadeai/arcadejs/_shims/index';
+import { toFile, type ResponseLike } from 'arcadejs/uploads';
+import { File } from 'arcadejs/_shims/index';
 
 class MyClass {
   name: string = 'foo';
