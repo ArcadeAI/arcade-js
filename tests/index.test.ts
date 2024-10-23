@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Arcade from 'arcadejs';
-import { APIUserAbortError } from 'arcadejs';
-import { Headers } from 'arcadejs/core';
+import Arcade from '@arcadeai/arcadejs';
+import { APIUserAbortError } from '@arcadeai/arcadejs';
+import { Headers } from '@arcadeai/arcadejs/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {
