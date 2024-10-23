@@ -215,11 +215,6 @@ export interface ToolExecuteParams {
 
 export interface ToolGetParams {
   /**
-   * Director ID
-   */
-  directorId: string;
-
-  /**
    * Tool ID
    */
   toolId: string;

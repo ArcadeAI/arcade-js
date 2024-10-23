@@ -74,7 +74,7 @@ describe('resource tools', () => {
   });
 
   test('get: only required params', async () => {
-    const responsePromise = client.tools.get({ directorId: 'directorId', toolId: 'toolId' });
+    const responsePromise = client.tools.get({ toolId: 'toolId' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -82,9 +82,5 @@ describe('resource tools', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('get: required and optional params', async () => {
-    const response = await client.tools.get({ directorId: 'directorId', toolId: 'toolId' });
   });
 });
