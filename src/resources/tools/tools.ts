@@ -70,9 +70,9 @@ export interface ExecuteToolRequest {
   tool_name: string;
 
   /**
-   * Serialized JSON string
+   * JSON input to the tool, if any
    */
-  inputs?: string;
+  inputs?: unknown;
 
   /**
    * Optional: if not provided, any version is used
@@ -204,9 +204,9 @@ export interface ToolExecuteParams {
   tool_name: string;
 
   /**
-   * Serialized JSON string
+   * JSON input to the tool, if any
    */
-  inputs?: string;
+  inputs?: unknown;
 
   /**
    * Optional: if not provided, any version is used
