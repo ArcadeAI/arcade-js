@@ -7,7 +7,7 @@ export interface OffsetPageResponse<Item> {
 
   total_count: number;
 
-  page_count: number;
+  offset: number;
 }
 
 export interface OffsetPageParams {
@@ -27,7 +27,7 @@ export class OffsetPage<Item> extends AbstractPage<Item> implements OffsetPageRe
 
   total_count: number;
 
-  page_count: number;
+  offset: number;
 
   constructor(
     client: APIClient,
@@ -39,7 +39,7 @@ export class OffsetPage<Item> extends AbstractPage<Item> implements OffsetPageRe
 
     this.items = body.items || [];
     this.total_count = body.total_count || 0;
-    this.page_count = body.page_count || 0;
+    this.offset = body.offset || 0;
   }
 
   getPaginatedItems(): Item[] {
@@ -57,7 +57,7 @@ export class OffsetPage<Item> extends AbstractPage<Item> implements OffsetPageRe
   }
 
   nextPageInfo(): PageInfo | null {
-    const offset = this.page_count;
+    const offset = this.offset;
     if (!offset) {
       return null;
     }
