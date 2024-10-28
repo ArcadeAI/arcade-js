@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2 (2024-10-28)
+
+Full Changelog: [v0.1.1...v0.1.2](https://github.com/ArcadeAI/arcade-js/compare/v0.1.1...v0.1.2)
+
+### Chores
+
+* update SDK settings ([#35](https://github.com/ArcadeAI/arcade-js/issues/35)) ([895f495](https://github.com/ArcadeAI/arcade-js/commit/895f4950481a6a4d6ba01c1a8c81e46426dcd97f))
+
 ## 0.1.1 (2024-10-24)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/ArcadeAI/arcade-js/compare/v0.1.0...v0.1.1)
