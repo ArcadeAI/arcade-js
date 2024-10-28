@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'arcadejs/core';
-import { Headers } from 'arcadejs/_shims/index';
+import { createResponseHeaders } from '@arcadeai/arcadejs/core';
+import { Headers } from '@arcadeai/arcadejs/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

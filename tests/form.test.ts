@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'arcadejs/core';
-import { Blob } from 'arcadejs/_shims/index';
-import { toFile } from 'arcadejs';
+import { multipartFormRequestOptions, createForm } from '@arcadeai/arcadejs/core';
+import { Blob } from '@arcadeai/arcadejs/_shims/index';
+import { toFile } from '@arcadeai/arcadejs';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
