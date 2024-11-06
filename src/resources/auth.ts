@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as AuthAPI from './auth';
 import * as Shared from './shared';
 
 export class Auth extends APIResource {
@@ -90,8 +89,10 @@ export interface AuthStatusParams {
   wait?: number;
 }
 
-export namespace Auth {
-  export import AuthRequest = AuthAPI.AuthRequest;
-  export import AuthAuthorizeParams = AuthAPI.AuthAuthorizeParams;
-  export import AuthStatusParams = AuthAPI.AuthStatusParams;
+export declare namespace Auth {
+  export {
+    type AuthRequest as AuthRequest,
+    type AuthAuthorizeParams as AuthAuthorizeParams,
+    type AuthStatusParams as AuthStatusParams,
+  };
 }

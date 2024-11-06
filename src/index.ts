@@ -1,11 +1,32 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Errors from './error';
-import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
+import * as Errors from './error';
 import * as Pagination from './pagination';
+import { type OffsetPageParams, OffsetPageResponse } from './pagination';
+import * as Uploads from './uploads';
 import * as API from './resources/index';
+import { Auth, AuthAuthorizeParams, AuthRequest, AuthStatusParams } from './resources/auth';
+import { Health, HealthSchema } from './resources/health';
+import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './resources/chat/chat';
+import {
+  AuthorizeToolRequest,
+  ExecuteToolRequest,
+  Inputs,
+  Output,
+  Parameter,
+  Requirements,
+  Response,
+  ResponseOutput,
+  ToolAuthorizeParams,
+  ToolExecuteParams,
+  ToolGetParams,
+  ToolListParams,
+  ToolkitDefinition,
+  Tools,
+  ValueSchema,
+} from './resources/tools/tools';
 
 export interface ClientOptions {
   /**
@@ -162,7 +183,7 @@ export class Arcade extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export const {
+export {
   ArcadeError,
   APIError,
   APIConnectionError,
@@ -176,52 +197,61 @@ export const {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} = Errors;
+} from './error';
 
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace Arcade {
-  export import RequestOptions = Core.RequestOptions;
+Arcade.Auth = Auth;
+Arcade.Health = Health;
+Arcade.Chat = Chat;
+Arcade.Tools = Tools;
+
+export declare namespace Arcade {
+  export type RequestOptions = Core.RequestOptions;
 
   export import OffsetPage = Pagination.OffsetPage;
-  export import OffsetPageParams = Pagination.OffsetPageParams;
-  export import OffsetPageResponse = Pagination.OffsetPageResponse;
+  export { type OffsetPageParams as OffsetPageParams, type OffsetPageResponse as OffsetPageResponse };
 
-  export import Auth = API.Auth;
-  export import AuthRequest = API.AuthRequest;
-  export import AuthAuthorizeParams = API.AuthAuthorizeParams;
-  export import AuthStatusParams = API.AuthStatusParams;
+  export {
+    Auth as Auth,
+    type AuthRequest as AuthRequest,
+    type AuthAuthorizeParams as AuthAuthorizeParams,
+    type AuthStatusParams as AuthStatusParams,
+  };
 
-  export import Health = API.Health;
-  export import HealthSchema = API.HealthSchema;
+  export { Health as Health, type HealthSchema as HealthSchema };
 
-  export import Chat = API.Chat;
-  export import ChatMessage = API.ChatMessage;
-  export import ChatRequest = API.ChatRequest;
-  export import ChatResponse = API.ChatResponse;
-  export import Choice = API.Choice;
-  export import Usage = API.Usage;
+  export {
+    Chat as Chat,
+    type ChatMessage as ChatMessage,
+    type ChatRequest as ChatRequest,
+    type ChatResponse as ChatResponse,
+    type Choice as Choice,
+    type Usage as Usage,
+  };
 
-  export import Tools = API.Tools;
-  export import AuthorizeToolRequest = API.AuthorizeToolRequest;
-  export import ExecuteToolRequest = API.ExecuteToolRequest;
-  export import Inputs = API.Inputs;
-  export import Output = API.Output;
-  export import Parameter = API.Parameter;
-  export import Requirements = API.Requirements;
-  export import Response = API.Response;
-  export import ResponseOutput = API.ResponseOutput;
-  export import ToolkitDefinition = API.ToolkitDefinition;
-  export import ValueSchema = API.ValueSchema;
-  export import ToolListParams = API.ToolListParams;
-  export import ToolAuthorizeParams = API.ToolAuthorizeParams;
-  export import ToolExecuteParams = API.ToolExecuteParams;
-  export import ToolGetParams = API.ToolGetParams;
+  export {
+    Tools as Tools,
+    type AuthorizeToolRequest as AuthorizeToolRequest,
+    type ExecuteToolRequest as ExecuteToolRequest,
+    type Inputs as Inputs,
+    type Output as Output,
+    type Parameter as Parameter,
+    type Requirements as Requirements,
+    type Response as Response,
+    type ResponseOutput as ResponseOutput,
+    type ToolkitDefinition as ToolkitDefinition,
+    type ValueSchema as ValueSchema,
+    type ToolListParams as ToolListParams,
+    type ToolAuthorizeParams as ToolAuthorizeParams,
+    type ToolExecuteParams as ToolExecuteParams,
+    type ToolGetParams as ToolGetParams,
+  };
 
-  export import AuthorizationResponse = API.AuthorizationResponse;
-  export import Error = API.Error;
-  export import ToolDefinition = API.ToolDefinition;
+  export type AuthorizationResponse = API.AuthorizationResponse;
+  export type Error = API.Error;
+  export type ToolDefinition = API.ToolDefinition;
 }
 
 export default Arcade;

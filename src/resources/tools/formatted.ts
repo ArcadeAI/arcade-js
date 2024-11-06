@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as FormattedAPI from './formatted';
 import { OffsetPage, type OffsetPageParams } from '../../pagination';
 
 export class Formatted extends APIResource {
@@ -69,10 +68,14 @@ export interface FormattedGetParams {
   format?: string;
 }
 
-export namespace Formatted {
-  export import FormattedListResponse = FormattedAPI.FormattedListResponse;
-  export import FormattedGetResponse = FormattedAPI.FormattedGetResponse;
-  export import FormattedListResponsesOffsetPage = FormattedAPI.FormattedListResponsesOffsetPage;
-  export import FormattedListParams = FormattedAPI.FormattedListParams;
-  export import FormattedGetParams = FormattedAPI.FormattedGetParams;
+Formatted.FormattedListResponsesOffsetPage = FormattedListResponsesOffsetPage;
+
+export declare namespace Formatted {
+  export {
+    type FormattedListResponse as FormattedListResponse,
+    type FormattedGetResponse as FormattedGetResponse,
+    FormattedListResponsesOffsetPage as FormattedListResponsesOffsetPage,
+    type FormattedListParams as FormattedListParams,
+    type FormattedGetParams as FormattedGetParams,
+  };
 }
