@@ -183,30 +183,10 @@ export class Arcade extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export {
-  ArcadeError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} from './error';
-
-export import toFile = Uploads.toFile;
-export import fileFromPath = Uploads.fileFromPath;
-
 Arcade.Auth = Auth;
 Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
-
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -253,5 +233,22 @@ export declare namespace Arcade {
   export type Error = API.Error;
   export type ToolDefinition = API.ToolDefinition;
 }
+
+export { toFile, fileFromPath } from 'arcadejs/uploads';
+export {
+  ArcadeError,
+  APIError,
+  APIConnectionError,
+  APIConnectionTimeoutError,
+  APIUserAbortError,
+  NotFoundError,
+  ConflictError,
+  RateLimitError,
+  BadRequestError,
+  AuthenticationError,
+  InternalServerError,
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} from 'arcadejs/error';
 
 export default Arcade;
