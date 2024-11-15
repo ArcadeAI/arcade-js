@@ -234,7 +234,7 @@ export declare namespace Arcade {
   export type ToolDefinition = API.ToolDefinition;
 }
 
-export { toFile, fileFromPath } from 'arcadejs/uploads';
+export { toFile, fileFromPath } from './uploads';
 export {
   ArcadeError,
   APIError,
@@ -249,6 +249,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from 'arcadejs/error';
+} from './error';
 
 export default Arcade;
