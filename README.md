@@ -1,6 +1,6 @@
 # Arcade Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/arcadejs.svg)](https://npmjs.org/package/arcadejs) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/arcadejs)
+[![NPM version](https://img.shields.io/npm/v/@arcadeai/arcadejs.svg)](https://npmjs.org/package/@arcadeai/arcadejs) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@arcadeai/arcadejs)
 
 This library provides convenient access to the Arcade REST API from server-side TypeScript or JavaScript.
 
@@ -11,7 +11,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install arcadejs
+npm install @arcadeai/arcadejs
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Arcade from 'arcadejs';
+import Arcade from '@arcadeai/arcadejs';
 
 const client = new Arcade({
   apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
@@ -46,7 +46,7 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Arcade from 'arcadejs';
+import Arcade from '@arcadeai/arcadejs';
 
 const client = new Arcade({
   apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
@@ -224,11 +224,11 @@ add the following import before your first import `from "Arcade"`:
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'arcadejs/shims/web';
-import Arcade from 'arcadejs';
+import '@arcadeai/arcadejs/shims/web';
+import Arcade from '@arcadeai/arcadejs';
 ```
 
-To do the inverse, add `import "arcadejs/shims/node"` (which does import polyfills).
+To do the inverse, add `import "@arcadeai/arcadejs/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/ArcadeAI/arcade-js/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
@@ -238,7 +238,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import Arcade from 'arcadejs';
+import Arcade from '@arcadeai/arcadejs';
 
 const client = new Arcade({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
