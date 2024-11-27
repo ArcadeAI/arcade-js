@@ -10,9 +10,13 @@ export interface AuthorizationResponse {
 
   context?: AuthorizationResponse.Context;
 
+  provider_id?: string;
+
   scopes?: Array<string>;
 
   status?: 'pending' | 'completed' | 'failed';
+
+  user_id?: string;
 }
 
 export namespace AuthorizationResponse {
