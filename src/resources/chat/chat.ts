@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import * as ChatAPI from './chat';
 import * as Shared from '../shared';
 import * as CompletionsAPI from './completions';
+import { CompletionCreateParams, Completions } from './completions';
 
 export class Chat extends APIResource {
   completions: CompletionsAPI.Completions = new CompletionsAPI.Completions(this._client);
@@ -175,12 +175,16 @@ export interface Usage {
   total_tokens?: number;
 }
 
-export namespace Chat {
-  export import ChatMessage = ChatAPI.ChatMessage;
-  export import ChatRequest = ChatAPI.ChatRequest;
-  export import ChatResponse = ChatAPI.ChatResponse;
-  export import Choice = ChatAPI.Choice;
-  export import Usage = ChatAPI.Usage;
-  export import Completions = CompletionsAPI.Completions;
-  export import CompletionCreateParams = CompletionsAPI.CompletionCreateParams;
+Chat.Completions = Completions;
+
+export declare namespace Chat {
+  export {
+    type ChatMessage as ChatMessage,
+    type ChatRequest as ChatRequest,
+    type ChatResponse as ChatResponse,
+    type Choice as Choice,
+    type Usage as Usage,
+  };
+
+  export { Completions as Completions, type CompletionCreateParams as CompletionCreateParams };
 }

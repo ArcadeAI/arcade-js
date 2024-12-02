@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as CompletionsAPI from './completions';
 import * as ChatAPI from './chat';
 
 export class Completions extends APIResource {
@@ -97,6 +96,6 @@ export namespace CompletionCreateParams {
   }
 }
 
-export namespace Completions {
-  export import CompletionCreateParams = CompletionsAPI.CompletionCreateParams;
+export declare namespace Completions {
+  export { type CompletionCreateParams as CompletionCreateParams };
 }
