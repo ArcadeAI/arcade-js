@@ -3,10 +3,17 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as ToolsAPI from './tools';
 import * as Shared from '../shared';
 import { ToolDefinitionsOffsetPage } from '../shared';
 import * as FormattedAPI from './formatted';
+import {
+  Formatted,
+  FormattedGetParams,
+  FormattedGetResponse,
+  FormattedListParams,
+  FormattedListResponse,
+  FormattedListResponsesOffsetPage,
+} from './formatted';
 import { type OffsetPageParams } from '../../pagination';
 
 export class Tools extends APIResource {
@@ -223,27 +230,35 @@ export interface ToolGetParams {
   toolId: string;
 }
 
-export namespace Tools {
-  export import AuthorizeToolRequest = ToolsAPI.AuthorizeToolRequest;
-  export import ExecuteToolRequest = ToolsAPI.ExecuteToolRequest;
-  export import Inputs = ToolsAPI.Inputs;
-  export import Output = ToolsAPI.Output;
-  export import Parameter = ToolsAPI.Parameter;
-  export import Requirements = ToolsAPI.Requirements;
-  export import Response = ToolsAPI.Response;
-  export import ResponseOutput = ToolsAPI.ResponseOutput;
-  export import ToolkitDefinition = ToolsAPI.ToolkitDefinition;
-  export import ValueSchema = ToolsAPI.ValueSchema;
-  export import ToolListParams = ToolsAPI.ToolListParams;
-  export import ToolAuthorizeParams = ToolsAPI.ToolAuthorizeParams;
-  export import ToolExecuteParams = ToolsAPI.ToolExecuteParams;
-  export import ToolGetParams = ToolsAPI.ToolGetParams;
-  export import Formatted = FormattedAPI.Formatted;
-  export import FormattedListResponse = FormattedAPI.FormattedListResponse;
-  export import FormattedGetResponse = FormattedAPI.FormattedGetResponse;
-  export import FormattedListResponsesOffsetPage = FormattedAPI.FormattedListResponsesOffsetPage;
-  export import FormattedListParams = FormattedAPI.FormattedListParams;
-  export import FormattedGetParams = FormattedAPI.FormattedGetParams;
+Tools.Formatted = Formatted;
+Tools.FormattedListResponsesOffsetPage = FormattedListResponsesOffsetPage;
+
+export declare namespace Tools {
+  export {
+    type AuthorizeToolRequest as AuthorizeToolRequest,
+    type ExecuteToolRequest as ExecuteToolRequest,
+    type Inputs as Inputs,
+    type Output as Output,
+    type Parameter as Parameter,
+    type Requirements as Requirements,
+    type Response as Response,
+    type ResponseOutput as ResponseOutput,
+    type ToolkitDefinition as ToolkitDefinition,
+    type ValueSchema as ValueSchema,
+    type ToolListParams as ToolListParams,
+    type ToolAuthorizeParams as ToolAuthorizeParams,
+    type ToolExecuteParams as ToolExecuteParams,
+    type ToolGetParams as ToolGetParams,
+  };
+
+  export {
+    Formatted as Formatted,
+    type FormattedListResponse as FormattedListResponse,
+    type FormattedGetResponse as FormattedGetResponse,
+    FormattedListResponsesOffsetPage as FormattedListResponsesOffsetPage,
+    type FormattedListParams as FormattedListParams,
+    type FormattedGetParams as FormattedGetParams,
+  };
 }
 
 export { ToolDefinitionsOffsetPage };
