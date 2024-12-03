@@ -30,7 +30,6 @@ async function main() {
   const response = await client.tools.execute({
     tool_name: 'Google.ListEmails',
     inputs: { n_emails: 10 },
-    tool_version: '0.1.0',
     user_id: 'user@example.com',
   });
 

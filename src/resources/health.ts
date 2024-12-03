@@ -5,7 +5,7 @@ import * as Core from '../core';
 
 export class Health extends APIResource {
   /**
-   * Engine Health
+   * Check if Arcade Engine is healthy
    */
   check(options?: Core.RequestOptions): Core.APIPromise<HealthSchema> {
     return this._client.get('/v1/health', options);
