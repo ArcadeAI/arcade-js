@@ -6,7 +6,7 @@ import * as ChatAPI from './chat';
 
 export class Completions extends APIResource {
   /**
-   * Talk to different LLM Chat APIs via OpenAI's API
+   * Interact with language models via OpenAI's chat completions API
    */
   create(body: CompletionCreateParams, options?: Core.RequestOptions): Core.APIPromise<ChatAPI.ChatResponse> {
     return this._client.post('/v1/chat/completions', { body, ...options });
