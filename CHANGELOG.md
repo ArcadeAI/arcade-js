@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2024-12-10)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/ArcadeAI/arcade-js/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* **internal:** remove unnecessary getRequestClient function ([#51](https://github.com/ArcadeAI/arcade-js/issues/51)) ([e0483f1](https://github.com/ArcadeAI/arcade-js/commit/e0483f1ac4d031c295c11c4f8870db245dd6364e))
+
 ## 0.2.0 (2024-12-02)
 
 Full Changelog: [v0.1.2...v0.2.0](https://github.com/ArcadeAI/arcade-js/compare/v0.1.2...v0.2.0)
