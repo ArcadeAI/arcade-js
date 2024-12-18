@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.1 (2024-12-18)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/ArcadeAI/arcade-js/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* **internal:** bump cross-spawn to v7.0.6 ([#53](https://github.com/ArcadeAI/arcade-js/issues/53)) ([b4efb29](https://github.com/ArcadeAI/arcade-js/commit/b4efb29c33c1d86c867e8b0e6db90c6bcea93d92))
+* **internal:** codegen related update ([#55](https://github.com/ArcadeAI/arcade-js/issues/55)) ([bdaa2c3](https://github.com/ArcadeAI/arcade-js/commit/bdaa2c373df19e60586305062c96ffc1b147522f))
+* **internal:** fix some typos ([#56](https://github.com/ArcadeAI/arcade-js/issues/56)) ([d1cdc96](https://github.com/ArcadeAI/arcade-js/commit/d1cdc961e30550f7ab4098c462b214415afd982a))
+* **internal:** remove unnecessary getRequestClient function ([#51](https://github.com/ArcadeAI/arcade-js/issues/51)) ([e0483f1](https://github.com/ArcadeAI/arcade-js/commit/e0483f1ac4d031c295c11c4f8870db245dd6364e))
+* **types:** nicer error class types + jsdocs ([#54](https://github.com/ArcadeAI/arcade-js/issues/54)) ([e65e8cf](https://github.com/ArcadeAI/arcade-js/commit/e65e8cfd9cf4ee9cf1b36892f37981583b562b52))
+
 ## 0.2.0 (2024-12-02)
 
 Full Changelog: [v0.1.2...v0.2.0](https://github.com/ArcadeAI/arcade-js/compare/v0.1.2...v0.2.0)
