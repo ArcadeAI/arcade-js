@@ -68,6 +68,7 @@ describe('resource tools', () => {
     const response = await client.tools.execute({
       tool_name: 'tool_name',
       inputs: {},
+      run_at: { 'time.Time': 'time.Time' },
       tool_version: 'tool_version',
       user_id: 'user_id',
     });

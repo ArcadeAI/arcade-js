@@ -1,8 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as ToolsAPI from './tools/tools';
-import { OffsetPage } from '../pagination';
-
 export interface AuthorizationResponse {
   authorization_id?: string;
 
@@ -32,19 +29,3 @@ export interface Error {
 
   name?: string;
 }
-
-export interface ToolDefinition {
-  inputs: ToolsAPI.Inputs;
-
-  name: string;
-
-  toolkit: ToolsAPI.ToolkitDefinition;
-
-  description?: string;
-
-  output?: ToolsAPI.Output;
-
-  requirements?: ToolsAPI.Requirements;
-}
-
-export class ToolDefinitionsOffsetPage extends OffsetPage<ToolDefinition> {}
