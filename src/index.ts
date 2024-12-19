@@ -137,6 +137,7 @@ export class Arcade extends Core.APIClient {
     });
 
     this._options = options;
+    this.idempotencyHeader = 'Idempotency-Key';
 
     this.apiKey = apiKey;
   }
