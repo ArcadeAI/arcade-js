@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.2 (2024-12-19)
+
+Full Changelog: [v0.2.1...v0.2.2](https://github.com/ArcadeAI/arcade-js/compare/v0.2.1...v0.2.2)
+
+### Chores
+
+* **internal:** version bump ([#57](https://github.com/ArcadeAI/arcade-js/issues/57)) ([cb0999e](https://github.com/ArcadeAI/arcade-js/commit/cb0999e9fcc375d85c08acc21a4e43e95322df0e))
+
 ## 0.2.1 (2024-12-18)
 
 Full Changelog: [v0.2.0...v0.2.1](https://github.com/ArcadeAI/arcade-js/compare/v0.2.0...v0.2.1)
