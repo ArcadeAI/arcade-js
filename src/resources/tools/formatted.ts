@@ -7,8 +7,8 @@ import { OffsetPage, type OffsetPageParams } from '../../pagination';
 
 export class Formatted extends APIResource {
   /**
-   * Returns a page of tools, optionally filtered by toolkit, formatted for a
-   * specific provider
+   * Returns a page of tools from the engine configuration, optionally filtered by
+   * toolkit, formatted for a specific provider
    */
   list(
     query?: FormattedListParams,
