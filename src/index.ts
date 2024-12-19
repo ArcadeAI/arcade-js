@@ -13,19 +13,18 @@ import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './r
 import {
   AuthorizeToolRequest,
   ExecuteToolRequest,
-  Inputs,
-  Output,
-  Parameter,
-  Requirements,
-  Response,
+  ExecuteToolResponse,
   ResponseOutput,
   ToolAuthorizeParams,
   ToolExecuteParams,
+  ToolExecution,
+  ToolExecutionAttempt,
   ToolGetParams,
+  ToolGetResponse,
   ToolListParams,
-  ToolkitDefinition,
+  ToolListResponse,
+  ToolListResponsesOffsetPage,
   Tools,
-  ValueSchema,
 } from './resources/tools/tools';
 
 export interface ClientOptions {
@@ -186,6 +185,7 @@ Arcade.Auth = Auth;
 Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
+Arcade.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -214,14 +214,13 @@ export declare namespace Arcade {
     Tools as Tools,
     type AuthorizeToolRequest as AuthorizeToolRequest,
     type ExecuteToolRequest as ExecuteToolRequest,
-    type Inputs as Inputs,
-    type Output as Output,
-    type Parameter as Parameter,
-    type Requirements as Requirements,
-    type Response as Response,
+    type ExecuteToolResponse as ExecuteToolResponse,
     type ResponseOutput as ResponseOutput,
-    type ToolkitDefinition as ToolkitDefinition,
-    type ValueSchema as ValueSchema,
+    type ToolExecution as ToolExecution,
+    type ToolExecutionAttempt as ToolExecutionAttempt,
+    type ToolListResponse as ToolListResponse,
+    type ToolGetResponse as ToolGetResponse,
+    ToolListResponsesOffsetPage as ToolListResponsesOffsetPage,
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
@@ -230,7 +229,6 @@ export declare namespace Arcade {
 
   export type AuthorizationResponse = API.AuthorizationResponse;
   export type Error = API.Error;
-  export type ToolDefinition = API.ToolDefinition;
 }
 
 export { toFile, fileFromPath } from './uploads';

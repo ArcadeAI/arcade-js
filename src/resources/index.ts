@@ -12,17 +12,16 @@ export {
 } from './chat/chat';
 export { Health, type HealthSchema } from './health';
 export {
+  ToolListResponsesOffsetPage,
   Tools,
   type AuthorizeToolRequest,
   type ExecuteToolRequest,
-  type Inputs,
-  type Output,
-  type Parameter,
-  type Requirements,
-  type Response,
+  type ExecuteToolResponse,
   type ResponseOutput,
-  type ToolkitDefinition,
-  type ValueSchema,
+  type ToolExecution,
+  type ToolExecutionAttempt,
+  type ToolListResponse,
+  type ToolGetResponse,
   type ToolListParams,
   type ToolAuthorizeParams,
   type ToolExecuteParams,
