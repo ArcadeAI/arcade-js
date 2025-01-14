@@ -47,7 +47,7 @@ export interface CompletionCreateParams {
 
   presence_penalty?: number;
 
-  response_format?: 'json_object' | 'text';
+  response_format?: CompletionCreateParams.ResponseFormat;
 
   seed?: number;
 
@@ -82,6 +82,10 @@ export interface CompletionCreateParams {
 }
 
 export namespace CompletionCreateParams {
+  export interface ResponseFormat {
+    type?: 'json_object' | 'text';
+  }
+
   /**
    * Options for streaming response. Only set this when you set stream: true.
    */

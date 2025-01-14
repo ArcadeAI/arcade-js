@@ -60,8 +60,8 @@ export class Tools extends APIResource {
   /**
    * Returns the arcade tool specification for a specific tool
    */
-  get(query: ToolGetParams, options?: Core.RequestOptions): Core.APIPromise<ToolGetResponse> {
-    return this._client.get('/v1/tools/definition', { query, ...options });
+  get(options?: Core.RequestOptions): Core.APIPromise<ToolGetResponse> {
+    return this._client.get('/v1/tools/definition', options);
   }
 }
 
@@ -70,12 +70,15 @@ export class ToolListResponsesOffsetPage extends OffsetPage<ToolListResponse> {}
 export interface AuthorizeToolRequest {
   tool_name: string;
 
-  user_id: string;
-
   /**
    * Optional: if not provided, any version is used
    */
   tool_version?: string;
+
+  /**
+   * Required only when calling with an API key
+   */
+  user_id?: string;
 }
 
 export interface ExecuteToolRequest {
@@ -90,7 +93,7 @@ export interface ExecuteToolRequest {
    * The time at which the tool should be run (optional). If not provided, the tool
    * is run immediately
    */
-  run_at?: ExecuteToolRequest.RunAt;
+  run_at?: string;
 
   /**
    * The tool version to use (optional). If not provided, any version is used
@@ -100,30 +103,20 @@ export interface ExecuteToolRequest {
   user_id?: string;
 }
 
-export namespace ExecuteToolRequest {
-  /**
-   * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
-   */
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-}
-
 export interface ExecuteToolResponse {
   id?: string;
 
   duration?: number;
 
+  execution_id?: string;
+
   execution_type?: string;
 
-  finished_at?: ExecuteToolResponse.FinishedAt;
-
-  invocation_id?: string;
+  finished_at?: string;
 
   output?: ResponseOutput;
 
-  run_at?: ExecuteToolResponse.RunAt;
+  run_at?: string;
 
   status?: string;
 
@@ -135,20 +128,10 @@ export interface ExecuteToolResponse {
   success?: boolean;
 }
 
-export namespace ExecuteToolResponse {
-  export interface FinishedAt {
-    'time.Time'?: string;
-  }
-
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-}
-
 export interface ResponseOutput {
-  error?: ResponseOutput.Error;
+  authorization?: Shared.AuthorizationResponse;
 
-  requires_authorization?: Shared.AuthorizationResponse;
+  error?: ResponseOutput.Error;
 
   value?: unknown;
 }
@@ -170,17 +153,17 @@ export namespace ResponseOutput {
 export interface ToolExecution {
   id?: string;
 
-  created_at?: ToolExecution.CreatedAt;
+  created_at?: string;
 
   execution_status?: string;
 
   execution_type?: string;
 
-  finished_at?: ToolExecution.FinishedAt;
+  finished_at?: string;
 
-  run_at?: ToolExecution.RunAt;
+  run_at?: string;
 
-  started_at?: ToolExecution.StartedAt;
+  started_at?: string;
 
   tool_name?: string;
 
@@ -188,59 +171,27 @@ export interface ToolExecution {
 
   toolkit_version?: string;
 
-  updated_at?: ToolExecution.UpdatedAt;
+  updated_at?: string;
 
   user_id?: string;
-}
-
-export namespace ToolExecution {
-  export interface CreatedAt {
-    'time.Time'?: string;
-  }
-
-  export interface FinishedAt {
-    'time.Time'?: string;
-  }
-
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-
-  export interface StartedAt {
-    'time.Time'?: string;
-  }
-
-  export interface UpdatedAt {
-    'time.Time'?: string;
-  }
 }
 
 export interface ToolExecutionAttempt {
   id?: string;
 
-  finished_at?: ToolExecutionAttempt.FinishedAt;
+  finished_at?: string;
 
   output?: ResponseOutput;
 
-  started_at?: ToolExecutionAttempt.StartedAt;
+  started_at?: string;
 
   success?: boolean;
 
   system_error_message?: string;
 }
 
-export namespace ToolExecutionAttempt {
-  export interface FinishedAt {
-    'time.Time'?: string;
-  }
-
-  export interface StartedAt {
-    'time.Time'?: string;
-  }
-}
-
 export interface ToolListResponse {
-  inputs: ToolListResponse.Inputs;
+  input: ToolListResponse.Input;
 
   name: string;
 
@@ -256,11 +207,11 @@ export interface ToolListResponse {
 }
 
 export namespace ToolListResponse {
-  export interface Inputs {
-    parameters?: Array<Inputs.Parameter>;
+  export interface Input {
+    parameters?: Array<Input.Parameter>;
   }
 
-  export namespace Inputs {
+  export namespace Input {
     export interface Parameter {
       name: string;
 
@@ -332,7 +283,7 @@ export namespace ToolListResponse {
 }
 
 export interface ToolGetResponse {
-  inputs: ToolGetResponse.Inputs;
+  input: ToolGetResponse.Input;
 
   name: string;
 
@@ -348,11 +299,11 @@ export interface ToolGetResponse {
 }
 
 export namespace ToolGetResponse {
-  export interface Inputs {
-    parameters?: Array<Inputs.Parameter>;
+  export interface Input {
+    parameters?: Array<Input.Parameter>;
   }
 
-  export namespace Inputs {
+  export namespace Input {
     export interface Parameter {
       name: string;
 
@@ -433,12 +384,15 @@ export interface ToolListParams extends OffsetPageParams {
 export interface ToolAuthorizeParams {
   tool_name: string;
 
-  user_id: string;
-
   /**
    * Optional: if not provided, any version is used
    */
   tool_version?: string;
+
+  /**
+   * Required only when calling with an API key
+   */
+  user_id?: string;
 }
 
 export interface ToolExecuteParams {
@@ -453,7 +407,7 @@ export interface ToolExecuteParams {
    * The time at which the tool should be run (optional). If not provided, the tool
    * is run immediately
    */
-  run_at?: ToolExecuteParams.RunAt;
+  run_at?: string;
 
   /**
    * The tool version to use (optional). If not provided, any version is used
@@ -461,23 +415,6 @@ export interface ToolExecuteParams {
   tool_version?: string;
 
   user_id?: string;
-}
-
-export namespace ToolExecuteParams {
-  /**
-   * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
-   */
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-}
-
-export interface ToolGetParams {
-  /**
-   * Tool ID
-   */
-  toolId: string;
 }
 
 Tools.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
@@ -499,7 +436,6 @@ export declare namespace Tools {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
-    type ToolGetParams as ToolGetParams,
   };
 
   export {

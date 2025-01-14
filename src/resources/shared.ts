@@ -1,9 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export interface AuthorizationResponse {
-  authorization_id?: string;
-
-  authorization_url?: string;
+  id?: string;
 
   context?: AuthorizationResponse.Context;
 
@@ -12,6 +10,8 @@ export interface AuthorizationResponse {
   scopes?: Array<string>;
 
   status?: 'pending' | 'completed' | 'failed';
+
+  url?: string;
 
   user_id?: string;
 }
