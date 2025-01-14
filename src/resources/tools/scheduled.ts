@@ -37,19 +37,19 @@ export interface ScheduledDetailsResponse {
 
   attempts?: Array<ToolsAPI.ToolExecutionAttempt>;
 
-  created_at?: ScheduledDetailsResponse.CreatedAt;
+  created_at?: string;
 
   execution_status?: string;
 
   execution_type?: string;
 
-  finished_at?: ScheduledDetailsResponse.FinishedAt;
+  finished_at?: string;
 
   inputs?: Record<string, unknown>;
 
-  run_at?: ScheduledDetailsResponse.RunAt;
+  run_at?: string;
 
-  started_at?: ScheduledDetailsResponse.StartedAt;
+  started_at?: string;
 
   tool_name?: string;
 
@@ -57,31 +57,9 @@ export interface ScheduledDetailsResponse {
 
   toolkit_version?: string;
 
-  updated_at?: ScheduledDetailsResponse.UpdatedAt;
+  updated_at?: string;
 
   user_id?: string;
-}
-
-export namespace ScheduledDetailsResponse {
-  export interface CreatedAt {
-    'time.Time'?: string;
-  }
-
-  export interface FinishedAt {
-    'time.Time'?: string;
-  }
-
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-
-  export interface StartedAt {
-    'time.Time'?: string;
-  }
-
-  export interface UpdatedAt {
-    'time.Time'?: string;
-  }
 }
 
 export declare namespace Scheduled {

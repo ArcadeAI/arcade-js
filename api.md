@@ -60,7 +60,7 @@ Methods:
 - <code title="get /v1/tools/list">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolListResponsesOffsetPage</code>
 - <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools/tools.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
 - <code title="post /v1/tools/execute">client.tools.<a href="./src/resources/tools/tools.ts">execute</a>({ ...params }) -> ExecuteToolResponse</code>
-- <code title="get /v1/tools/definition">client.tools.<a href="./src/resources/tools/tools.ts">get</a>({ ...params }) -> ToolGetResponse</code>
+- <code title="get /v1/tools/definition">client.tools.<a href="./src/resources/tools/tools.ts">get</a>() -> ToolGetResponse</code>
 
 ## Scheduled
 

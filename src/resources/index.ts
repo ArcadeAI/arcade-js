@@ -25,5 +25,4 @@ export {
   type ToolListParams,
   type ToolAuthorizeParams,
   type ToolExecuteParams,
-  type ToolGetParams,
 } from './tools/tools';

@@ -19,7 +19,6 @@ import {
   ToolExecuteParams,
   ToolExecution,
   ToolExecutionAttempt,
-  ToolGetParams,
   ToolGetResponse,
   ToolListParams,
   ToolListResponse,
@@ -224,7 +223,6 @@ export declare namespace Arcade {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
-    type ToolGetParams as ToolGetParams,
   };
 
   export type AuthorizationResponse = API.AuthorizationResponse;

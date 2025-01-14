@@ -35,7 +35,7 @@ describe('resource tools', () => {
   });
 
   test('authorize: only required params', async () => {
-    const responsePromise = client.tools.authorize({ tool_name: 'tool_name', user_id: 'user_id' });
+    const responsePromise = client.tools.authorize({ tool_name: 'tool_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -48,8 +48,8 @@ describe('resource tools', () => {
   test('authorize: required and optional params', async () => {
     const response = await client.tools.authorize({
       tool_name: 'tool_name',
-      user_id: 'user_id',
       tool_version: 'tool_version',
+      user_id: 'user_id',
     });
   });
 
@@ -68,14 +68,14 @@ describe('resource tools', () => {
     const response = await client.tools.execute({
       tool_name: 'tool_name',
       inputs: {},
-      run_at: { 'time.Time': 'time.Time' },
+      run_at: 'run_at',
       tool_version: 'tool_version',
       user_id: 'user_id',
     });
   });
 
-  test('get: only required params', async () => {
-    const responsePromise = client.tools.get({ toolId: 'toolId' });
+  test('get', async () => {
+    const responsePromise = client.tools.get();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -85,7 +85,10 @@ describe('resource tools', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: required and optional params', async () => {
-    const response = await client.tools.get({ toolId: 'toolId' });
+  test('get: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.tools.get({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Arcade.NotFoundError,
+    );
   });
 });
