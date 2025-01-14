@@ -88,7 +88,7 @@ export interface ChatRequest {
 
   presence_penalty?: number;
 
-  response_format?: 'json_object' | 'text';
+  response_format?: ChatRequest.ResponseFormat;
 
   seed?: number;
 
@@ -123,6 +123,10 @@ export interface ChatRequest {
 }
 
 export namespace ChatRequest {
+  export interface ResponseFormat {
+    type?: 'json_object' | 'text';
+  }
+
   /**
    * Options for streaming response. Only set this when you set stream: true.
    */

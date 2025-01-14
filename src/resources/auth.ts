@@ -76,12 +76,7 @@ export interface AuthStatusParams {
   /**
    * Authorization ID
    */
-  authorizationId: string;
-
-  /**
-   * Scopes
-   */
-  scopes?: string;
+  id: string;
 
   /**
    * Timeout in seconds (max 59)
