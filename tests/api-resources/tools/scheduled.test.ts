@@ -27,8 +27,15 @@ describe('resource scheduled', () => {
     );
   });
 
-  test('details', async () => {
-    const responsePromise = client.tools.scheduled.details('id');
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.tools.scheduled.list({ limit: 0, offset: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Arcade.NotFoundError);
+  });
+
+  test('get', async () => {
+    const responsePromise = client.tools.scheduled.get('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,9 +45,9 @@ describe('resource scheduled', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('details: request options instead of params are passed correctly', async () => {
+  test('get: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.tools.scheduled.details('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.tools.scheduled.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Arcade.NotFoundError,
     );
   });

@@ -14,16 +14,13 @@ import {
   AuthorizeToolRequest,
   ExecuteToolRequest,
   ExecuteToolResponse,
-  ResponseOutput,
   ToolAuthorizeParams,
   ToolExecuteParams,
   ToolExecution,
   ToolExecutionAttempt,
   ToolGetResponse,
-  ToolListParams,
-  ToolListResponse,
-  ToolListResponsesOffsetPage,
   Tools,
+  ValueSchema,
 } from './resources/tools/tools';
 
 export interface ClientOptions {
@@ -185,7 +182,6 @@ Arcade.Auth = Auth;
 Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
-Arcade.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -215,18 +211,16 @@ export declare namespace Arcade {
     type AuthorizeToolRequest as AuthorizeToolRequest,
     type ExecuteToolRequest as ExecuteToolRequest,
     type ExecuteToolResponse as ExecuteToolResponse,
-    type ResponseOutput as ResponseOutput,
     type ToolExecution as ToolExecution,
     type ToolExecutionAttempt as ToolExecutionAttempt,
-    type ToolListResponse as ToolListResponse,
+    type ValueSchema as ValueSchema,
     type ToolGetResponse as ToolGetResponse,
-    ToolListResponsesOffsetPage as ToolListResponsesOffsetPage,
-    type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
   };
 
-  export type AuthorizationResponse = API.AuthorizationResponse;
+  export type AuthAuthorizationContext = API.AuthAuthorizationContext;
+  export type AuthAuthorizationResponse = API.AuthAuthorizationResponse;
   export type Error = API.Error;
 }
 

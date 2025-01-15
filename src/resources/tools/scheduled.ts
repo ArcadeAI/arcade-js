@@ -1,38 +1,40 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ToolsAPI from './tools';
+import { ToolExecutionsOffsetPage } from './tools';
+import { type OffsetPageParams } from '../../pagination';
 
 export class Scheduled extends APIResource {
   /**
    * Returns a page of scheduled tool executions
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ScheduledListResponse> {
-    return this._client.get('/v1/tools/scheduled', options);
+  list(
+    query?: ScheduledListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolExecutionsOffsetPage, ToolsAPI.ToolExecution>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ToolExecutionsOffsetPage, ToolsAPI.ToolExecution>;
+  list(
+    query: ScheduledListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolExecutionsOffsetPage, ToolsAPI.ToolExecution> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.getAPIList('/v1/scheduled_tools', ToolExecutionsOffsetPage, { query, ...options });
   }
 
   /**
    * Returns the details for a specific scheduled tool execution
    */
-  details(id: string, options?: Core.RequestOptions): Core.APIPromise<ScheduledDetailsResponse> {
-    return this._client.get(`/v1/tools/scheduled/${id}`, options);
+  get(id: string, options?: Core.RequestOptions): Core.APIPromise<ScheduledGetResponse> {
+    return this._client.get(`/v1/scheduled_tools/${id}`, options);
   }
 }
 
-export interface ScheduledListResponse {
-  items?: Array<ToolsAPI.ToolExecution>;
-
-  limit?: number;
-
-  offset?: number;
-
-  page_count?: number;
-
-  total_count?: number;
-}
-
-export interface ScheduledDetailsResponse {
+export interface ScheduledGetResponse {
   id?: string;
 
   attempts?: Array<ToolsAPI.ToolExecutionAttempt>;
@@ -45,7 +47,7 @@ export interface ScheduledDetailsResponse {
 
   finished_at?: string;
 
-  inputs?: Record<string, unknown>;
+  input?: Record<string, unknown>;
 
   run_at?: string;
 
@@ -62,9 +64,13 @@ export interface ScheduledDetailsResponse {
   user_id?: string;
 }
 
+export interface ScheduledListParams extends OffsetPageParams {}
+
 export declare namespace Scheduled {
   export {
-    type ScheduledListResponse as ScheduledListResponse,
-    type ScheduledDetailsResponse as ScheduledDetailsResponse,
+    type ScheduledGetResponse as ScheduledGetResponse,
+    type ScheduledListParams as ScheduledListParams,
   };
 }
+
+export { ToolExecutionsOffsetPage };
