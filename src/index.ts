@@ -19,6 +19,9 @@ import {
   ToolExecution,
   ToolExecutionAttempt,
   ToolGetResponse,
+  ToolListParams,
+  ToolListResponse,
+  ToolListResponsesOffsetPage,
   Tools,
   ValueSchema,
 } from './resources/tools/tools';
@@ -182,6 +185,7 @@ Arcade.Auth = Auth;
 Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
+Arcade.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -214,7 +218,10 @@ export declare namespace Arcade {
     type ToolExecution as ToolExecution,
     type ToolExecutionAttempt as ToolExecutionAttempt,
     type ValueSchema as ValueSchema,
+    type ToolListResponse as ToolListResponse,
     type ToolGetResponse as ToolGetResponse,
+    ToolListResponsesOffsetPage as ToolListResponsesOffsetPage,
+    type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
   };
