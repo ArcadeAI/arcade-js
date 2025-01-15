@@ -29,7 +29,6 @@ const client = new Arcade({
 async function main() {
   const executeToolResponse = await client.tools.execute({
     tool_name: 'Google.ListEmails',
-    inputs: { n_emails: 10 },
     user_id: 'user@example.com',
   });
 

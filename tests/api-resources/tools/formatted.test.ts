@@ -9,36 +9,8 @@ const client = new Arcade({
 });
 
 describe('resource formatted', () => {
-  test('list', async () => {
-    const responsePromise = client.tools.formatted.list();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.tools.formatted.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Arcade.NotFoundError,
-    );
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.tools.formatted.list(
-        { format: 'format', limit: 0, offset: 0, toolkit: 'toolkit' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Arcade.NotFoundError);
-  });
-
   test('get', async () => {
-    const responsePromise = client.tools.formatted.get();
+    const responsePromise = client.tools.formatted.get('name');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -50,7 +22,7 @@ describe('resource formatted', () => {
 
   test('get: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.tools.formatted.get({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.tools.formatted.get('name', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Arcade.NotFoundError,
     );
   });
@@ -58,7 +30,7 @@ describe('resource formatted', () => {
   test('get: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.tools.formatted.get({ format: 'format' }, { path: '/_stainless_unknown_path' }),
+      client.tools.formatted.get('name', { format: 'format' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Arcade.NotFoundError);
   });
 });
