@@ -53,10 +53,12 @@ Types:
 - <code><a href="./src/resources/tools/tools.ts">ToolExecution</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ToolExecutionAttempt</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ValueSchema</a></code>
+- <code><a href="./src/resources/tools/tools.ts">ToolListResponse</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ToolGetResponse</a></code>
 
 Methods:
 
+- <code title="get /v1/tools">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolListResponsesOffsetPage</code>
 - <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools/tools.ts">authorize</a>({ ...params }) -> AuthAuthorizationResponse</code>
 - <code title="post /v1/tools/execute">client.tools.<a href="./src/resources/tools/tools.ts">execute</a>({ ...params }) -> ExecuteToolResponse</code>
 - <code title="get /v1/tools/{name}">client.tools.<a href="./src/resources/tools/tools.ts">get</a>(name) -> ToolGetResponse</code>
@@ -76,8 +78,10 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/tools/formatted.ts">FormattedListResponse</a></code>
 - <code><a href="./src/resources/tools/formatted.ts">FormattedGetResponse</a></code>
 
 Methods:
 
+- <code title="get /v1/formatted_tools">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">list</a>({ ...params }) -> FormattedListResponsesOffsetPage</code>
 - <code title="get /v1/formatted_tools/{name}">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">get</a>(name, { ...params }) -> unknown</code>

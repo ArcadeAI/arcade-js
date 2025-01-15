@@ -1,18 +1,45 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ToolsAPI from './tools';
 import * as Shared from '../shared';
 import * as FormattedAPI from './formatted';
-import { Formatted, FormattedGetParams, FormattedGetResponse } from './formatted';
+import {
+  Formatted,
+  FormattedGetParams,
+  FormattedGetResponse,
+  FormattedListParams,
+  FormattedListResponse,
+  FormattedListResponsesOffsetPage,
+} from './formatted';
 import * as ScheduledAPI from './scheduled';
 import { Scheduled, ScheduledGetResponse, ScheduledListParams } from './scheduled';
-import { OffsetPage } from '../../pagination';
+import { OffsetPage, type OffsetPageParams } from '../../pagination';
 
 export class Tools extends APIResource {
   scheduled: ScheduledAPI.Scheduled = new ScheduledAPI.Scheduled(this._client);
   formatted: FormattedAPI.Formatted = new FormattedAPI.Formatted(this._client);
+
+  /**
+   * Returns a page of tools from the engine configuration, optionally filtered by
+   * toolkit
+   */
+  list(
+    query?: ToolListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse>;
+  list(
+    query: ToolListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.getAPIList('/v1/tools', ToolListResponsesOffsetPage, { query, ...options });
+  }
 
   /**
    * Authorizes a user for a specific tool by name
@@ -38,6 +65,8 @@ export class Tools extends APIResource {
     return this._client.get(`/v1/tools/${name}`, options);
   }
 }
+
+export class ToolListResponsesOffsetPage extends OffsetPage<ToolListResponse> {}
 
 export class ToolExecutionsOffsetPage extends OffsetPage<ToolExecution> {}
 
@@ -198,6 +227,78 @@ export interface ValueSchema {
   inner_val_type?: string;
 }
 
+export interface ToolListResponse {
+  input: ToolListResponse.Input;
+
+  name: string;
+
+  toolkit: ToolListResponse.Toolkit;
+
+  description?: string;
+
+  fully_qualified_name?: string;
+
+  output?: ToolListResponse.Output;
+
+  requirements?: ToolListResponse.Requirements;
+}
+
+export namespace ToolListResponse {
+  export interface Input {
+    parameters?: Array<Input.Parameter>;
+  }
+
+  export namespace Input {
+    export interface Parameter {
+      name: string;
+
+      value_schema: ToolsAPI.ValueSchema;
+
+      description?: string;
+
+      inferrable?: boolean;
+
+      required?: boolean;
+    }
+  }
+
+  export interface Toolkit {
+    name: string;
+
+    description?: string;
+
+    version?: string;
+  }
+
+  export interface Output {
+    available_modes?: Array<string>;
+
+    description?: string;
+
+    value_schema?: ToolsAPI.ValueSchema;
+  }
+
+  export interface Requirements {
+    authorization?: Requirements.Authorization;
+  }
+
+  export namespace Requirements {
+    export interface Authorization {
+      oauth2?: Authorization.Oauth2;
+
+      provider_id?: string;
+
+      provider_type?: string;
+    }
+
+    export namespace Authorization {
+      export interface Oauth2 {
+        scopes?: Array<string>;
+      }
+    }
+  }
+}
+
 export interface ToolGetResponse {
   input: ToolGetResponse.Input;
 
@@ -270,6 +371,13 @@ export namespace ToolGetResponse {
   }
 }
 
+export interface ToolListParams extends OffsetPageParams {
+  /**
+   * Toolkit name
+   */
+  toolkit?: string;
+}
+
 export interface ToolAuthorizeParams {
   tool_name: string;
 
@@ -306,8 +414,10 @@ export interface ToolExecuteParams {
   user_id?: string;
 }
 
+Tools.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
 Tools.Scheduled = Scheduled;
 Tools.Formatted = Formatted;
+Tools.FormattedListResponsesOffsetPage = FormattedListResponsesOffsetPage;
 
 export declare namespace Tools {
   export {
@@ -317,7 +427,10 @@ export declare namespace Tools {
     type ToolExecution as ToolExecution,
     type ToolExecutionAttempt as ToolExecutionAttempt,
     type ValueSchema as ValueSchema,
+    type ToolListResponse as ToolListResponse,
     type ToolGetResponse as ToolGetResponse,
+    ToolListResponsesOffsetPage as ToolListResponsesOffsetPage,
+    type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
   };
@@ -330,7 +443,10 @@ export declare namespace Tools {
 
   export {
     Formatted as Formatted,
+    type FormattedListResponse as FormattedListResponse,
     type FormattedGetResponse as FormattedGetResponse,
+    FormattedListResponsesOffsetPage as FormattedListResponsesOffsetPage,
+    type FormattedListParams as FormattedListParams,
     type FormattedGetParams as FormattedGetParams,
   };
 }
