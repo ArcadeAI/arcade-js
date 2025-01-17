@@ -23,6 +23,7 @@ describe('resource auth', () => {
   test('authorize: required and optional params', async () => {
     const response = await client.auth.authorize({
       auth_requirement: {
+        id: 'id',
         oauth2: { scopes: ['string'] },
         provider_id: 'provider_id',
         provider_type: 'provider_type',

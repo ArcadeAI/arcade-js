@@ -36,8 +36,16 @@ export interface AuthRequest {
 
 export namespace AuthRequest {
   export interface AuthRequirement {
+    /**
+     * one of ID or ProviderID must be set
+     */
+    id?: string;
+
     oauth2?: AuthRequirement.Oauth2;
 
+    /**
+     * one of ID or ProviderID must be set
+     */
     provider_id?: string;
 
     provider_type?: string;
@@ -58,8 +66,16 @@ export interface AuthAuthorizeParams {
 
 export namespace AuthAuthorizeParams {
   export interface AuthRequirement {
+    /**
+     * one of ID or ProviderID must be set
+     */
+    id?: string;
+
     oauth2?: AuthRequirement.Oauth2;
 
+    /**
+     * one of ID or ProviderID must be set
+     */
     provider_id?: string;
 
     provider_type?: string;
