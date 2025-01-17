@@ -284,6 +284,8 @@ export namespace ToolListResponse {
 
   export namespace Requirements {
     export interface Authorization {
+      id?: string;
+
       oauth2?: Authorization.Oauth2;
 
       provider_id?: string;
@@ -356,6 +358,8 @@ export namespace ToolGetResponse {
 
   export namespace Requirements {
     export interface Authorization {
+      id?: string;
+
       oauth2?: Authorization.Oauth2;
 
       provider_id?: string;
