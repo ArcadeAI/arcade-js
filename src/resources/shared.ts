@@ -1,15 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export interface AuthAuthorizationContext {
+export interface AuthorizationContext {
   token?: string;
 
   user_info?: Record<string, unknown>;
 }
 
-export interface AuthAuthorizationResponse {
+export interface AuthorizationResponse {
   id?: string;
 
-  context?: AuthAuthorizationContext;
+  context?: AuthorizationContext;
 
   provider_id?: string;
 

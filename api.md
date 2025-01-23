@@ -2,8 +2,8 @@
 
 Types:
 
-- <code><a href="./src/resources/shared.ts">AuthAuthorizationContext</a></code>
-- <code><a href="./src/resources/shared.ts">AuthAuthorizationResponse</a></code>
+- <code><a href="./src/resources/shared.ts">AuthorizationContext</a></code>
+- <code><a href="./src/resources/shared.ts">AuthorizationResponse</a></code>
 - <code><a href="./src/resources/shared.ts">Error</a></code>
 
 # Auth
@@ -14,8 +14,8 @@ Types:
 
 Methods:
 
-- <code title="post /v1/auth/authorize">client.auth.<a href="./src/resources/auth.ts">authorize</a>({ ...params }) -> AuthAuthorizationResponse</code>
-- <code title="get /v1/auth/status">client.auth.<a href="./src/resources/auth.ts">status</a>({ ...params }) -> AuthAuthorizationResponse</code>
+- <code title="post /v1/auth/authorize">client.auth.<a href="./src/resources/auth.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
+- <code title="get /v1/auth/status">client.auth.<a href="./src/resources/auth.ts">status</a>({ ...params }) -> AuthorizationResponse</code>
 
 # Health
 
@@ -50,18 +50,17 @@ Types:
 - <code><a href="./src/resources/tools/tools.ts">AuthorizeToolRequest</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ExecuteToolRequest</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ExecuteToolResponse</a></code>
+- <code><a href="./src/resources/tools/tools.ts">ToolDefinition</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ToolExecution</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ToolExecutionAttempt</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ValueSchema</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ToolListResponse</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ToolGetResponse</a></code>
 
 Methods:
 
-- <code title="get /v1/tools">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolListResponsesOffsetPage</code>
-- <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools/tools.ts">authorize</a>({ ...params }) -> AuthAuthorizationResponse</code>
+- <code title="get /v1/tools">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolDefinitionsOffsetPage</code>
+- <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools/tools.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
 - <code title="post /v1/tools/execute">client.tools.<a href="./src/resources/tools/tools.ts">execute</a>({ ...params }) -> ExecuteToolResponse</code>
-- <code title="get /v1/tools/{name}">client.tools.<a href="./src/resources/tools/tools.ts">get</a>(name) -> ToolGetResponse</code>
+- <code title="get /v1/tools/{name}">client.tools.<a href="./src/resources/tools/tools.ts">get</a>(name) -> ToolDefinition</code>
 
 ## Scheduled
 
