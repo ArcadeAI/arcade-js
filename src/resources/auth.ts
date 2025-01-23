@@ -11,7 +11,7 @@ export class Auth extends APIResource {
   authorize(
     body: AuthAuthorizeParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthAuthorizationResponse> {
+  ): Core.APIPromise<Shared.AuthorizationResponse> {
     return this._client.post('/v1/auth/authorize', { body, ...options });
   }
 
@@ -23,7 +23,7 @@ export class Auth extends APIResource {
   status(
     query: AuthStatusParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthAuthorizationResponse> {
+  ): Core.APIPromise<Shared.AuthorizationResponse> {
     return this._client.get('/v1/auth/status', { query, ...options });
   }
 }

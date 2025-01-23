@@ -29,16 +29,16 @@ export class Tools extends APIResource {
   list(
     query?: ToolListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse>;
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolDefinition>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ToolDefinitionsOffsetPage, ToolDefinition>;
   list(
     query: ToolListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse> {
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolDefinition> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/v1/tools', ToolListResponsesOffsetPage, { query, ...options });
+    return this._client.getAPIList('/v1/tools', ToolDefinitionsOffsetPage, { query, ...options });
   }
 
   /**
@@ -47,7 +47,7 @@ export class Tools extends APIResource {
   authorize(
     body: ToolAuthorizeParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthAuthorizationResponse> {
+  ): Core.APIPromise<Shared.AuthorizationResponse> {
     return this._client.post('/v1/tools/authorize', { body, ...options });
   }
 
@@ -61,12 +61,12 @@ export class Tools extends APIResource {
   /**
    * Returns the arcade tool specification for a specific tool
    */
-  get(name: string, options?: Core.RequestOptions): Core.APIPromise<ToolGetResponse> {
+  get(name: string, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition> {
     return this._client.get(`/v1/tools/${name}`, options);
   }
 }
 
-export class ToolListResponsesOffsetPage extends OffsetPage<ToolListResponse> {}
+export class ToolDefinitionsOffsetPage extends OffsetPage<ToolDefinition> {}
 
 export class ToolExecutionsOffsetPage extends OffsetPage<ToolExecution> {}
 
@@ -133,7 +133,7 @@ export interface ExecuteToolResponse {
 
 export namespace ExecuteToolResponse {
   export interface Output {
-    authorization?: Shared.AuthAuthorizationResponse;
+    authorization?: Shared.AuthorizationResponse;
 
     error?: Output.Error;
 
@@ -151,6 +151,80 @@ export namespace ExecuteToolResponse {
       developer_message?: string;
 
       retry_after_ms?: number;
+    }
+  }
+}
+
+export interface ToolDefinition {
+  input: ToolDefinition.Input;
+
+  name: string;
+
+  toolkit: ToolDefinition.Toolkit;
+
+  description?: string;
+
+  fully_qualified_name?: string;
+
+  output?: ToolDefinition.Output;
+
+  requirements?: ToolDefinition.Requirements;
+}
+
+export namespace ToolDefinition {
+  export interface Input {
+    parameters?: Array<Input.Parameter>;
+  }
+
+  export namespace Input {
+    export interface Parameter {
+      name: string;
+
+      value_schema: ToolsAPI.ValueSchema;
+
+      description?: string;
+
+      inferrable?: boolean;
+
+      required?: boolean;
+    }
+  }
+
+  export interface Toolkit {
+    name: string;
+
+    description?: string;
+
+    version?: string;
+  }
+
+  export interface Output {
+    available_modes?: Array<string>;
+
+    description?: string;
+
+    value_schema?: ToolsAPI.ValueSchema;
+  }
+
+  export interface Requirements {
+    authorization?: Requirements.Authorization;
+  }
+
+  export namespace Requirements {
+    export interface Authorization {
+      id?: string;
+
+      oauth2?: Authorization.Oauth2;
+
+      provider_id?: string;
+
+      provider_type?: string;
+    }
+
+    export namespace Authorization {
+      export interface Oauth2 {
+        scopes?: Array<string>;
+      }
     }
   }
 }
@@ -197,7 +271,7 @@ export interface ToolExecutionAttempt {
 
 export namespace ToolExecutionAttempt {
   export interface Output {
-    authorization?: Shared.AuthAuthorizationResponse;
+    authorization?: Shared.AuthorizationResponse;
 
     error?: Output.Error;
 
@@ -225,154 +299,6 @@ export interface ValueSchema {
   enum?: Array<string>;
 
   inner_val_type?: string;
-}
-
-export interface ToolListResponse {
-  input: ToolListResponse.Input;
-
-  name: string;
-
-  toolkit: ToolListResponse.Toolkit;
-
-  description?: string;
-
-  fully_qualified_name?: string;
-
-  output?: ToolListResponse.Output;
-
-  requirements?: ToolListResponse.Requirements;
-}
-
-export namespace ToolListResponse {
-  export interface Input {
-    parameters?: Array<Input.Parameter>;
-  }
-
-  export namespace Input {
-    export interface Parameter {
-      name: string;
-
-      value_schema: ToolsAPI.ValueSchema;
-
-      description?: string;
-
-      inferrable?: boolean;
-
-      required?: boolean;
-    }
-  }
-
-  export interface Toolkit {
-    name: string;
-
-    description?: string;
-
-    version?: string;
-  }
-
-  export interface Output {
-    available_modes?: Array<string>;
-
-    description?: string;
-
-    value_schema?: ToolsAPI.ValueSchema;
-  }
-
-  export interface Requirements {
-    authorization?: Requirements.Authorization;
-  }
-
-  export namespace Requirements {
-    export interface Authorization {
-      id?: string;
-
-      oauth2?: Authorization.Oauth2;
-
-      provider_id?: string;
-
-      provider_type?: string;
-    }
-
-    export namespace Authorization {
-      export interface Oauth2 {
-        scopes?: Array<string>;
-      }
-    }
-  }
-}
-
-export interface ToolGetResponse {
-  input: ToolGetResponse.Input;
-
-  name: string;
-
-  toolkit: ToolGetResponse.Toolkit;
-
-  description?: string;
-
-  fully_qualified_name?: string;
-
-  output?: ToolGetResponse.Output;
-
-  requirements?: ToolGetResponse.Requirements;
-}
-
-export namespace ToolGetResponse {
-  export interface Input {
-    parameters?: Array<Input.Parameter>;
-  }
-
-  export namespace Input {
-    export interface Parameter {
-      name: string;
-
-      value_schema: ToolsAPI.ValueSchema;
-
-      description?: string;
-
-      inferrable?: boolean;
-
-      required?: boolean;
-    }
-  }
-
-  export interface Toolkit {
-    name: string;
-
-    description?: string;
-
-    version?: string;
-  }
-
-  export interface Output {
-    available_modes?: Array<string>;
-
-    description?: string;
-
-    value_schema?: ToolsAPI.ValueSchema;
-  }
-
-  export interface Requirements {
-    authorization?: Requirements.Authorization;
-  }
-
-  export namespace Requirements {
-    export interface Authorization {
-      id?: string;
-
-      oauth2?: Authorization.Oauth2;
-
-      provider_id?: string;
-
-      provider_type?: string;
-    }
-
-    export namespace Authorization {
-      export interface Oauth2 {
-        scopes?: Array<string>;
-      }
-    }
-  }
 }
 
 export interface ToolListParams extends OffsetPageParams {
@@ -418,7 +344,7 @@ export interface ToolExecuteParams {
   user_id?: string;
 }
 
-Tools.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
+Tools.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
 Tools.Scheduled = Scheduled;
 Tools.Formatted = Formatted;
 Tools.FormattedListResponsesOffsetPage = FormattedListResponsesOffsetPage;
@@ -428,12 +354,11 @@ export declare namespace Tools {
     type AuthorizeToolRequest as AuthorizeToolRequest,
     type ExecuteToolRequest as ExecuteToolRequest,
     type ExecuteToolResponse as ExecuteToolResponse,
+    type ToolDefinition as ToolDefinition,
     type ToolExecution as ToolExecution,
     type ToolExecutionAttempt as ToolExecutionAttempt,
     type ValueSchema as ValueSchema,
-    type ToolListResponse as ToolListResponse,
-    type ToolGetResponse as ToolGetResponse,
-    ToolListResponsesOffsetPage as ToolListResponsesOffsetPage,
+    ToolDefinitionsOffsetPage as ToolDefinitionsOffsetPage,
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,

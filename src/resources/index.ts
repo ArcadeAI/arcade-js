@@ -13,16 +13,15 @@ export {
 export { Health, type HealthSchema } from './health';
 export {
   ToolExecutionsOffsetPage,
-  ToolListResponsesOffsetPage,
+  ToolDefinitionsOffsetPage,
   Tools,
   type AuthorizeToolRequest,
   type ExecuteToolRequest,
   type ExecuteToolResponse,
+  type ToolDefinition,
   type ToolExecution,
   type ToolExecutionAttempt,
   type ValueSchema,
-  type ToolListResponse,
-  type ToolGetResponse,
   type ToolListParams,
   type ToolAuthorizeParams,
   type ToolExecuteParams,

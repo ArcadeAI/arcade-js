@@ -166,7 +166,7 @@ export interface Choice {
 
   message?: ChatMessage;
 
-  tool_authorizations?: Array<Shared.AuthAuthorizationResponse>;
+  tool_authorizations?: Array<Shared.AuthorizationResponse>;
 
   tool_messages?: Array<ChatMessage>;
 }
