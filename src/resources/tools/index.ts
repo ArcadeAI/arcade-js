@@ -11,16 +11,15 @@ export {
 export { Scheduled, type ScheduledGetResponse, type ScheduledListParams } from './scheduled';
 export {
   ToolExecutionsOffsetPage,
-  ToolListResponsesOffsetPage,
+  ToolDefinitionsOffsetPage,
   Tools,
   type AuthorizeToolRequest,
   type ExecuteToolRequest,
   type ExecuteToolResponse,
+  type ToolDefinition,
   type ToolExecution,
   type ToolExecutionAttempt,
   type ValueSchema,
-  type ToolListResponse,
-  type ToolGetResponse,
   type ToolListParams,
   type ToolAuthorizeParams,
   type ToolExecuteParams,
