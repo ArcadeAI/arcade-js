@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Arcade REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [docs.arcade-ai.com](https://docs.arcade-ai.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.arcade.dev](https://docs.arcade.dev). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
@@ -29,8 +29,7 @@ const client = new Arcade({
 async function main() {
   const executeToolResponse = await client.tools.execute({
     tool_name: 'Google.ListEmails',
-    inputs: { n_emails: 10 },
-    tool_version: '0.1.0',
+    input: { n_emails: 10 },
     user_id: 'user@example.com',
   });
 
@@ -283,7 +282,7 @@ await client.chat.completions.create(
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
 1. Changes that only affect static types, without breaking runtime behavior.
-2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals)_.
+2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
 3. Changes that we do not expect to impact the vast majority of users in practice.
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.

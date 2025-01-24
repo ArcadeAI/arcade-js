@@ -20,7 +20,8 @@ or products provided by Arcade please follow the respective company's security r
 
 ### Arcade Terms and Policies
 
-Please contact contact@arcade-ai.com for any questions or concerns regarding security of our services.
+
+Please contact dev@arcade.dev for any questions or concerns regarding security of our services.
 
 ---
 

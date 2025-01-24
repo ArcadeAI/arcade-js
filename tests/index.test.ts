@@ -96,6 +96,15 @@ describe('instantiate client', () => {
     expect(response).toEqual({ url: 'http://localhost:5000/foo', custom: true });
   });
 
+  test('explicit global fetch', async () => {
+    // make sure the global fetch type is assignable to our Fetch type
+    const client = new Arcade({
+      baseURL: 'http://localhost:5000/',
+      apiKey: 'My API Key',
+      fetch: defaultFetch,
+    });
+  });
+
   test('custom signal', async () => {
     const client = new Arcade({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -120,6 +129,19 @@ describe('instantiate client', () => {
 
     await expect(client.get('/foo', { signal: controller.signal })).rejects.toThrowError(APIUserAbortError);
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  test('normalized method', async () => {
+    let capturedRequest: RequestInit | undefined;
+    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+      capturedRequest = init;
+      return new Response(JSON.stringify({}), { headers: { 'Content-Type': 'application/json' } });
+    };
+
+    const client = new Arcade({ baseURL: 'http://localhost:5000/', apiKey: 'My API Key', fetch: testFetch });
+
+    await client.patch('/foo');
+    expect(capturedRequest?.method).toEqual('PATCH');
   });
 
   describe('baseUrl', () => {
@@ -151,13 +173,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['ARCADE_BASE_URL'] = ''; // empty
       const client = new Arcade({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.arcade-ai.com');
+      expect(client.baseURL).toEqual('https://api.arcade.dev');
     });
 
     test('blank env variable', () => {
       process.env['ARCADE_BASE_URL'] = '  '; // blank
       const client = new Arcade({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.arcade-ai.com');
+      expect(client.baseURL).toEqual('https://api.arcade.dev');
     });
   });
 

@@ -14,17 +14,15 @@ import {
   AuthorizeToolRequest,
   ExecuteToolRequest,
   ExecuteToolResponse,
-  ResponseOutput,
   ToolAuthorizeParams,
+  ToolDefinition,
+  ToolDefinitionsOffsetPage,
   ToolExecuteParams,
   ToolExecution,
   ToolExecutionAttempt,
-  ToolGetParams,
-  ToolGetResponse,
   ToolListParams,
-  ToolListResponse,
-  ToolListResponsesOffsetPage,
   Tools,
+  ValueSchema,
 } from './resources/tools/tools';
 
 export interface ClientOptions {
@@ -47,7 +45,7 @@ export interface ClientOptions {
    * Note that request timeouts are retried by default, so in a worst-case scenario you may wait
    * much longer than this timeout before the promise succeeds or fails.
    */
-  timeout?: number;
+  timeout?: number | undefined;
 
   /**
    * An HTTP agent used to manage HTTP(S) connections.
@@ -55,7 +53,7 @@ export interface ClientOptions {
    * If not provided, an agent will be constructed by default in the Node.js environment,
    * otherwise no agent is used.
    */
-  httpAgent?: Agent;
+  httpAgent?: Agent | undefined;
 
   /**
    * Specify a custom `fetch` function implementation.
@@ -71,7 +69,7 @@ export interface ClientOptions {
    *
    * @default 2
    */
-  maxRetries?: number;
+  maxRetries?: number | undefined;
 
   /**
    * Default headers to include with every request to the API.
@@ -79,7 +77,7 @@ export interface ClientOptions {
    * These can be removed in individual requests by explicitly setting the
    * header to `undefined` or `null` in request options.
    */
-  defaultHeaders?: Core.Headers;
+  defaultHeaders?: Core.Headers | undefined;
 
   /**
    * Default query parameters to include with every request to the API.
@@ -87,7 +85,7 @@ export interface ClientOptions {
    * These can be removed in individual requests by explicitly setting the
    * param to `undefined` in request options.
    */
-  defaultQuery?: Core.DefaultQuery;
+  defaultQuery?: Core.DefaultQuery | undefined;
 }
 
 /**
@@ -102,7 +100,7 @@ export class Arcade extends Core.APIClient {
    * API Client for interfacing with the Arcade API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['ARCADE_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['ARCADE_BASE_URL'] ?? https://api.arcade-ai.com] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['ARCADE_BASE_URL'] ?? https://api.arcade.dev] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -124,7 +122,7 @@ export class Arcade extends Core.APIClient {
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://api.arcade-ai.com`,
+      baseURL: baseURL || `https://api.arcade.dev`,
     };
 
     super({
@@ -186,7 +184,7 @@ Arcade.Auth = Auth;
 Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
-Arcade.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
+Arcade.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -216,18 +214,17 @@ export declare namespace Arcade {
     type AuthorizeToolRequest as AuthorizeToolRequest,
     type ExecuteToolRequest as ExecuteToolRequest,
     type ExecuteToolResponse as ExecuteToolResponse,
-    type ResponseOutput as ResponseOutput,
+    type ToolDefinition as ToolDefinition,
     type ToolExecution as ToolExecution,
     type ToolExecutionAttempt as ToolExecutionAttempt,
-    type ToolListResponse as ToolListResponse,
-    type ToolGetResponse as ToolGetResponse,
-    ToolListResponsesOffsetPage as ToolListResponsesOffsetPage,
+    type ValueSchema as ValueSchema,
+    ToolDefinitionsOffsetPage as ToolDefinitionsOffsetPage,
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
-    type ToolGetParams as ToolGetParams,
   };
 
+  export type AuthorizationContext = API.AuthorizationContext;
   export type AuthorizationResponse = API.AuthorizationResponse;
   export type Error = API.Error;
 }

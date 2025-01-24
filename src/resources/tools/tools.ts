@@ -3,6 +3,7 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
+import * as ToolsAPI from './tools';
 import * as Shared from '../shared';
 import * as FormattedAPI from './formatted';
 import {
@@ -14,7 +15,7 @@ import {
   FormattedListResponsesOffsetPage,
 } from './formatted';
 import * as ScheduledAPI from './scheduled';
-import { Scheduled, ScheduledDetailsResponse, ScheduledListResponse } from './scheduled';
+import { Scheduled, ScheduledGetResponse, ScheduledListParams } from './scheduled';
 import { OffsetPage, type OffsetPageParams } from '../../pagination';
 
 export class Tools extends APIResource {
@@ -28,16 +29,16 @@ export class Tools extends APIResource {
   list(
     query?: ToolListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse>;
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolDefinition>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ToolDefinitionsOffsetPage, ToolDefinition>;
   list(
     query: ToolListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolListResponsesOffsetPage, ToolListResponse> {
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolDefinition> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/v1/tools/list', ToolListResponsesOffsetPage, { query, ...options });
+    return this._client.getAPIList('/v1/tools', ToolDefinitionsOffsetPage, { query, ...options });
   }
 
   /**
@@ -60,22 +61,27 @@ export class Tools extends APIResource {
   /**
    * Returns the arcade tool specification for a specific tool
    */
-  get(query: ToolGetParams, options?: Core.RequestOptions): Core.APIPromise<ToolGetResponse> {
-    return this._client.get('/v1/tools/definition', { query, ...options });
+  get(name: string, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition> {
+    return this._client.get(`/v1/tools/${name}`, options);
   }
 }
 
-export class ToolListResponsesOffsetPage extends OffsetPage<ToolListResponse> {}
+export class ToolDefinitionsOffsetPage extends OffsetPage<ToolDefinition> {}
+
+export class ToolExecutionsOffsetPage extends OffsetPage<ToolExecution> {}
 
 export interface AuthorizeToolRequest {
   tool_name: string;
-
-  user_id: string;
 
   /**
    * Optional: if not provided, any version is used
    */
   tool_version?: string;
+
+  /**
+   * Required only when calling with an API key
+   */
+  user_id?: string;
 }
 
 export interface ExecuteToolRequest {
@@ -84,13 +90,13 @@ export interface ExecuteToolRequest {
   /**
    * JSON input to the tool, if any
    */
-  inputs?: unknown;
+  input?: Record<string, unknown>;
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
    * is run immediately
    */
-  run_at?: ExecuteToolRequest.RunAt;
+  run_at?: string;
 
   /**
    * The tool version to use (optional). If not provided, any version is used
@@ -100,30 +106,20 @@ export interface ExecuteToolRequest {
   user_id?: string;
 }
 
-export namespace ExecuteToolRequest {
-  /**
-   * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
-   */
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-}
-
 export interface ExecuteToolResponse {
   id?: string;
 
   duration?: number;
 
+  execution_id?: string;
+
   execution_type?: string;
 
-  finished_at?: ExecuteToolResponse.FinishedAt;
+  finished_at?: string;
 
-  invocation_id?: string;
+  output?: ExecuteToolResponse.Output;
 
-  output?: ResponseOutput;
-
-  run_at?: ExecuteToolResponse.RunAt;
+  run_at?: string;
 
   status?: string;
 
@@ -136,51 +132,117 @@ export interface ExecuteToolResponse {
 }
 
 export namespace ExecuteToolResponse {
-  export interface FinishedAt {
-    'time.Time'?: string;
+  export interface Output {
+    authorization?: Shared.AuthorizationResponse;
+
+    error?: Output.Error;
+
+    value?: unknown;
   }
 
-  export interface RunAt {
-    'time.Time'?: string;
+  export namespace Output {
+    export interface Error {
+      message: string;
+
+      additional_prompt_content?: string;
+
+      can_retry?: boolean;
+
+      developer_message?: string;
+
+      retry_after_ms?: number;
+    }
   }
 }
 
-export interface ResponseOutput {
-  error?: ResponseOutput.Error;
+export interface ToolDefinition {
+  input: ToolDefinition.Input;
 
-  requires_authorization?: Shared.AuthorizationResponse;
+  name: string;
 
-  value?: unknown;
+  toolkit: ToolDefinition.Toolkit;
+
+  description?: string;
+
+  fully_qualified_name?: string;
+
+  output?: ToolDefinition.Output;
+
+  requirements?: ToolDefinition.Requirements;
 }
 
-export namespace ResponseOutput {
-  export interface Error {
-    message: string;
+export namespace ToolDefinition {
+  export interface Input {
+    parameters?: Array<Input.Parameter>;
+  }
 
-    additional_prompt_content?: string;
+  export namespace Input {
+    export interface Parameter {
+      name: string;
 
-    can_retry?: boolean;
+      value_schema: ToolsAPI.ValueSchema;
 
-    developer_message?: string;
+      description?: string;
 
-    retry_after_ms?: number;
+      inferrable?: boolean;
+
+      required?: boolean;
+    }
+  }
+
+  export interface Toolkit {
+    name: string;
+
+    description?: string;
+
+    version?: string;
+  }
+
+  export interface Output {
+    available_modes?: Array<string>;
+
+    description?: string;
+
+    value_schema?: ToolsAPI.ValueSchema;
+  }
+
+  export interface Requirements {
+    authorization?: Requirements.Authorization;
+  }
+
+  export namespace Requirements {
+    export interface Authorization {
+      id?: string;
+
+      oauth2?: Authorization.Oauth2;
+
+      provider_id?: string;
+
+      provider_type?: string;
+    }
+
+    export namespace Authorization {
+      export interface Oauth2 {
+        scopes?: Array<string>;
+      }
+    }
   }
 }
 
 export interface ToolExecution {
   id?: string;
 
-  created_at?: ToolExecution.CreatedAt;
+  created_at?: string;
 
   execution_status?: string;
 
   execution_type?: string;
 
-  finished_at?: ToolExecution.FinishedAt;
+  finished_at?: string;
 
-  run_at?: ToolExecution.RunAt;
+  run_at?: string;
 
-  started_at?: ToolExecution.StartedAt;
+  started_at?: string;
 
   tool_name?: string;
 
@@ -188,41 +250,19 @@ export interface ToolExecution {
 
   toolkit_version?: string;
 
-  updated_at?: ToolExecution.UpdatedAt;
+  updated_at?: string;
 
   user_id?: string;
-}
-
-export namespace ToolExecution {
-  export interface CreatedAt {
-    'time.Time'?: string;
-  }
-
-  export interface FinishedAt {
-    'time.Time'?: string;
-  }
-
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-
-  export interface StartedAt {
-    'time.Time'?: string;
-  }
-
-  export interface UpdatedAt {
-    'time.Time'?: string;
-  }
 }
 
 export interface ToolExecutionAttempt {
   id?: string;
 
-  finished_at?: ToolExecutionAttempt.FinishedAt;
+  finished_at?: string;
 
-  output?: ResponseOutput;
+  output?: ToolExecutionAttempt.Output;
 
-  started_at?: ToolExecutionAttempt.StartedAt;
+  started_at?: string;
 
   success?: boolean;
 
@@ -230,197 +270,35 @@ export interface ToolExecutionAttempt {
 }
 
 export namespace ToolExecutionAttempt {
-  export interface FinishedAt {
-    'time.Time'?: string;
-  }
-
-  export interface StartedAt {
-    'time.Time'?: string;
-  }
-}
-
-export interface ToolListResponse {
-  inputs: ToolListResponse.Inputs;
-
-  name: string;
-
-  toolkit: ToolListResponse.Toolkit;
-
-  description?: string;
-
-  fully_qualified_name?: string;
-
-  output?: ToolListResponse.Output;
-
-  requirements?: ToolListResponse.Requirements;
-}
-
-export namespace ToolListResponse {
-  export interface Inputs {
-    parameters?: Array<Inputs.Parameter>;
-  }
-
-  export namespace Inputs {
-    export interface Parameter {
-      name: string;
-
-      value_schema: Parameter.ValueSchema;
-
-      description?: string;
-
-      inferrable?: boolean;
-
-      required?: boolean;
-    }
-
-    export namespace Parameter {
-      export interface ValueSchema {
-        val_type: string;
-
-        enum?: Array<string>;
-
-        inner_val_type?: string;
-      }
-    }
-  }
-
-  export interface Toolkit {
-    name: string;
-
-    description?: string;
-
-    version?: string;
-  }
-
   export interface Output {
-    available_modes?: Array<string>;
+    authorization?: Shared.AuthorizationResponse;
 
-    description?: string;
+    error?: Output.Error;
 
-    value_schema?: Output.ValueSchema;
+    value?: unknown;
   }
 
   export namespace Output {
-    export interface ValueSchema {
-      val_type: string;
+    export interface Error {
+      message: string;
 
-      enum?: Array<string>;
+      additional_prompt_content?: string;
 
-      inner_val_type?: string;
-    }
-  }
+      can_retry?: boolean;
 
-  export interface Requirements {
-    authorization?: Requirements.Authorization;
-  }
+      developer_message?: string;
 
-  export namespace Requirements {
-    export interface Authorization {
-      oauth2?: Authorization.Oauth2;
-
-      provider_id?: string;
-
-      provider_type?: string;
-    }
-
-    export namespace Authorization {
-      export interface Oauth2 {
-        scopes?: Array<string>;
-      }
+      retry_after_ms?: number;
     }
   }
 }
 
-export interface ToolGetResponse {
-  inputs: ToolGetResponse.Inputs;
+export interface ValueSchema {
+  val_type: string;
 
-  name: string;
+  enum?: Array<string>;
 
-  toolkit: ToolGetResponse.Toolkit;
-
-  description?: string;
-
-  fully_qualified_name?: string;
-
-  output?: ToolGetResponse.Output;
-
-  requirements?: ToolGetResponse.Requirements;
-}
-
-export namespace ToolGetResponse {
-  export interface Inputs {
-    parameters?: Array<Inputs.Parameter>;
-  }
-
-  export namespace Inputs {
-    export interface Parameter {
-      name: string;
-
-      value_schema: Parameter.ValueSchema;
-
-      description?: string;
-
-      inferrable?: boolean;
-
-      required?: boolean;
-    }
-
-    export namespace Parameter {
-      export interface ValueSchema {
-        val_type: string;
-
-        enum?: Array<string>;
-
-        inner_val_type?: string;
-      }
-    }
-  }
-
-  export interface Toolkit {
-    name: string;
-
-    description?: string;
-
-    version?: string;
-  }
-
-  export interface Output {
-    available_modes?: Array<string>;
-
-    description?: string;
-
-    value_schema?: Output.ValueSchema;
-  }
-
-  export namespace Output {
-    export interface ValueSchema {
-      val_type: string;
-
-      enum?: Array<string>;
-
-      inner_val_type?: string;
-    }
-  }
-
-  export interface Requirements {
-    authorization?: Requirements.Authorization;
-  }
-
-  export namespace Requirements {
-    export interface Authorization {
-      oauth2?: Authorization.Oauth2;
-
-      provider_id?: string;
-
-      provider_type?: string;
-    }
-
-    export namespace Authorization {
-      export interface Oauth2 {
-        scopes?: Array<string>;
-      }
-    }
-  }
+  inner_val_type?: string;
 }
 
 export interface ToolListParams extends OffsetPageParams {
@@ -433,12 +311,15 @@ export interface ToolListParams extends OffsetPageParams {
 export interface ToolAuthorizeParams {
   tool_name: string;
 
-  user_id: string;
-
   /**
    * Optional: if not provided, any version is used
    */
   tool_version?: string;
+
+  /**
+   * Required only when calling with an API key
+   */
+  user_id?: string;
 }
 
 export interface ToolExecuteParams {
@@ -447,13 +328,13 @@ export interface ToolExecuteParams {
   /**
    * JSON input to the tool, if any
    */
-  inputs?: unknown;
+  input?: Record<string, unknown>;
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
    * is run immediately
    */
-  run_at?: ToolExecuteParams.RunAt;
+  run_at?: string;
 
   /**
    * The tool version to use (optional). If not provided, any version is used
@@ -463,24 +344,7 @@ export interface ToolExecuteParams {
   user_id?: string;
 }
 
-export namespace ToolExecuteParams {
-  /**
-   * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
-   */
-  export interface RunAt {
-    'time.Time'?: string;
-  }
-}
-
-export interface ToolGetParams {
-  /**
-   * Tool ID
-   */
-  toolId: string;
-}
-
-Tools.ToolListResponsesOffsetPage = ToolListResponsesOffsetPage;
+Tools.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
 Tools.Scheduled = Scheduled;
 Tools.Formatted = Formatted;
 Tools.FormattedListResponsesOffsetPage = FormattedListResponsesOffsetPage;
@@ -490,22 +354,20 @@ export declare namespace Tools {
     type AuthorizeToolRequest as AuthorizeToolRequest,
     type ExecuteToolRequest as ExecuteToolRequest,
     type ExecuteToolResponse as ExecuteToolResponse,
-    type ResponseOutput as ResponseOutput,
+    type ToolDefinition as ToolDefinition,
     type ToolExecution as ToolExecution,
     type ToolExecutionAttempt as ToolExecutionAttempt,
-    type ToolListResponse as ToolListResponse,
-    type ToolGetResponse as ToolGetResponse,
-    ToolListResponsesOffsetPage as ToolListResponsesOffsetPage,
+    type ValueSchema as ValueSchema,
+    ToolDefinitionsOffsetPage as ToolDefinitionsOffsetPage,
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
-    type ToolGetParams as ToolGetParams,
   };
 
   export {
     Scheduled as Scheduled,
-    type ScheduledListResponse as ScheduledListResponse,
-    type ScheduledDetailsResponse as ScheduledDetailsResponse,
+    type ScheduledGetResponse as ScheduledGetResponse,
+    type ScheduledListParams as ScheduledListParams,
   };
 
   export {

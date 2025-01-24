@@ -1,11 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export interface AuthorizationContext {
+  token?: string;
+
+  user_info?: Record<string, unknown>;
+}
+
 export interface AuthorizationResponse {
-  authorization_id?: string;
+  id?: string;
 
-  authorization_url?: string;
-
-  context?: AuthorizationResponse.Context;
+  context?: AuthorizationContext;
 
   provider_id?: string;
 
@@ -13,15 +17,9 @@ export interface AuthorizationResponse {
 
   status?: 'pending' | 'completed' | 'failed';
 
+  url?: string;
+
   user_id?: string;
-}
-
-export namespace AuthorizationResponse {
-  export interface Context {
-    token?: string;
-
-    user_info?: Record<string, unknown>;
-  }
 }
 
 export interface Error {

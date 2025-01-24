@@ -24,7 +24,7 @@ export class Formatted extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/v1/tools/formatted/list', FormattedListResponsesOffsetPage, {
+    return this._client.getAPIList('/v1/formatted_tools', FormattedListResponsesOffsetPage, {
       query,
       ...options,
     });
@@ -33,8 +33,17 @@ export class Formatted extends APIResource {
   /**
    * Returns the formatted tool specification for a specific tool, given a provider
    */
-  get(query: FormattedGetParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.get('/v1/tools/formatted/definition', { query, ...options });
+  get(name: string, query?: FormattedGetParams, options?: Core.RequestOptions): Core.APIPromise<unknown>;
+  get(name: string, options?: Core.RequestOptions): Core.APIPromise<unknown>;
+  get(
+    name: string,
+    query: FormattedGetParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<unknown> {
+    if (isRequestOptions(query)) {
+      return this.get(name, {}, query);
+    }
+    return this._client.get(`/v1/formatted_tools/${name}`, { query, ...options });
   }
 }
 
@@ -57,11 +66,6 @@ export interface FormattedListParams extends OffsetPageParams {
 }
 
 export interface FormattedGetParams {
-  /**
-   * Tool ID
-   */
-  toolId: string;
-
   /**
    * Provider format
    */

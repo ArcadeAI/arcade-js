@@ -2,6 +2,7 @@
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">AuthorizationContext</a></code>
 - <code><a href="./src/resources/shared.ts">AuthorizationResponse</a></code>
 - <code><a href="./src/resources/shared.ts">Error</a></code>
 
@@ -49,30 +50,28 @@ Types:
 - <code><a href="./src/resources/tools/tools.ts">AuthorizeToolRequest</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ExecuteToolRequest</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ExecuteToolResponse</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ResponseOutput</a></code>
+- <code><a href="./src/resources/tools/tools.ts">ToolDefinition</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ToolExecution</a></code>
 - <code><a href="./src/resources/tools/tools.ts">ToolExecutionAttempt</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ToolListResponse</a></code>
-- <code><a href="./src/resources/tools/tools.ts">ToolGetResponse</a></code>
+- <code><a href="./src/resources/tools/tools.ts">ValueSchema</a></code>
 
 Methods:
 
-- <code title="get /v1/tools/list">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolListResponsesOffsetPage</code>
+- <code title="get /v1/tools">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolDefinitionsOffsetPage</code>
 - <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools/tools.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
 - <code title="post /v1/tools/execute">client.tools.<a href="./src/resources/tools/tools.ts">execute</a>({ ...params }) -> ExecuteToolResponse</code>
-- <code title="get /v1/tools/definition">client.tools.<a href="./src/resources/tools/tools.ts">get</a>({ ...params }) -> ToolGetResponse</code>
+- <code title="get /v1/tools/{name}">client.tools.<a href="./src/resources/tools/tools.ts">get</a>(name) -> ToolDefinition</code>
 
 ## Scheduled
 
 Types:
 
-- <code><a href="./src/resources/tools/scheduled.ts">ScheduledListResponse</a></code>
-- <code><a href="./src/resources/tools/scheduled.ts">ScheduledDetailsResponse</a></code>
+- <code><a href="./src/resources/tools/scheduled.ts">ScheduledGetResponse</a></code>
 
 Methods:
 
-- <code title="get /v1/tools/scheduled">client.tools.scheduled.<a href="./src/resources/tools/scheduled.ts">list</a>() -> ScheduledListResponse</code>
-- <code title="get /v1/tools/scheduled/{id}">client.tools.scheduled.<a href="./src/resources/tools/scheduled.ts">details</a>(id) -> ScheduledDetailsResponse</code>
+- <code title="get /v1/scheduled_tools">client.tools.scheduled.<a href="./src/resources/tools/scheduled.ts">list</a>({ ...params }) -> ToolExecutionsOffsetPage</code>
+- <code title="get /v1/scheduled_tools/{id}">client.tools.scheduled.<a href="./src/resources/tools/scheduled.ts">get</a>(id) -> ScheduledGetResponse</code>
 
 ## Formatted
 
@@ -83,5 +82,5 @@ Types:
 
 Methods:
 
-- <code title="get /v1/tools/formatted/list">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">list</a>({ ...params }) -> FormattedListResponsesOffsetPage</code>
-- <code title="get /v1/tools/formatted/definition">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">get</a>({ ...params }) -> unknown</code>
+- <code title="get /v1/formatted_tools">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">list</a>({ ...params }) -> FormattedListResponsesOffsetPage</code>
+- <code title="get /v1/formatted_tools/{name}">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">get</a>(name, { ...params }) -> unknown</code>
