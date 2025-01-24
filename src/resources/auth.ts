@@ -35,7 +35,7 @@ export class Auth extends APIResource {
     userId: string,
     provider: string,
     options: AuthStartOptions = {},
-  ): Core.APIPromise<Shared.AuthAuthorizationResponse> {
+  ): Core.APIPromise<Shared.AuthorizationResponse> {
     const { providerType = 'oauth2', scopes = [] } = options;
 
     const authRequirement: AuthAuthorizeParams.AuthRequirement = {
@@ -94,14 +94,14 @@ export class Auth extends APIResource {
    * ```
    */
   async waitForCompletion(
-    authResponseOrId: Shared.AuthAuthorizationResponse | string,
-  ): Promise<Shared.AuthAuthorizationResponse> {
+    authResponseOrId: Shared.AuthorizationResponse | string,
+  ): Promise<Shared.AuthorizationResponse> {
     let authId: string;
-    let authResponse: Shared.AuthAuthorizationResponse;
+    let authResponse: Shared.AuthorizationResponse;
 
     if (typeof authResponseOrId === 'string') {
       authId = authResponseOrId;
-      authResponse = { status: 'pending' } as Shared.AuthAuthorizationResponse;
+      authResponse = { status: 'pending' } as Shared.AuthorizationResponse;
     } else {
       if (!authResponseOrId.id) {
         throw new AuthorizationError('Authorization ID is required');

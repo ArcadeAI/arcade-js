@@ -15,7 +15,7 @@ describe('Auth.waitForCompletion', () => {
   });
 
   test('with AuthorizationResponse input', async () => {
-    const authResponse: Partial<Shared.AuthAuthorizationResponse> = {
+    const authResponse: Partial<Shared.AuthorizationResponse> = {
       id: 'auth123',
       status: 'pending',
     };
@@ -24,7 +24,7 @@ describe('Auth.waitForCompletion', () => {
       .mockResolvedValueOnce({ ...authResponse, status: 'pending' })
       .mockResolvedValueOnce({ ...authResponse, status: 'completed' });
 
-    await auth.waitForCompletion(authResponse as Shared.AuthAuthorizationResponse);
+    await auth.waitForCompletion(authResponse as Shared.AuthorizationResponse);
 
     expect(mockClient.get).toHaveBeenCalledWith(
       '/v1/auth/status',
@@ -56,11 +56,11 @@ describe('Auth.waitForCompletion', () => {
   });
 
   test('throws error for missing authorization ID', async () => {
-    const authResponse: Partial<Shared.AuthAuthorizationResponse> = {
+    const authResponse: Partial<Shared.AuthorizationResponse> = {
       status: 'pending',
     };
 
-    await expect(auth.waitForCompletion(authResponse as Shared.AuthAuthorizationResponse)).rejects.toThrow(
+    await expect(auth.waitForCompletion(authResponse as Shared.AuthorizationResponse)).rejects.toThrow(
       'Authorization ID is required',
     );
   });
