@@ -207,6 +207,19 @@ describe('instantiate client', () => {
   });
 });
 
+describe('idempotency', () => {
+  test('key can be set per-request', async () => {
+    const client = new Arcade({
+      baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+      apiKey: 'My API Key',
+    });
+    await client.auth.authorize(
+      { auth_requirement: {}, user_id: 'user_id' },
+      { idempotencyKey: 'my-idempotency-key' },
+    );
+  });
+});
+
 describe('request building', () => {
   const client = new Arcade({ apiKey: 'My API Key' });
 
