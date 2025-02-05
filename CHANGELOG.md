@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2025-02-05)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/ArcadeAI/arcade-js/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **client:** send `X-Stainless-Timeout` header ([#87](https://github.com/ArcadeAI/arcade-js/issues/87)) ([c6331c3](https://github.com/ArcadeAI/arcade-js/commit/c6331c3ab890be4557ff6a1c77edfc4b230f91c3))
+
 ## 1.0.0 (2025-01-24)
 
 Full Changelog: [v0.2.2...v1.0.0](https://github.com/ArcadeAI/arcade-js/compare/v0.2.2...v1.0.0)
