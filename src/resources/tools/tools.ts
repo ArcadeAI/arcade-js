@@ -137,6 +137,8 @@ export namespace ExecuteToolResponse {
 
     error?: Output.Error;
 
+    logs?: Array<Output.Log>;
+
     value?: unknown;
   }
 
@@ -151,6 +153,14 @@ export namespace ExecuteToolResponse {
       developer_message?: string;
 
       retry_after_ms?: number;
+    }
+
+    export interface Log {
+      level: string;
+
+      message: string;
+
+      subtype?: string;
     }
   }
 }
@@ -275,6 +285,8 @@ export namespace ToolExecutionAttempt {
 
     error?: Output.Error;
 
+    logs?: Array<Output.Log>;
+
     value?: unknown;
   }
 
@@ -289,6 +301,14 @@ export namespace ToolExecutionAttempt {
       developer_message?: string;
 
       retry_after_ms?: number;
+    }
+
+    export interface Log {
+      level: string;
+
+      message: string;
+
+      subtype?: string;
     }
   }
 }
