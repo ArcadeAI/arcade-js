@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.1 (2025-02-22)
+
+Full Changelog: [v1.2.0...v1.2.1](https://github.com/ArcadeAI/arcade-js/compare/v1.2.0...v1.2.1)
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#95](https://github.com/ArcadeAI/arcade-js/issues/95)) ([76d0811](https://github.com/ArcadeAI/arcade-js/commit/76d0811d34d4e3b2f9c1ad0de95841f495cd6c60))
+
 ## 1.2.0 (2025-02-18)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/ArcadeAI/arcade-js/compare/v1.1.0...v1.2.0)
