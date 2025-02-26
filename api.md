@@ -98,4 +98,7 @@ Types:
 Methods:
 
 - <code title="post /v1/admin/workers">client.worker.<a href="./src/resources/worker.ts">create</a>({ ...params }) -> WorkerResponse</code>
+- <code title="patch /v1/admin/workers/{id}">client.worker.<a href="./src/resources/worker.ts">update</a>(id, { ...params }) -> WorkerResponse</code>
 - <code title="get /v1/admin/workers">client.worker.<a href="./src/resources/worker.ts">list</a>() -> WorkerListResponse</code>
+- <code title="delete /v1/admin/workers/{id}">client.worker.<a href="./src/resources/worker.ts">delete</a>(id) -> void</code>
+- <code title="get /v1/admin/workers/{id}/health">client.worker.<a href="./src/resources/worker.ts">health</a>(id) -> WorkerHealthResponse</code>
