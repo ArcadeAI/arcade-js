@@ -12,10 +12,38 @@ export class Worker extends APIResource {
   }
 
   /**
+   * Update a worker
+   */
+  update(
+    id: string,
+    body: WorkerUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkerResponse> {
+    return this._client.patch(`/v1/admin/workers/${id}`, { body, ...options });
+  }
+
+  /**
    * List all workers with their definitions
    */
   list(options?: Core.RequestOptions): Core.APIPromise<WorkerListResponse> {
     return this._client.get('/v1/admin/workers', options);
+  }
+
+  /**
+   * Delete a worker
+   */
+  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/v1/admin/workers/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Get the health of a worker
+   */
+  health(id: string, options?: Core.RequestOptions): Core.APIPromise<WorkerHealthResponse> {
+    return this._client.get(`/v1/admin/workers/${id}/health`, options);
   }
 }
 
@@ -135,6 +163,24 @@ export namespace WorkerCreateParams {
   }
 }
 
+export interface WorkerUpdateParams {
+  enabled?: boolean;
+
+  http?: WorkerUpdateParams.HTTP;
+}
+
+export namespace WorkerUpdateParams {
+  export interface HTTP {
+    retry?: number;
+
+    secret?: string;
+
+    timeout?: number;
+
+    uri?: string;
+  }
+}
+
 export declare namespace Worker {
   export {
     type CreateWorkerRequest as CreateWorkerRequest,
@@ -143,5 +189,6 @@ export declare namespace Worker {
     type WorkerResponse as WorkerResponse,
     type WorkerListResponse as WorkerListResponse,
     type WorkerCreateParams as WorkerCreateParams,
+    type WorkerUpdateParams as WorkerUpdateParams,
   };
 }
