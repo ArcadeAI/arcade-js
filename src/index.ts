@@ -9,6 +9,13 @@ import * as Uploads from './uploads';
 import * as API from './resources/index';
 import { Auth, AuthAuthorizeParams, AuthRequest, AuthStatusParams } from './resources/auth';
 import { Health, HealthSchema } from './resources/health';
+import {
+  CreateWorkerRequest,
+  UpdateWorkerRequest,
+  Worker,
+  WorkerHealthResponse,
+  WorkerResponse,
+} from './resources/worker';
 import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './resources/chat/chat';
 import {
   AuthorizeToolRequest,
@@ -142,6 +149,7 @@ export class Arcade extends Core.APIClient {
   health: API.Health = new API.Health(this);
   chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
+  worker: API.Worker = new API.Worker(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -184,6 +192,7 @@ Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
 Arcade.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
+Arcade.Worker = Worker;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -221,6 +230,14 @@ export declare namespace Arcade {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
+  };
+
+  export {
+    Worker as Worker,
+    type CreateWorkerRequest as CreateWorkerRequest,
+    type UpdateWorkerRequest as UpdateWorkerRequest,
+    type WorkerHealthResponse as WorkerHealthResponse,
+    type WorkerResponse as WorkerResponse,
   };
 
   export type AuthorizationContext = API.AuthorizationContext;
