@@ -34,4 +34,5 @@ export {
   type WorkerResponse,
   type WorkerListResponse,
   type WorkerCreateParams,
+  type WorkerUpdateParams,
 } from './worker';
