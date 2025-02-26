@@ -32,4 +32,6 @@ export {
   type UpdateWorkerRequest,
   type WorkerHealthResponse,
   type WorkerResponse,
+  type WorkerListResponse,
+  type WorkerCreateParams,
 } from './worker';

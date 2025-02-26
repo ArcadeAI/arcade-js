@@ -93,3 +93,9 @@ Types:
 - <code><a href="./src/resources/worker.ts">UpdateWorkerRequest</a></code>
 - <code><a href="./src/resources/worker.ts">WorkerHealthResponse</a></code>
 - <code><a href="./src/resources/worker.ts">WorkerResponse</a></code>
+- <code><a href="./src/resources/worker.ts">WorkerListResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/admin/workers">client.worker.<a href="./src/resources/worker.ts">create</a>({ ...params }) -> WorkerResponse</code>
+- <code title="get /v1/admin/workers">client.worker.<a href="./src/resources/worker.ts">list</a>() -> WorkerListResponse</code>

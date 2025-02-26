@@ -13,7 +13,9 @@ import {
   CreateWorkerRequest,
   UpdateWorkerRequest,
   Worker,
+  WorkerCreateParams,
   WorkerHealthResponse,
+  WorkerListResponse,
   WorkerResponse,
 } from './resources/worker';
 import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './resources/chat/chat';
@@ -238,6 +240,8 @@ export declare namespace Arcade {
     type UpdateWorkerRequest as UpdateWorkerRequest,
     type WorkerHealthResponse as WorkerHealthResponse,
     type WorkerResponse as WorkerResponse,
+    type WorkerListResponse as WorkerListResponse,
+    type WorkerCreateParams as WorkerCreateParams,
   };
 
   export type AuthorizationContext = API.AuthorizationContext;
