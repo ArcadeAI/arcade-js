@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.3.0 (2025-03-06)
+
+Full Changelog: [v1.2.1...v1.3.0](https://github.com/ArcadeAI/arcade-js/compare/v1.2.1...v1.3.0)
+
+### Features
+
+* **api:** api update ([#100](https://github.com/ArcadeAI/arcade-js/issues/100)) ([bc80e2f](https://github.com/ArcadeAI/arcade-js/commit/bc80e2f846e72ddb3993108916f0edcd88bd1a13))
+* **api:** api update ([#101](https://github.com/ArcadeAI/arcade-js/issues/101)) ([067e889](https://github.com/ArcadeAI/arcade-js/commit/067e889bbeefdc7c93c65029efd500178e9b81fc))
+* **api:** api update ([#102](https://github.com/ArcadeAI/arcade-js/issues/102)) ([0e3d5c2](https://github.com/ArcadeAI/arcade-js/commit/0e3d5c2af39df68e622de0ce23b2e28db4918191))
+* **api:** api update ([#98](https://github.com/ArcadeAI/arcade-js/issues/98)) ([81244e2](https://github.com/ArcadeAI/arcade-js/commit/81244e2dba7ed8804108e14eb00a6a96744c69af))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#103](https://github.com/ArcadeAI/arcade-js/issues/103)) ([5d4780c](https://github.com/ArcadeAI/arcade-js/commit/5d4780c8c84bb4773309af802857bbd34cddc193))
+
 ## 1.2.1 (2025-02-22)
 
 Full Changelog: [v1.2.0...v1.2.1](https://github.com/ArcadeAI/arcade-js/compare/v1.2.0...v1.2.1)
