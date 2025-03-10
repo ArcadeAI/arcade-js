@@ -12,13 +12,15 @@ import { Health, HealthSchema } from './resources/health';
 import {
   CreateWorkerRequest,
   UpdateWorkerRequest,
-  Worker,
   WorkerCreateParams,
   WorkerHealthResponse,
-  WorkerListResponse,
+  WorkerListParams,
   WorkerResponse,
+  WorkerResponsesOffsetPage,
+  WorkerToolsResponse,
   WorkerUpdateParams,
-} from './resources/worker';
+  Workers,
+} from './resources/workers';
 import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './resources/chat/chat';
 import {
   AuthorizeToolRequest,
@@ -153,7 +155,7 @@ export class Arcade extends Core.APIClient {
   health: API.Health = new API.Health(this);
   chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
-  worker: API.Worker = new API.Worker(this);
+  workers: API.Workers = new API.Workers(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -196,7 +198,8 @@ Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
 Arcade.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
-Arcade.Worker = Worker;
+Arcade.Workers = Workers;
+Arcade.WorkerResponsesOffsetPage = WorkerResponsesOffsetPage;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -237,14 +240,16 @@ export declare namespace Arcade {
   };
 
   export {
-    Worker as Worker,
+    Workers as Workers,
     type CreateWorkerRequest as CreateWorkerRequest,
     type UpdateWorkerRequest as UpdateWorkerRequest,
     type WorkerHealthResponse as WorkerHealthResponse,
     type WorkerResponse as WorkerResponse,
-    type WorkerListResponse as WorkerListResponse,
+    type WorkerToolsResponse as WorkerToolsResponse,
+    WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
     type WorkerCreateParams as WorkerCreateParams,
     type WorkerUpdateParams as WorkerUpdateParams,
+    type WorkerListParams as WorkerListParams,
   };
 
   export type AuthorizationContext = API.AuthorizationContext;
