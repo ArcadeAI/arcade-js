@@ -8,9 +8,9 @@ const client = new Arcade({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource worker', () => {
+describe('resource workers', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.worker.create({ id: 'id', enabled: true });
+    const responsePromise = client.workers.create({ id: 'id', enabled: true });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +21,7 @@ describe('resource worker', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.worker.create({
+    const response = await client.workers.create({
       id: 'id',
       enabled: true,
       http: { retry: 0, secret: 'secret', timeout: 1, uri: 'uri' },
@@ -29,7 +29,7 @@ describe('resource worker', () => {
   });
 
   test('update', async () => {
-    const responsePromise = client.worker.update('id', {});
+    const responsePromise = client.workers.update('id', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -40,7 +40,7 @@ describe('resource worker', () => {
   });
 
   test('list', async () => {
-    const responsePromise = client.worker.list();
+    const responsePromise = client.workers.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -52,13 +52,20 @@ describe('resource worker', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.worker.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.workers.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Arcade.NotFoundError,
     );
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.workers.list({ limit: 0, offset: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Arcade.NotFoundError);
+  });
+
   test('delete', async () => {
-    const responsePromise = client.worker.delete('id');
+    const responsePromise = client.workers.delete('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -70,13 +77,31 @@ describe('resource worker', () => {
 
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.worker.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.workers.delete('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Arcade.NotFoundError,
+    );
+  });
+
+  test('get', async () => {
+    const responsePromise = client.workers.get('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('get: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.workers.get('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Arcade.NotFoundError,
     );
   });
 
   test('health', async () => {
-    const responsePromise = client.worker.health('id');
+    const responsePromise = client.workers.health('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -88,7 +113,25 @@ describe('resource worker', () => {
 
   test('health: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.worker.health('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.workers.health('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Arcade.NotFoundError,
+    );
+  });
+
+  test('tools', async () => {
+    const responsePromise = client.workers.tools('id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('tools: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.workers.tools('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Arcade.NotFoundError,
     );
   });

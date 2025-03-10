@@ -27,12 +27,14 @@ export {
   type ToolExecuteParams,
 } from './tools/tools';
 export {
-  Worker,
+  WorkerResponsesOffsetPage,
+  Workers,
   type CreateWorkerRequest,
   type UpdateWorkerRequest,
   type WorkerHealthResponse,
   type WorkerResponse,
-  type WorkerListResponse,
+  type WorkerToolsResponse,
   type WorkerCreateParams,
   type WorkerUpdateParams,
-} from './worker';
+  type WorkerListParams,
+} from './workers';
