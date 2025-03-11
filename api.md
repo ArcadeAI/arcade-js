@@ -93,7 +93,6 @@ Types:
 - <code><a href="./src/resources/workers.ts">UpdateWorkerRequest</a></code>
 - <code><a href="./src/resources/workers.ts">WorkerHealthResponse</a></code>
 - <code><a href="./src/resources/workers.ts">WorkerResponse</a></code>
-- <code><a href="./src/resources/workers.ts">WorkerToolsResponse</a></code>
 
 Methods:
 
@@ -103,4 +102,4 @@ Methods:
 - <code title="delete /v1/workers/{id}">client.workers.<a href="./src/resources/workers.ts">delete</a>(id) -> void</code>
 - <code title="get /v1/workers/{id}">client.workers.<a href="./src/resources/workers.ts">get</a>(id) -> WorkerResponse</code>
 - <code title="get /v1/workers/{id}/health">client.workers.<a href="./src/resources/workers.ts">health</a>(id) -> WorkerHealthResponse</code>
-- <code title="get /v1/workers/{id}/tools">client.workers.<a href="./src/resources/workers.ts">tools</a>(id) -> WorkerToolsResponse</code>
+- <code title="get /v1/workers/{id}/tools">client.workers.<a href="./src/resources/workers.ts">tools</a>(id, { ...params }) -> ToolDefinitionsOffsetPage</code>

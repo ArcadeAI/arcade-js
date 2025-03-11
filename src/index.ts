@@ -17,7 +17,7 @@ import {
   WorkerListParams,
   WorkerResponse,
   WorkerResponsesOffsetPage,
-  WorkerToolsResponse,
+  WorkerToolsParams,
   WorkerUpdateParams,
   Workers,
 } from './resources/workers';
@@ -244,11 +244,11 @@ export declare namespace Arcade {
     type UpdateWorkerRequest as UpdateWorkerRequest,
     type WorkerHealthResponse as WorkerHealthResponse,
     type WorkerResponse as WorkerResponse,
-    type WorkerToolsResponse as WorkerToolsResponse,
     WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
     type WorkerCreateParams as WorkerCreateParams,
     type WorkerUpdateParams as WorkerUpdateParams,
     type WorkerListParams as WorkerListParams,
+    type WorkerToolsParams as WorkerToolsParams,
   };
 
   export type AuthorizationContext = API.AuthorizationContext;
