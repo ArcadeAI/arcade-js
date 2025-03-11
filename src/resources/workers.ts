@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as ToolsAPI from './tools/tools';
+import { ToolDefinitionsOffsetPage } from './tools/tools';
 import { OffsetPage, type OffsetPageParams } from '../pagination';
 
 export class Workers extends APIResource {
@@ -70,8 +71,27 @@ export class Workers extends APIResource {
   /**
    * Returns a page of tools
    */
-  tools(id: string, options?: Core.RequestOptions): Core.APIPromise<WorkerToolsResponse> {
-    return this._client.get(`/v1/workers/${id}/tools`, options);
+  tools(
+    id: string,
+    query?: WorkerToolsParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolsAPI.ToolDefinition>;
+  tools(
+    id: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolsAPI.ToolDefinition>;
+  tools(
+    id: string,
+    query: WorkerToolsParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolsAPI.ToolDefinition> {
+    if (isRequestOptions(query)) {
+      return this.tools(id, {}, query);
+    }
+    return this._client.getAPIList(`/v1/workers/${id}/tools`, ToolDefinitionsOffsetPage, {
+      query,
+      ...options,
+    });
   }
 }
 
@@ -161,18 +181,6 @@ export namespace WorkerResponse {
   }
 }
 
-export interface WorkerToolsResponse {
-  items?: Array<ToolsAPI.ToolDefinition>;
-
-  limit?: number;
-
-  offset?: number;
-
-  page_count?: number;
-
-  total_count?: number;
-}
-
 export interface WorkerCreateParams {
   id: string;
 
@@ -213,6 +221,8 @@ export namespace WorkerUpdateParams {
 
 export interface WorkerListParams extends OffsetPageParams {}
 
+export interface WorkerToolsParams extends OffsetPageParams {}
+
 Workers.WorkerResponsesOffsetPage = WorkerResponsesOffsetPage;
 
 export declare namespace Workers {
@@ -221,10 +231,12 @@ export declare namespace Workers {
     type UpdateWorkerRequest as UpdateWorkerRequest,
     type WorkerHealthResponse as WorkerHealthResponse,
     type WorkerResponse as WorkerResponse,
-    type WorkerToolsResponse as WorkerToolsResponse,
     WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
     type WorkerCreateParams as WorkerCreateParams,
     type WorkerUpdateParams as WorkerUpdateParams,
     type WorkerListParams as WorkerListParams,
+    type WorkerToolsParams as WorkerToolsParams,
   };
 }
+
+export { ToolDefinitionsOffsetPage };

@@ -33,8 +33,8 @@ export {
   type UpdateWorkerRequest,
   type WorkerHealthResponse,
   type WorkerResponse,
-  type WorkerToolsResponse,
   type WorkerCreateParams,
   type WorkerUpdateParams,
   type WorkerListParams,
+  type WorkerToolsParams,
 } from './workers';
