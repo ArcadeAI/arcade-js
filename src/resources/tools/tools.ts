@@ -218,6 +218,8 @@ export namespace ToolDefinition {
 
   export interface Requirements {
     authorization?: Requirements.Authorization;
+
+    secrets?: Array<Requirements.Secret>;
   }
 
   export namespace Requirements {
@@ -235,6 +237,10 @@ export namespace ToolDefinition {
       export interface Oauth2 {
         scopes?: Array<string>;
       }
+    }
+
+    export interface Secret {
+      key: string;
     }
   }
 }

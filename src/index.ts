@@ -9,6 +9,18 @@ import * as Uploads from './uploads';
 import * as API from './resources/index';
 import { Auth, AuthAuthorizeParams, AuthRequest, AuthStatusParams } from './resources/auth';
 import { Health, HealthSchema } from './resources/health';
+import {
+  CreateWorkerRequest,
+  UpdateWorkerRequest,
+  WorkerCreateParams,
+  WorkerHealthResponse,
+  WorkerListParams,
+  WorkerResponse,
+  WorkerResponsesOffsetPage,
+  WorkerToolsParams,
+  WorkerUpdateParams,
+  Workers,
+} from './resources/workers';
 import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './resources/chat/chat';
 import {
   AuthorizeToolRequest,
@@ -143,6 +155,7 @@ export class Arcade extends Core.APIClient {
   health: API.Health = new API.Health(this);
   chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
+  workers: API.Workers = new API.Workers(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -185,6 +198,8 @@ Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
 Arcade.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
+Arcade.Workers = Workers;
+Arcade.WorkerResponsesOffsetPage = WorkerResponsesOffsetPage;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -222,6 +237,19 @@ export declare namespace Arcade {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
+  };
+
+  export {
+    Workers as Workers,
+    type CreateWorkerRequest as CreateWorkerRequest,
+    type UpdateWorkerRequest as UpdateWorkerRequest,
+    type WorkerHealthResponse as WorkerHealthResponse,
+    type WorkerResponse as WorkerResponse,
+    WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
+    type WorkerCreateParams as WorkerCreateParams,
+    type WorkerUpdateParams as WorkerUpdateParams,
+    type WorkerListParams as WorkerListParams,
+    type WorkerToolsParams as WorkerToolsParams,
   };
 
   export type AuthorizationContext = API.AuthorizationContext;
