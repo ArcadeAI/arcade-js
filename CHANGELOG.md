@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.3.0 (2025-03-14)
+
+Full Changelog: [v1.2.1...v1.3.0](https://github.com/ArcadeAI/arcade-js/compare/v1.2.1...v1.3.0)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#106](https://github.com/ArcadeAI/arcade-js/issues/106)) ([8408484](https://github.com/ArcadeAI/arcade-js/commit/8408484d003847040cd7390a8c1bdbd960b2497f))
+* **api:** api update ([#100](https://github.com/ArcadeAI/arcade-js/issues/100)) ([bc80e2f](https://github.com/ArcadeAI/arcade-js/commit/bc80e2f846e72ddb3993108916f0edcd88bd1a13))
+* **api:** api update ([#101](https://github.com/ArcadeAI/arcade-js/issues/101)) ([067e889](https://github.com/ArcadeAI/arcade-js/commit/067e889bbeefdc7c93c65029efd500178e9b81fc))
+* **api:** api update ([#102](https://github.com/ArcadeAI/arcade-js/issues/102)) ([0e3d5c2](https://github.com/ArcadeAI/arcade-js/commit/0e3d5c2af39df68e622de0ce23b2e28db4918191))
+* **api:** api update ([#104](https://github.com/ArcadeAI/arcade-js/issues/104)) ([2b8e7a5](https://github.com/ArcadeAI/arcade-js/commit/2b8e7a55b6eacb93561c122e2b209fb23d9582a3))
+* **api:** api update ([#105](https://github.com/ArcadeAI/arcade-js/issues/105)) ([a29a9f7](https://github.com/ArcadeAI/arcade-js/commit/a29a9f7777bdb9b927c31bf05966443cd11d8327))
+* **api:** api update ([#98](https://github.com/ArcadeAI/arcade-js/issues/98)) ([81244e2](https://github.com/ArcadeAI/arcade-js/commit/81244e2dba7ed8804108e14eb00a6a96744c69af))
+* **client:** accept RFC6838 JSON content types ([#107](https://github.com/ArcadeAI/arcade-js/issues/107)) ([5025b73](https://github.com/ArcadeAI/arcade-js/commit/5025b739c10596ef726f9d03ecbcbffe8f20f70d))
+
+
+### Bug Fixes
+
+* **exports:** ensure resource imports don't require /index ([#109](https://github.com/ArcadeAI/arcade-js/issues/109)) ([3ebaa3e](https://github.com/ArcadeAI/arcade-js/commit/3ebaa3e430bb67213e45fdf215a6c9c2532074f8))
+
+
+### Chores
+
+* **internal:** remove extra empty newlines ([#108](https://github.com/ArcadeAI/arcade-js/issues/108)) ([26b8e56](https://github.com/ArcadeAI/arcade-js/commit/26b8e56639264804ee7657edfe07cf5b58d7019a))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#103](https://github.com/ArcadeAI/arcade-js/issues/103)) ([5d4780c](https://github.com/ArcadeAI/arcade-js/commit/5d4780c8c84bb4773309af802857bbd34cddc193))
+
 ## 1.2.1 (2025-02-22)
 
 Full Changelog: [v1.2.0...v1.2.1](https://github.com/ArcadeAI/arcade-js/compare/v1.2.0...v1.2.1)
