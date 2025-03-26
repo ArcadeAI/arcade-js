@@ -100,9 +100,13 @@ export class WorkerResponsesOffsetPage extends OffsetPage<WorkerResponse> {}
 export interface CreateWorkerRequest {
   id: string;
 
-  enabled: boolean;
+  type: string;
+
+  enabled?: boolean;
 
   http?: CreateWorkerRequest.HTTP;
+
+  mcp?: CreateWorkerRequest.Mcp;
 }
 
 export namespace CreateWorkerRequest {
@@ -115,12 +119,22 @@ export namespace CreateWorkerRequest {
 
     uri: string;
   }
+
+  export interface Mcp {
+    retry: number;
+
+    timeout: number;
+
+    uri: string;
+  }
 }
 
 export interface UpdateWorkerRequest {
   enabled?: boolean;
 
   http?: UpdateWorkerRequest.HTTP;
+
+  mcp?: UpdateWorkerRequest.Mcp;
 }
 
 export namespace UpdateWorkerRequest {
@@ -128,6 +142,14 @@ export namespace UpdateWorkerRequest {
     retry?: number;
 
     secret?: string;
+
+    timeout?: number;
+
+    uri?: string;
+  }
+
+  export interface Mcp {
+    retry?: number;
 
     timeout?: number;
 
@@ -152,7 +174,9 @@ export interface WorkerResponse {
 
   http?: WorkerResponse.HTTP;
 
-  type?: string;
+  mcp?: WorkerResponse.Mcp;
+
+  oxp?: WorkerResponse.Oxp;
 }
 
 export namespace WorkerResponse {
@@ -179,14 +203,50 @@ export namespace WorkerResponse {
       value?: string;
     }
   }
+
+  export interface Mcp {
+    retry?: number;
+
+    timeout?: number;
+
+    uri?: string;
+  }
+
+  export interface Oxp {
+    retry?: number;
+
+    secret?: Oxp.Secret;
+
+    timeout?: number;
+
+    uri?: string;
+  }
+
+  export namespace Oxp {
+    export interface Secret {
+      binding?: 'static' | 'tenant' | 'organization' | 'account';
+
+      editable?: boolean;
+
+      exists?: boolean;
+
+      hint?: string;
+
+      value?: string;
+    }
+  }
 }
 
 export interface WorkerCreateParams {
   id: string;
 
-  enabled: boolean;
+  type: string;
+
+  enabled?: boolean;
 
   http?: WorkerCreateParams.HTTP;
+
+  mcp?: WorkerCreateParams.Mcp;
 }
 
 export namespace WorkerCreateParams {
@@ -199,12 +259,22 @@ export namespace WorkerCreateParams {
 
     uri: string;
   }
+
+  export interface Mcp {
+    retry: number;
+
+    timeout: number;
+
+    uri: string;
+  }
 }
 
 export interface WorkerUpdateParams {
   enabled?: boolean;
 
   http?: WorkerUpdateParams.HTTP;
+
+  mcp?: WorkerUpdateParams.Mcp;
 }
 
 export namespace WorkerUpdateParams {
@@ -212,6 +282,14 @@ export namespace WorkerUpdateParams {
     retry?: number;
 
     secret?: string;
+
+    timeout?: number;
+
+    uri?: string;
+  }
+
+  export interface Mcp {
+    retry?: number;
 
     timeout?: number;
 
