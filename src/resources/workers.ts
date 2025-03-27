@@ -170,6 +170,8 @@ export interface WorkerHealthResponse {
 export interface WorkerResponse {
   id?: string;
 
+  binding?: WorkerResponse.Binding;
+
   enabled?: boolean;
 
   http?: WorkerResponse.HTTP;
@@ -177,9 +179,17 @@ export interface WorkerResponse {
   mcp?: WorkerResponse.Mcp;
 
   oxp?: WorkerResponse.Oxp;
+
+  type?: 'http' | 'mcp' | 'unknown';
 }
 
 export namespace WorkerResponse {
+  export interface Binding {
+    id?: string;
+
+    type?: 'static' | 'tenant' | 'organization' | 'account';
+  }
+
   export interface HTTP {
     retry?: number;
 
