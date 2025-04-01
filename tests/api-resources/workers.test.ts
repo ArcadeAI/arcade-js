@@ -10,7 +10,7 @@ const client = new Arcade({
 
 describe('resource workers', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.workers.create({ id: 'id', type: 'type' });
+    const responsePromise = client.workers.create({ id: 'id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,10 +23,10 @@ describe('resource workers', () => {
   test('create: required and optional params', async () => {
     const response = await client.workers.create({
       id: 'id',
-      type: 'type',
       enabled: true,
       http: { retry: 0, secret: 'secret', timeout: 1, uri: 'uri' },
       mcp: { retry: 0, timeout: 1, uri: 'uri' },
+      type: 'type',
     });
   });
 
