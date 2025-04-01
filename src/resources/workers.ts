@@ -100,13 +100,13 @@ export class WorkerResponsesOffsetPage extends OffsetPage<WorkerResponse> {}
 export interface CreateWorkerRequest {
   id: string;
 
-  type: string;
-
   enabled?: boolean;
 
   http?: CreateWorkerRequest.HTTP;
 
   mcp?: CreateWorkerRequest.Mcp;
+
+  type?: string;
 }
 
 export namespace CreateWorkerRequest {
@@ -250,13 +250,13 @@ export namespace WorkerResponse {
 export interface WorkerCreateParams {
   id: string;
 
-  type: string;
-
   enabled?: boolean;
 
   http?: WorkerCreateParams.HTTP;
 
   mcp?: WorkerCreateParams.Mcp;
+
+  type?: string;
 }
 
 export namespace WorkerCreateParams {
