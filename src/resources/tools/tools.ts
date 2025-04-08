@@ -16,11 +16,14 @@ import {
 } from './formatted';
 import * as ScheduledAPI from './scheduled';
 import { Scheduled, ScheduledGetResponse, ScheduledListParams } from './scheduled';
+import * as ZodAPI from './zod';
+import { Zod, type ArcadeZodTool, type ZodListParams, type ZodGetParams } from './zod';
 import { OffsetPage, type OffsetPageParams } from '../../pagination';
 
 export class Tools extends APIResource {
   scheduled: ScheduledAPI.Scheduled = new ScheduledAPI.Scheduled(this._client);
   formatted: FormattedAPI.Formatted = new FormattedAPI.Formatted(this._client);
+  zod: ZodAPI.Zod = new ZodAPI.Zod(this._client);
 
   /**
    * Returns a page of tools from the engine configuration, optionally filtered by
@@ -397,5 +400,12 @@ export declare namespace Tools {
     FormattedListResponsesOffsetPage as FormattedListResponsesOffsetPage,
     type FormattedListParams as FormattedListParams,
     type FormattedGetParams as FormattedGetParams,
+  };
+
+  export {
+    Zod as Zod,
+    type ArcadeZodTool as ArcadeZodTool,
+    type ZodListParams as ZodListParams,
+    type ZodGetParams as ZodGetParams,
   };
 }
