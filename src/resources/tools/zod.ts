@@ -24,12 +24,11 @@ export interface ArcadeZodTool<UserIdProvided extends boolean = false> {
   name: string;
   description: string;
   parameters: z.ZodType;
-  execute: UserIdProvided extends true 
-    ? (input: any) => Promise<ExecuteToolResponse>
-    : (input: any, userId: string) => Promise<ExecuteToolResponse>;
-  executeOrAuthorize: UserIdProvided extends true
-    ? (input: any) => Promise<ExecuteToolResponse | AuthorizationRequiredResponse>
-    : (input: any, userId: string) => Promise<ExecuteToolResponse | AuthorizationRequiredResponse>;
+  execute: UserIdProvided extends true ? (input: any) => Promise<ExecuteToolResponse>
+  : (input: any, userId: string) => Promise<ExecuteToolResponse>;
+  executeOrAuthorize: UserIdProvided extends true ?
+    (input: any) => Promise<ExecuteToolResponse | AuthorizationRequiredResponse>
+  : (input: any, userId: string) => Promise<ExecuteToolResponse | AuthorizationRequiredResponse>;
 }
 
 /**
@@ -48,9 +47,9 @@ const arcadeToolMinimumSchema = z.object({
  */
 function isAuthorizationRequiredError(error: Error): boolean {
   return (
-    error?.name === "PermissionDeniedError" ||
-    error?.message?.includes("permission denied") ||
-    error?.message?.includes("authorization required")
+    error?.name === 'PermissionDeniedError' ||
+    error?.message?.includes('permission denied') ||
+    error?.message?.includes('authorization required')
   );
 }
 
@@ -62,16 +61,18 @@ function isAuthorizationRequiredError(error: Error): boolean {
  * @returns A tool object with Zod schema validation and execution methods
  */
 async function convertToZodTool<T extends boolean = false>(
-  toolData: any, 
+  toolData: any,
   client: Core.APIClient,
-  userId?: string
+  userId?: string,
 ): Promise<ArcadeZodTool<T>> {
-  const { function: { name, description, parameters } } = arcadeToolMinimumSchema.parse(toolData);
-  
+  const {
+    function: { name, description, parameters },
+  } = arcadeToolMinimumSchema.parse(toolData);
+
   // Convert JSON Schema to Zod
   const { JSONSchemaToZod } = await import('@dmitryrechkin/json-schema-to-zod');
   const zodParameters = JSONSchemaToZod.convert(parameters);
-  
+
   return {
     name,
     description,
@@ -82,10 +83,10 @@ async function convertToZodTool<T extends boolean = false>(
       if (!validationResult.success) {
         throw new Error(`Invalid input: ${validationResult.error.message}`);
       }
-      
+
       // Use userId from tool creation if available, otherwise from execute call
       const effectiveUserId = userId || execUserId;
-      
+
       // Execute the tool via the client's API
       return client.post('/v1/tools/execute', {
         body: {
@@ -95,16 +96,19 @@ async function convertToZodTool<T extends boolean = false>(
         },
       });
     },
-    executeOrAuthorize: async (input: any, execUserId?: string): Promise<ExecuteToolResponse | AuthorizationRequiredResponse> => {
+    executeOrAuthorize: async (
+      input: any,
+      execUserId?: string,
+    ): Promise<ExecuteToolResponse | AuthorizationRequiredResponse> => {
       // Validate the input against the Zod schema
       const validationResult = zodParameters.safeParse(input);
       if (!validationResult.success) {
         throw new Error(`Invalid input: ${validationResult.error.message}`);
       }
-      
+
       // Use userId from tool creation if available, otherwise from execute call
       const effectiveUserId = userId || execUserId;
-      
+
       try {
         // Try to execute the tool
         return await client.post('/v1/tools/execute', {
@@ -117,18 +121,20 @@ async function convertToZodTool<T extends boolean = false>(
       } catch (error) {
         if (error instanceof Error && isAuthorizationRequiredError(error)) {
           // If the tool requires authorization, get the authorization response
-          const response = await client.post('/v1/tools/authorize', {
+          const response = (await client.post('/v1/tools/authorize', {
             body: {
               tool_name: name,
               user_id: effectiveUserId,
             },
-          }) as { url: string };
-          
+          })) as { url: string };
+
           return {
             authorization_required: true,
             authorization_response: response,
             url: response.url,
-            message: "This tool requires authorization. Please visit the following URL to authorize the tool: " + response.url,
+            message:
+              'This tool requires authorization. Please visit the following URL to authorize the tool: ' +
+              response.url,
           };
         }
         throw error;
@@ -146,7 +152,7 @@ export type ArcadeZodToolResponse<T extends boolean = false> = {
   page_count: number;
   offset: number;
   limit: number;
-}
+};
 
 /**
  * API resource for working with Arcade Tools with Zod validation
@@ -160,13 +166,8 @@ export class Zod extends APIResource {
     query: ZodListParams & { user_id: string },
     options?: Core.RequestOptions,
   ): Promise<ArcadeZodToolResponse<true>>;
-  async list(
-    query?: ZodListParams,
-    options?: Core.RequestOptions,
-  ): Promise<ArcadeZodToolResponse<false>>;
-  async list(
-    options?: Core.RequestOptions,
-  ): Promise<ArcadeZodToolResponse<false>>;
+  async list(query?: ZodListParams, options?: Core.RequestOptions): Promise<ArcadeZodToolResponse<false>>;
+  async list(options?: Core.RequestOptions): Promise<ArcadeZodToolResponse<false>>;
   async list(
     query: ZodListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
@@ -174,21 +175,21 @@ export class Zod extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    
+
     const queryParams = query ? { ...query, format: 'openai' } : { format: 'openai' };
     const hasUserId = !!query.user_id;
-    
+
     // Get tools from API with OpenAI format
     const page = await this._client.getAPIList('/v1/formatted_tools', OffsetPage, {
       query: queryParams,
       ...options,
     });
-    
+
     // Convert formatted tools to Zod-validated tools
     const items = page.items || [];
-    const validItems = items.filter(item => arcadeToolMinimumSchema.safeParse(item).success);
+    const validItems = items.filter((item) => arcadeToolMinimumSchema.safeParse(item).success);
     const convertedItems = await Promise.all(
-      validItems.map(item => convertToZodTool<typeof hasUserId>(item, this._client, query?.user_id))
+      validItems.map((item) => convertToZodTool<typeof hasUserId>(item, this._client, query?.user_id)),
     );
 
     // Extract pagination details
@@ -208,7 +209,11 @@ export class Zod extends APIResource {
    * Gets a single Arcade Tool by name with Zod validation
    * Can optionally include user ID for the tool execution
    */
-  async get(name: string, query: ZodGetParams & { user_id: string }, options?: Core.RequestOptions): Promise<ArcadeZodTool<true>>;
+  async get(
+    name: string,
+    query: ZodGetParams & { user_id: string },
+    options?: Core.RequestOptions,
+  ): Promise<ArcadeZodTool<true>>;
   async get(name: string, query?: ZodGetParams, options?: Core.RequestOptions): Promise<ArcadeZodTool<false>>;
   async get(name: string, options?: Core.RequestOptions): Promise<ArcadeZodTool<false>>;
   async get(
@@ -219,21 +224,21 @@ export class Zod extends APIResource {
     if (isRequestOptions(query)) {
       return this.get(name, {}, query);
     }
-    
+
     const queryParams = query ? { ...query, format: 'openai' } : { format: 'openai' };
     const hasUserId = !!query.user_id;
-    
+
     // Get the specific tool in OpenAI format
-    const data = await this._client.get(`/v1/formatted_tools/${name}`, { 
+    const data = await this._client.get(`/v1/formatted_tools/${name}`, {
       query: queryParams,
       ...options,
     });
-    
+
     // Validate response format
     if (!arcadeToolMinimumSchema.safeParse(data).success) {
       throw new Error(`Invalid tool response for ${name}`);
     }
-    
+
     // Convert to Zod-validated tool
     return convertToZodTool<typeof hasUserId>(data, this._client, query?.user_id);
   }
@@ -260,4 +265,4 @@ export declare namespace Zod {
     type ZodGetParams as ZodGetParams,
     type ArcadeZodTool as ArcadeZodTool,
   };
-} 
+}
