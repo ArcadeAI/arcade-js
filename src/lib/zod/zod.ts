@@ -1,7 +1,18 @@
 import { ExecuteToolResponse } from '../../resources/tools/tools';
 import { arcadeToolMinimumSchema, ToolAuthorizationResponse, ZodTool, ZodToolSchema } from './types';
-import * as z from 'zod';
+import { z } from 'zod';
 import { type Arcade } from '../../index';
+import { JSONSchemaToZod } from '@dmitryrechkin/json-schema-to-zod';
+
+/**
+ * Custom error class for tool conversion failures
+ */
+export class ToolConversionError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ToolConversionError';
+  }
+}
 
 /**
  * Checks if an error indicates that authorization for the tool is required
@@ -17,9 +28,27 @@ export function isAuthorizationRequiredError(error: Error): boolean {
 /**
  * Converts JSON Schema parameters to Zod schema
  */
-async function convertToZodSchema(parameters: any): Promise<z.ZodType> {
-  const { JSONSchemaToZod } = await import('@dmitryrechkin/json-schema-to-zod');
+export function convertToZodSchema(parameters: any): z.ZodType {
   return JSONSchemaToZod.convert(parameters);
+}
+
+/**
+ * Converts a single tool to a Zod-validated tool schema
+ * @param tool - The tool to convert
+ * @returns Zod-validated tool schema
+ * @throws ToolConversionError if the tool is invalid
+ */
+export function convertSingleToolToSchema(tool: any): ZodToolSchema {
+  if (!arcadeToolMinimumSchema.safeParse(tool).success) {
+    throw new ToolConversionError('Invalid tool format: tool does not match minimum schema requirements');
+  }
+
+  const {
+    function: { name, description, parameters },
+  } = arcadeToolMinimumSchema.parse(tool);
+
+  const zodParameters = convertToZodSchema(parameters);
+  return { name, description, parameters: zodParameters };
 }
 
 /**
@@ -27,43 +56,43 @@ async function convertToZodSchema(parameters: any): Promise<z.ZodType> {
  * @param tools - Array of formatted tools
  * @returns Array of Zod-validated tool schemas
  */
-export async function toZodSchema(tools: any[]): Promise<ZodToolSchema[]> {
-  const validTools = tools.filter((item) => arcadeToolMinimumSchema.safeParse(item).success);
-  const schemas: ZodToolSchema[] = [];
-
-  for (const item of validTools) {
-    const {
-      function: { name, description, parameters },
-    } = arcadeToolMinimumSchema.parse(item);
-
-    const zodParameters = await convertToZodSchema(parameters);
-    schemas.push({ name, description, parameters: zodParameters });
-  }
-
-  return schemas;
+export function toZodSchema(tools: any[]): ZodToolSchema[] {
+  return tools
+    .map((tool) => {
+      try {
+        return convertSingleToolToSchema(tool);
+      } catch (error) {
+        if (error instanceof ToolConversionError) {
+          console.warn(`Skipping invalid tool: ${error.message}`);
+          return null;
+        }
+        throw error;
+      }
+    })
+    .filter((schema): schema is ZodToolSchema => schema !== null);
 }
 
 /**
- * Converts formatted tools to full tools with execution capabilities
- * @param tools - Array of formatted tools
+ * Converts a single tool to a full tool with execution capabilities
+ * @param tool - The tool to convert
  * @param client - Arcade client instance
  * @param userId - User ID to use for the tool execution
- * @returns Array of Zod-validated tools with execution methods
+ * @returns Zod-validated tool with execution methods
+ * @throws ToolConversionError if the tool is invalid
  */
-export async function toZod({
-  tools,
+export function createZodTool({
+  tool,
   client,
   userId,
 }: {
-  tools: any[];
+  tool: any;
   client: Arcade;
   userId: string;
-}): Promise<ZodTool[]> {
-  // First convert to schemas
-  const schemas = await toZodSchema(tools);
+}): ZodTool {
+  const schema = convertSingleToolToSchema(tool);
+  const { name, description, parameters } = schema;
 
-  // Then add execution capabilities
-  return schemas.map(({ name, description, parameters }) => ({
+  return {
     name,
     description,
     parameters,
@@ -110,5 +139,35 @@ export async function toZod({
         throw error;
       }
     },
-  }));
+  };
+}
+
+/**
+ * Converts formatted tools to full tools with execution capabilities
+ * @param tools - Array of formatted tools
+ * @param client - Arcade client instance
+ * @param userId - User ID to use for the tool execution
+ * @returns Array of Zod-validated tools with execution methods
+ */
+export async function toZod({
+  tools,
+  client,
+  userId,
+}: {
+  tools: any[];
+  client: Arcade;
+  userId: string;
+}): Promise<ZodTool[]> {
+  const results = tools.map((tool) => {
+    try {
+      return createZodTool({ tool, client, userId });
+    } catch (error) {
+      if (error instanceof ToolConversionError) {
+        // If the tool is invalid, return null to filter it out
+        return null;
+      }
+      throw error;
+    }
+  });
+  return results.filter((tool): tool is ZodTool => tool !== null);
 }
