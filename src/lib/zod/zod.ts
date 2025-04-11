@@ -149,7 +149,7 @@ export function createZodTool({
  * @param userId - User ID to use for the tool execution
  * @returns Array of Zod-validated tools with execution methods
  */
-export async function toZod({
+export function toZod({
   tools,
   client,
   userId,
@@ -157,7 +157,7 @@ export async function toZod({
   tools: any[];
   client: Arcade;
   userId: string;
-}): Promise<ZodTool[]> {
+}): ZodTool[] {
   const results = tools.map((tool) => {
     try {
       return createZodTool({ tool, client, userId });

@@ -19,11 +19,8 @@ export interface ZodTool {
   name: string;
   description: string;
   parameters: z.ZodType;
-  execute: (input: any, userId: string) => Promise<ExecuteToolResponse>;
-  executeOrAuthorize: (
-    input: any,
-    userId: string,
-  ) => Promise<ExecuteToolResponse | ToolAuthorizationResponse>;
+  execute: (input: any) => Promise<ExecuteToolResponse>;
+  executeOrAuthorize: (input: any) => Promise<ExecuteToolResponse | ToolAuthorizationResponse>;
 }
 
 /**
