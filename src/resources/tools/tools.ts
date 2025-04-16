@@ -94,7 +94,7 @@ export interface ExecuteToolRequest {
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
+   * is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
    */
   run_at?: string;
 
@@ -177,6 +177,8 @@ export interface ToolDefinition {
   fully_qualified_name?: string;
 
   output?: ToolDefinition.Output;
+
+  qualified_name?: string;
 
   requirements?: ToolDefinition.Requirements;
 }
@@ -358,7 +360,7 @@ export interface ToolExecuteParams {
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
+   * is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
    */
   run_at?: string;
 
