@@ -26,3 +26,15 @@ export {
   type ToolAuthorizeParams,
   type ToolExecuteParams,
 } from './tools/tools';
+export {
+  WorkerResponsesOffsetPage,
+  Workers,
+  type CreateWorkerRequest,
+  type UpdateWorkerRequest,
+  type WorkerHealthResponse,
+  type WorkerResponse,
+  type WorkerCreateParams,
+  type WorkerUpdateParams,
+  type WorkerListParams,
+  type WorkerToolsParams,
+} from './workers';

@@ -94,7 +94,7 @@ export interface ExecuteToolRequest {
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
+   * is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
    */
   run_at?: string;
 
@@ -178,6 +178,8 @@ export interface ToolDefinition {
 
   output?: ToolDefinition.Output;
 
+  qualified_name?: string;
+
   requirements?: ToolDefinition.Requirements;
 }
 
@@ -218,6 +220,8 @@ export namespace ToolDefinition {
 
   export interface Requirements {
     authorization?: Requirements.Authorization;
+
+    secrets?: Array<Requirements.Secret>;
   }
 
   export namespace Requirements {
@@ -235,6 +239,10 @@ export namespace ToolDefinition {
       export interface Oauth2 {
         scopes?: Array<string>;
       }
+    }
+
+    export interface Secret {
+      key: string;
     }
   }
 }
@@ -352,7 +360,7 @@ export interface ToolExecuteParams {
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
+   * is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
    */
   run_at?: string;
 
