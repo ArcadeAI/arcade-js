@@ -20,8 +20,10 @@ export interface ZodTool {
   description: string | undefined;
   parameters: z.ZodType;
   output: z.ZodType | undefined;
-  execute: (input: any) => Promise<ExecuteToolResponse>;
-  executeOrAuthorize: (input: any) => Promise<ExecuteToolResponse | ToolAuthorizationResponse>;
+  execute: <T extends unknown>(input: T) => Promise<ExecuteToolResponse>;
+  executeOrAuthorize: <T extends unknown>(
+    input: T,
+  ) => Promise<ExecuteToolResponse | ToolAuthorizationResponse>;
 }
 
 /**
