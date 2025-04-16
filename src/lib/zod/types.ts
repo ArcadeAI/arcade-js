@@ -17,8 +17,9 @@ export interface ToolAuthorizationResponse {
  */
 export interface ZodTool {
   name: string;
-  description: string;
+  description: string | undefined;
   parameters: z.ZodType;
+  output: z.ZodType | undefined;
   execute: (input: any) => Promise<ExecuteToolResponse>;
   executeOrAuthorize: (input: any) => Promise<ExecuteToolResponse | ToolAuthorizationResponse>;
 }
@@ -29,17 +30,7 @@ export interface ZodTool {
  */
 export interface ZodToolSchema {
   name: string;
-  description: string;
+  description: string | undefined;
   parameters: z.ZodType;
+  output: z.ZodType | undefined;
 }
-
-/**
- * Minimum schema required for an Arcade tool - validates basic structure
- */
-export const arcadeToolMinimumSchema = z.object({
-  function: z.object({
-    name: z.string(),
-    description: z.string(),
-    parameters: z.any(),
-  }),
-});
