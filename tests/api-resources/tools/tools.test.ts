@@ -30,7 +30,10 @@ describe('resource tools', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.tools.list({ limit: 0, offset: 0, toolkit: 'toolkit' }, { path: '/_stainless_unknown_path' }),
+      client.tools.list(
+        { include_format: ['arcade'], limit: 0, offset: 0, toolkit: 'toolkit' },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Arcade.NotFoundError);
   });
 
@@ -90,5 +93,12 @@ describe('resource tools', () => {
     await expect(client.tools.get('name', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Arcade.NotFoundError,
     );
+  });
+
+  test('get: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.tools.get('name', { include_format: ['arcade'] }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Arcade.NotFoundError);
   });
 });
