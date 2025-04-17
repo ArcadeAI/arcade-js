@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { type Agent } from './_shims/index';
+import * as qs from './internal/qs';
 import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
@@ -32,6 +33,7 @@ import {
   ToolExecuteParams,
   ToolExecution,
   ToolExecutionAttempt,
+  ToolGetParams,
   ToolListParams,
   Tools,
   ValueSchema,
@@ -172,6 +174,10 @@ export class Arcade extends Core.APIClient {
     return { Authorization: this.apiKey };
   }
 
+  protected override stringifyQuery(query: Record<string, unknown>): string {
+    return qs.stringify(query, { arrayFormat: 'comma' });
+  }
+
   static Arcade = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
@@ -237,6 +243,7 @@ export declare namespace Arcade {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
+    type ToolGetParams as ToolGetParams,
   };
 
   export {
