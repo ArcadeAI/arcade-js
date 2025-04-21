@@ -187,7 +187,7 @@ export namespace WorkerResponse {
   export interface Binding {
     id?: string;
 
-    type?: 'static' | 'tenant' | 'organization' | 'account';
+    type?: 'static' | 'tenant' | 'project' | 'account';
   }
 
   export interface HTTP {
@@ -202,7 +202,7 @@ export namespace WorkerResponse {
 
   export namespace HTTP {
     export interface Secret {
-      binding?: 'static' | 'tenant' | 'organization' | 'account';
+      binding?: 'static' | 'tenant' | 'project' | 'account';
 
       editable?: boolean;
 
@@ -234,7 +234,7 @@ export namespace WorkerResponse {
 
   export namespace Oxp {
     export interface Secret {
-      binding?: 'static' | 'tenant' | 'organization' | 'account';
+      binding?: 'static' | 'tenant' | 'project' | 'account';
 
       editable?: boolean;
 
