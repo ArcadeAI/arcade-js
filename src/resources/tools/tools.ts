@@ -175,9 +175,13 @@ export namespace ExecuteToolResponse {
 }
 
 export interface ToolDefinition {
+  fully_qualified_name: string;
+
   input: ToolDefinition.Input;
 
   name: string;
+
+  qualified_name: string;
 
   toolkit: ToolDefinition.Toolkit;
 
@@ -185,11 +189,7 @@ export interface ToolDefinition {
 
   formatted_schema?: Record<string, unknown>;
 
-  fully_qualified_name?: string;
-
   output?: ToolDefinition.Output;
-
-  qualified_name?: string;
 
   requirements?: ToolDefinition.Requirements;
 }
