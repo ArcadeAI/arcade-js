@@ -259,19 +259,6 @@ export declare namespace Arcade {
     type WorkerToolsParams as WorkerToolsParams,
   };
 
-  export {
-    Workers as Workers,
-    type CreateWorkerRequest as CreateWorkerRequest,
-    type UpdateWorkerRequest as UpdateWorkerRequest,
-    type WorkerHealthResponse as WorkerHealthResponse,
-    type WorkerResponse as WorkerResponse,
-    WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
-    type WorkerCreateParams as WorkerCreateParams,
-    type WorkerUpdateParams as WorkerUpdateParams,
-    type WorkerListParams as WorkerListParams,
-    type WorkerToolsParams as WorkerToolsParams,
-  };
-
   export type AuthorizationContext = API.AuthorizationContext;
   export type AuthorizationResponse = API.AuthorizationResponse;
   export type Error = API.Error;

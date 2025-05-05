@@ -314,13 +314,6 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@dmitryrechkin/json-schema-to-zod@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@dmitryrechkin/json-schema-to-zod/-/json-schema-to-zod-1.0.1.tgz#3e13df253d6342c70ca03808a34b259c4092c7be"
-  integrity sha512-cG9gC4NMu/7JZqmRZy6uIb+l+kxek2GFQ0/qrhw7xeFK2l5B9yF9FVuujoqFPLRGDHNFYqtBWht7hY4KB0ngrA==
-  dependencies:
-    zod "^3.23.8"
-
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -3480,7 +3473,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.23.8, zod@^3.24.2:
+zod@^3.24.2:
   version "3.24.2"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.2.tgz#8efa74126287c675e92f46871cfc8d15c34372b3"
   integrity sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==

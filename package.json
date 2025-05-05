@@ -24,7 +24,6 @@
     "fix": "./scripts/format"
   },
   "dependencies": {
-    "@dmitryrechkin/json-schema-to-zod": "^1.0.1",
     "@types/node": "^18.11.18",
     "@types/node-fetch": "^2.6.4",
     "abort-controller": "^3.0.0",

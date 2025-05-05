@@ -191,8 +191,6 @@ export interface ToolDefinition {
 
   output?: ToolDefinition.Output;
 
-  qualified_name?: string;
-
   requirements?: ToolDefinition.Requirements;
 }
 
