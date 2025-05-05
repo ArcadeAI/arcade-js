@@ -6,7 +6,7 @@ This library provides convenient access to the Arcade REST API from server-side 
 
 The REST API documentation can be found on [docs.arcade.dev](https://docs.arcade.dev). The full API of this library can be found in [api.md](api.md).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
@@ -88,7 +88,7 @@ async function main() {
 main();
 ```
 
-Error codes are as followed:
+Error codes are as follows:
 
 | Status Code | Error Type                 |
 | ----------- | -------------------------- |

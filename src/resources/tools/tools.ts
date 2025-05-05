@@ -61,8 +61,17 @@ export class Tools extends APIResource {
   /**
    * Returns the arcade tool specification for a specific tool
    */
-  get(name: string, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition> {
-    return this._client.get(`/v1/tools/${name}`, options);
+  get(name: string, query?: ToolGetParams, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition>;
+  get(name: string, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition>;
+  get(
+    name: string,
+    query: ToolGetParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ToolDefinition> {
+    if (isRequestOptions(query)) {
+      return this.get(name, {}, query);
+    }
+    return this._client.get(`/v1/tools/${name}`, { query, ...options });
   }
 }
 
@@ -94,7 +103,7 @@ export interface ExecuteToolRequest {
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
+   * is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
    */
   run_at?: string;
 
@@ -166,15 +175,19 @@ export namespace ExecuteToolResponse {
 }
 
 export interface ToolDefinition {
+  fully_qualified_name: string;
+
   input: ToolDefinition.Input;
 
   name: string;
+
+  qualified_name: string;
 
   toolkit: ToolDefinition.Toolkit;
 
   description?: string;
 
-  fully_qualified_name?: string;
+  formatted_schema?: Record<string, unknown>;
 
   output?: ToolDefinition.Output;
 
@@ -218,6 +231,8 @@ export namespace ToolDefinition {
 
   export interface Requirements {
     authorization?: Requirements.Authorization;
+
+    secrets?: Array<Requirements.Secret>;
   }
 
   export namespace Requirements {
@@ -235,6 +250,10 @@ export namespace ToolDefinition {
       export interface Oauth2 {
         scopes?: Array<string>;
       }
+    }
+
+    export interface Secret {
+      key: string;
     }
   }
 }
@@ -323,6 +342,11 @@ export interface ValueSchema {
 
 export interface ToolListParams extends OffsetPageParams {
   /**
+   * Comma separated tool formats that will be included in the response.
+   */
+  include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
+
+  /**
    * Toolkit name
    */
   toolkit?: string;
@@ -352,7 +376,7 @@ export interface ToolExecuteParams {
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
-   * is run immediately
+   * is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
    */
   run_at?: string;
 
@@ -362,6 +386,13 @@ export interface ToolExecuteParams {
   tool_version?: string;
 
   user_id?: string;
+}
+
+export interface ToolGetParams {
+  /**
+   * Comma separated tool formats that will be included in the response.
+   */
+  include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
 }
 
 Tools.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
@@ -382,6 +413,7 @@ export declare namespace Tools {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
+    type ToolGetParams as ToolGetParams,
   };
 
   export {

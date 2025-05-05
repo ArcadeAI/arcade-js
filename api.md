@@ -60,7 +60,7 @@ Methods:
 - <code title="get /v1/tools">client.tools.<a href="./src/resources/tools/tools.ts">list</a>({ ...params }) -> ToolDefinitionsOffsetPage</code>
 - <code title="post /v1/tools/authorize">client.tools.<a href="./src/resources/tools/tools.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
 - <code title="post /v1/tools/execute">client.tools.<a href="./src/resources/tools/tools.ts">execute</a>({ ...params }) -> ExecuteToolResponse</code>
-- <code title="get /v1/tools/{name}">client.tools.<a href="./src/resources/tools/tools.ts">get</a>(name) -> ToolDefinition</code>
+- <code title="get /v1/tools/{name}">client.tools.<a href="./src/resources/tools/tools.ts">get</a>(name, { ...params }) -> ToolDefinition</code>
 
 ## Scheduled
 
@@ -84,3 +84,22 @@ Methods:
 
 - <code title="get /v1/formatted_tools">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">list</a>({ ...params }) -> FormattedListResponsesOffsetPage</code>
 - <code title="get /v1/formatted_tools/{name}">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">get</a>(name, { ...params }) -> unknown</code>
+
+# Workers
+
+Types:
+
+- <code><a href="./src/resources/workers.ts">CreateWorkerRequest</a></code>
+- <code><a href="./src/resources/workers.ts">UpdateWorkerRequest</a></code>
+- <code><a href="./src/resources/workers.ts">WorkerHealthResponse</a></code>
+- <code><a href="./src/resources/workers.ts">WorkerResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/workers">client.workers.<a href="./src/resources/workers.ts">create</a>({ ...params }) -> WorkerResponse</code>
+- <code title="patch /v1/workers/{id}">client.workers.<a href="./src/resources/workers.ts">update</a>(id, { ...params }) -> WorkerResponse</code>
+- <code title="get /v1/workers">client.workers.<a href="./src/resources/workers.ts">list</a>({ ...params }) -> WorkerResponsesOffsetPage</code>
+- <code title="delete /v1/workers/{id}">client.workers.<a href="./src/resources/workers.ts">delete</a>(id) -> void</code>
+- <code title="get /v1/workers/{id}">client.workers.<a href="./src/resources/workers.ts">get</a>(id) -> WorkerResponse</code>
+- <code title="get /v1/workers/{id}/health">client.workers.<a href="./src/resources/workers.ts">health</a>(id) -> WorkerHealthResponse</code>
+- <code title="get /v1/workers/{id}/tools">client.workers.<a href="./src/resources/workers.ts">tools</a>(id, { ...params }) -> ToolDefinitionsOffsetPage</code>

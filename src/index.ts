@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { type Agent } from './_shims/index';
+import * as qs from './internal/qs';
 import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
@@ -9,6 +10,18 @@ import * as Uploads from './uploads';
 import * as API from './resources/index';
 import { Auth, AuthAuthorizeParams, AuthRequest, AuthStatusParams } from './resources/auth';
 import { Health, HealthSchema } from './resources/health';
+import {
+  CreateWorkerRequest,
+  UpdateWorkerRequest,
+  WorkerCreateParams,
+  WorkerHealthResponse,
+  WorkerListParams,
+  WorkerResponse,
+  WorkerResponsesOffsetPage,
+  WorkerToolsParams,
+  WorkerUpdateParams,
+  Workers,
+} from './resources/workers';
 import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './resources/chat/chat';
 import {
   AuthorizeToolRequest,
@@ -20,6 +33,7 @@ import {
   ToolExecuteParams,
   ToolExecution,
   ToolExecutionAttempt,
+  ToolGetParams,
   ToolListParams,
   Tools,
   ValueSchema,
@@ -143,6 +157,7 @@ export class Arcade extends Core.APIClient {
   health: API.Health = new API.Health(this);
   chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
+  workers: API.Workers = new API.Workers(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -157,6 +172,10 @@ export class Arcade extends Core.APIClient {
 
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
     return { Authorization: this.apiKey };
+  }
+
+  protected override stringifyQuery(query: Record<string, unknown>): string {
+    return qs.stringify(query, { arrayFormat: 'comma' });
   }
 
   static Arcade = this;
@@ -185,6 +204,8 @@ Arcade.Health = Health;
 Arcade.Chat = Chat;
 Arcade.Tools = Tools;
 Arcade.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
+Arcade.Workers = Workers;
+Arcade.WorkerResponsesOffsetPage = WorkerResponsesOffsetPage;
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
@@ -222,6 +243,20 @@ export declare namespace Arcade {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
+    type ToolGetParams as ToolGetParams,
+  };
+
+  export {
+    Workers as Workers,
+    type CreateWorkerRequest as CreateWorkerRequest,
+    type UpdateWorkerRequest as UpdateWorkerRequest,
+    type WorkerHealthResponse as WorkerHealthResponse,
+    type WorkerResponse as WorkerResponse,
+    WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
+    type WorkerCreateParams as WorkerCreateParams,
+    type WorkerUpdateParams as WorkerUpdateParams,
+    type WorkerListParams as WorkerListParams,
+    type WorkerToolsParams as WorkerToolsParams,
   };
 
   export type AuthorizationContext = API.AuthorizationContext;
