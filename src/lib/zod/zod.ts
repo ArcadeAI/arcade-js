@@ -15,7 +15,7 @@ export function isAuthorizationRequiredError(error: Error): boolean {
 }
 
 /**
- * Converts JSON Schema parameters to Zod schema
+ * Converts Arcade Tool Input to Zod schema
  */
 export function convertParametersToZodSchema(parameters: ToolDefinition.Input): z.ZodType {
   if (!parameters.parameters || !Array.isArray(parameters.parameters)) {
@@ -78,7 +78,7 @@ function convertValueSchemaToZod(schema: {
 }
 
 /**
- * Converts JSON Schema output to Zod schema
+ * Converts Arcade Tool Output to Zod schema
  */
 export function convertOutputToZodSchema(output: ToolDefinition.Output): z.ZodType {
   if (!output.value_schema) {
