@@ -61,8 +61,17 @@ export class Tools extends APIResource {
   /**
    * Returns the arcade tool specification for a specific tool
    */
-  get(name: string, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition> {
-    return this._client.get(`/v1/tools/${name}`, options);
+  get(name: string, query?: ToolGetParams, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition>;
+  get(name: string, options?: Core.RequestOptions): Core.APIPromise<ToolDefinition>;
+  get(
+    name: string,
+    query: ToolGetParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ToolDefinition> {
+    if (isRequestOptions(query)) {
+      return this.get(name, {}, query);
+    }
+    return this._client.get(`/v1/tools/${name}`, { query, ...options });
   }
 }
 
@@ -166,15 +175,19 @@ export namespace ExecuteToolResponse {
 }
 
 export interface ToolDefinition {
+  fully_qualified_name: string;
+
   input: ToolDefinition.Input;
 
   name: string;
+
+  qualified_name: string;
 
   toolkit: ToolDefinition.Toolkit;
 
   description?: string;
 
-  fully_qualified_name?: string;
+  formatted_schema?: Record<string, unknown>;
 
   output?: ToolDefinition.Output;
 
@@ -331,6 +344,11 @@ export interface ValueSchema {
 
 export interface ToolListParams extends OffsetPageParams {
   /**
+   * Comma separated tool formats that will be included in the response.
+   */
+  include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
+
+  /**
    * Toolkit name
    */
   toolkit?: string;
@@ -372,6 +390,13 @@ export interface ToolExecuteParams {
   user_id?: string;
 }
 
+export interface ToolGetParams {
+  /**
+   * Comma separated tool formats that will be included in the response.
+   */
+  include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
+}
+
 Tools.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
 Tools.Scheduled = Scheduled;
 Tools.Formatted = Formatted;
@@ -390,6 +415,7 @@ export declare namespace Tools {
     type ToolListParams as ToolListParams,
     type ToolAuthorizeParams as ToolAuthorizeParams,
     type ToolExecuteParams as ToolExecuteParams,
+    type ToolGetParams as ToolGetParams,
   };
 
   export {

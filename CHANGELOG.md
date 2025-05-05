@@ -1,12 +1,16 @@
 # Changelog
 
-## 1.3.0 (2025-04-16)
+## 1.3.0 (2025-05-01)
 
 Full Changelog: [v1.2.1...v1.3.0](https://github.com/ArcadeAI/arcade-js/compare/v1.2.1...v1.3.0)
 
 ### Features
 
 * add SKIP_BREW env var to ./scripts/bootstrap ([#106](https://github.com/ArcadeAI/arcade-js/issues/106)) ([8408484](https://github.com/ArcadeAI/arcade-js/commit/8408484d003847040cd7390a8c1bdbd960b2497f))
+* **api:** api update ([97d7417](https://github.com/ArcadeAI/arcade-js/commit/97d74176b43d3503e2a80126713004ad29e5d939))
+* **api:** api update ([e57023e](https://github.com/ArcadeAI/arcade-js/commit/e57023e410e285cb1350bc161120427240fab4dd))
+* **api:** api update ([3031941](https://github.com/ArcadeAI/arcade-js/commit/303194184bbe8811a4dcbb3cc8b3840bdd52de00))
+* **api:** api update ([1deb7aa](https://github.com/ArcadeAI/arcade-js/commit/1deb7aa04c4ec7b6bf58c963aa3e689fe745c9d0))
 * **api:** api update ([f29e388](https://github.com/ArcadeAI/arcade-js/commit/f29e38854280f5d6f1b7179bb13576ca28518576))
 * **api:** api update ([#100](https://github.com/ArcadeAI/arcade-js/issues/100)) ([bc80e2f](https://github.com/ArcadeAI/arcade-js/commit/bc80e2f846e72ddb3993108916f0edcd88bd1a13))
 * **api:** api update ([#101](https://github.com/ArcadeAI/arcade-js/issues/101)) ([067e889](https://github.com/ArcadeAI/arcade-js/commit/067e889bbeefdc7c93c65029efd500178e9b81fc))
@@ -32,10 +36,13 @@ Full Changelog: [v1.2.1...v1.3.0](https://github.com/ArcadeAI/arcade-js/compare/
 
 ### Chores
 
+* **ci:** add timeout thresholds for CI jobs ([8f22405](https://github.com/ArcadeAI/arcade-js/commit/8f22405c49d1163a8efa97ca2739c9b7ab8f44c5))
+* **ci:** only use depot for staging repos ([6075f2b](https://github.com/ArcadeAI/arcade-js/commit/6075f2b5d81899cffc54d02cbc07689726af1cbe))
 * **client:** minor internal fixes ([8bebc61](https://github.com/ArcadeAI/arcade-js/commit/8bebc61f77736a032b04726ef35d35b9263d715d))
 * **exports:** cleaner resource index imports ([#110](https://github.com/ArcadeAI/arcade-js/issues/110)) ([fccbf01](https://github.com/ArcadeAI/arcade-js/commit/fccbf0177357a9c3bc44ec7c4c27e2d8d9aaafd2))
 * **exports:** stop using path fallbacks ([#111](https://github.com/ArcadeAI/arcade-js/issues/111)) ([b70e188](https://github.com/ArcadeAI/arcade-js/commit/b70e188460248542fc669c23c76d75280fa797c0))
 * **internal:** add aliases for Record and Array ([#118](https://github.com/ArcadeAI/arcade-js/issues/118)) ([1bab334](https://github.com/ArcadeAI/arcade-js/commit/1bab3341a189bef28e204fca70458b924af87807))
+* **internal:** codegen related update ([a1a28da](https://github.com/ArcadeAI/arcade-js/commit/a1a28da6f0f6d454eb4331cfdda6ccf0bb3ad5c4))
 * **internal:** reduce CI branch coverage ([a660f12](https://github.com/ArcadeAI/arcade-js/commit/a660f12624aa0de6ada936787a073ef4473ef7a1))
 * **internal:** remove extra empty newlines ([#108](https://github.com/ArcadeAI/arcade-js/issues/108)) ([26b8e56](https://github.com/ArcadeAI/arcade-js/commit/26b8e56639264804ee7657edfe07cf5b58d7019a))
 * **internal:** upload builds and expand CI branch coverage ([6508a13](https://github.com/ArcadeAI/arcade-js/commit/6508a133171dbc081367a1a175b0e5bbc5c7f611))
@@ -43,6 +50,7 @@ Full Changelog: [v1.2.1...v1.3.0](https://github.com/ArcadeAI/arcade-js/compare/
 
 ### Documentation
 
+* **readme:** fix typo ([f4cc3b1](https://github.com/ArcadeAI/arcade-js/commit/f4cc3b1b5d905275265940e40c03ff3048a301f6))
 * update URLs from stainlessapi.com to stainless.com ([#103](https://github.com/ArcadeAI/arcade-js/issues/103)) ([5d4780c](https://github.com/ArcadeAI/arcade-js/commit/5d4780c8c84bb4773309af802857bbd34cddc193))
 
 ## 1.2.1 (2025-02-22)

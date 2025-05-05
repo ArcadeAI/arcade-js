@@ -99,7 +99,7 @@ export function convertSingleToolToSchema(tool: ToolDefinition): ZodToolSchema {
   const zodParameters = convertParametersToZodSchema(input);
   const zodOutput = output ? convertOutputToZodSchema(output) : undefined;
   return {
-    name: qualified_name?.replace(/\./g, '_') ?? '',
+    name: qualified_name.replace(/\./g, '_'),
     description,
     parameters: zodParameters,
     output: zodOutput,
