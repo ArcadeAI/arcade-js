@@ -1,7 +1,7 @@
 import { ExecuteToolResponse, ToolDefinition } from '../../resources/tools/tools';
 import { ToolAuthorizationResponse, ZodTool, ZodToolSchema } from './types';
 import { z } from 'zod';
-import { type Arcade } from '../../index';
+import { type Arcade } from '@arcadeai/arcadejs';
 
 /**
  * Checks if an error indicates that authorization for the tool is required
