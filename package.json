@@ -1,6 +1,6 @@
 {
   "name": "@arcadeai/arcadejs",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "The official TypeScript library for the Arcade API",
   "author": "Arcade <dev@arcade.dev>",
   "types": "dist/index.d.ts",
@@ -98,6 +98,11 @@
       "types": "./dist/_shims/auto/*.d.ts",
       "require": "./dist/_shims/auto/*.js",
       "default": "./dist/_shims/auto/*.mjs"
+    },
+    "./lib": {
+      "types": "./dist/lib/index.d.ts",
+      "require": "./dist/lib/index.js",
+      "default": "./dist/lib/index.mjs"
     },
     ".": {
       "require": {

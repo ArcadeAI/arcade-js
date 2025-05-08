@@ -1,7 +1,9 @@
 import { ExecuteToolResponse, ToolDefinition } from '../../resources/tools/tools';
 import { ToolAuthorizationResponse, ZodTool, ZodToolSchema } from './types';
 import { z } from 'zod';
-import { type Arcade } from '@arcadeai/arcadejs';
+import type { Arcade } from '../../index';
+
+type ArcadeClient = Omit<Arcade, '_options'>;
 
 /**
  * Checks if an error indicates that authorization for the tool is required
@@ -129,7 +131,7 @@ export function createZodTool({
   userId,
 }: {
   tool: ToolDefinition;
-  client: Arcade;
+  client: ArcadeClient;
   userId: string;
 }): ZodTool {
   const schema = convertSingleToolToSchema(tool);
@@ -201,7 +203,7 @@ export function toZod({
   userId,
 }: {
   tools: ToolDefinition[];
-  client: Arcade;
+  client: ArcadeClient;
   userId: string;
 }): ZodTool[] {
   return tools.map((tool) => createZodTool({ tool, client, userId }));
