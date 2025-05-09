@@ -1,18 +1,24 @@
 import { ExecuteToolResponse, ToolDefinition } from '../../resources/tools/tools';
-import { ToolAuthorizationResponse, ZodTool, ZodToolSchema } from './types';
+import {
+  ZodTool,
+  ZodToolSchema,
+  ToolExecuteFunctionFactoryInput,
+  CreateZodToolInput,
+  CreateMultipleZodToolsInput,
+  ToolExecuteFunction,
+  ToolAuthorizationResponse,
+} from './types';
 import { z } from 'zod';
-import type { Arcade } from '../../index';
-
-type ArcadeClient = Omit<Arcade, '_options'>;
 
 /**
  * Checks if an error indicates that authorization for the tool is required
  */
 export function isAuthorizationRequiredError(error: Error): boolean {
+  const errorMessage = error?.message?.toLowerCase() || '';
   return (
     error?.name === 'PermissionDeniedError' ||
-    error?.message?.includes('permission denied') ||
-    error?.message?.includes('authorization required')
+    errorMessage.includes('permission denied') ||
+    errorMessage.includes('authorization required')
   );
 }
 
@@ -41,42 +47,32 @@ export function convertParametersToZodSchema(parameters: ToolDefinition.Input): 
 }
 
 /**
- * Converts a value schema to Zod type
+ * Converts Arcade Tool Input Value Schema to Zod schema
  */
 function convertValueSchemaToZod(schema: {
   val_type: string;
   inner_val_type?: string | null;
   enum?: string[] | null;
 }): z.ZodType {
-  let baseType: z.ZodType;
-
   switch (schema.val_type) {
     case 'string':
-      baseType = schema.enum ? z.enum(schema.enum as [string, ...string[]]) : z.string();
-      break;
+      return schema.enum ? z.enum(schema.enum as [string, ...string[]]) : z.string();
     case 'integer':
-      baseType = z.number().int();
-      break;
+      return z.number().int();
     case 'number':
-      baseType = z.number();
-      break;
+      return z.number();
     case 'boolean':
-      baseType = z.boolean();
-      break;
+      return z.boolean();
     case 'json':
-      baseType = z.any();
-      break;
+      return z.any();
     case 'array':
       if (!schema.inner_val_type) {
         throw new Error('Array type must have inner_val_type specified');
       }
-      baseType = z.array(convertValueSchemaToZod({ val_type: schema.inner_val_type }));
-      break;
+      return z.array(convertValueSchemaToZod({ val_type: schema.inner_val_type }));
     default:
-      throw new Error(`Unsupported value type: ${schema.val_type}`);
+      return z.any();
   }
-
-  return baseType;
 }
 
 /**
@@ -109,7 +105,7 @@ export function convertSingleToolToSchema(tool: ToolDefinition): ZodToolSchema {
 }
 
 /**
- * Converts OpenAI formatted tools to Zod-validated tool schemas
+ * Converts tools to Zod-validated tool schemas
  * @param tools - Array of formatted tools
  * @returns Array of Zod-validated tool schemas
  */
@@ -118,93 +114,119 @@ export function toZodSchema(tools: ToolDefinition[]): ZodToolSchema[] {
 }
 
 /**
- * Converts a single tool to a full tool with execution capabilities
- * @param tool - The tool to convert
- * @param client - Arcade client instance
- * @param userId - User ID to use for the tool execution
- * @returns Zod-validated tool with execution methods
- * @throws ToolConversionError if the tool is invalid
+ * Creates a tool execution function that will validate the input and execute the tool
  */
-export function createZodTool({
-  tool,
+export function executeZodTool({
+  zodToolSchema,
   client,
   userId,
-}: {
-  tool: ToolDefinition;
-  client: ArcadeClient;
-  userId: string;
-}): ZodTool {
+}: ToolExecuteFunctionFactoryInput): ToolExecuteFunction<ExecuteToolResponse> {
+  const { parameters, name: toolName } = zodToolSchema;
+
+  return async (input: unknown): Promise<ExecuteToolResponse> => {
+    const validationResult = parameters.safeParse(input);
+    if (!validationResult.success) {
+      throw new Error(`Invalid input: ${validationResult.error.message}`);
+    }
+
+    const result = await client.tools.execute({
+      tool_name: toolName,
+      input: validationResult.data,
+      user_id: userId,
+    });
+    return result;
+  };
+}
+
+/**
+ * Creates a tool execution function that will execute the tool if it is authorized,
+ * otherwise it will return a ToolAuthorizationResponse
+ */
+export function executeOrAuthorizeZodTool({
+  zodToolSchema,
+  toolDefinition,
+  client,
+  userId,
+}: ToolExecuteFunctionFactoryInput): ToolExecuteFunction<ExecuteToolResponse | ToolAuthorizationResponse> {
+  const { name: toolName } = zodToolSchema;
+
+  return async (input: unknown) => {
+    try {
+      const result = await executeZodTool({ zodToolSchema, toolDefinition, client, userId })(input);
+      return result;
+    } catch (error) {
+      if (error instanceof Error && isAuthorizationRequiredError(error)) {
+        const response = await client.tools.authorize({
+          tool_name: toolName,
+          user_id: userId,
+        });
+
+        return {
+          authorization_required: true,
+          authorization_response: response,
+          url: response.url ?? '',
+          message: `This tool requires authorization. Please visit the following URL to authorize the tool: ${response.url}`,
+        };
+      }
+      throw error;
+    }
+  };
+}
+
+/**
+ * Converts a single tool to a full tool with execution capabilities
+ */
+export function createZodTool<TReturn = ExecuteToolResponse>(
+  props: CreateZodToolInput<TReturn>,
+): ZodTool<TReturn> {
+  const { tool, client, userId, executeFactory: providedExecuteFactory } = props;
   const schema = convertSingleToolToSchema(tool);
   const { name, description, parameters, output } = schema;
+
+  const factoryToUse =
+    providedExecuteFactory ??
+    (executeZodTool as unknown as (props: ToolExecuteFunctionFactoryInput) => ToolExecuteFunction<TReturn>);
 
   return {
     name,
     description,
     parameters,
     output,
-    execute: async (input: z.infer<typeof parameters>): Promise<ExecuteToolResponse> => {
-      const validationResult = parameters.safeParse(input);
-      if (!validationResult.success) {
-        throw new Error(`Invalid input: ${validationResult.error.message}`);
-      }
-
-      return client.tools.execute({
-        tool_name: name,
-        input: validationResult.data,
-        user_id: userId,
-      });
-    },
-    executeOrAuthorize: async (
-      input: z.infer<typeof parameters>,
-    ): Promise<ExecuteToolResponse | ToolAuthorizationResponse> => {
-      const validationResult = parameters.safeParse(input);
-      if (!validationResult.success) {
-        throw new Error(`Invalid input: ${validationResult.error.message}`);
-      }
-
-      try {
-        return await client.tools.execute({
-          tool_name: name,
-          input: validationResult.data,
-          user_id: userId,
-        });
-      } catch (error) {
-        if (error instanceof Error && isAuthorizationRequiredError(error)) {
-          const response = (await client.tools.authorize({
-            tool_name: name,
-            user_id: userId,
-          })) as { url: string };
-
-          return {
-            authorization_required: true,
-            authorization_response: response,
-            url: response.url,
-            message:
-              'This tool requires authorization. Please visit the following URL to authorize the tool: ' +
-              response.url,
-          };
-        }
-        throw error;
-      }
-    },
+    execute: factoryToUse({ toolDefinition: tool, zodToolSchema: schema, client, userId }),
   };
 }
 
 /**
  * Converts formatted tools to full tools with execution capabilities
- * @param tools - Array of formatted tools
- * @param client - Arcade client instance
- * @param userId - User ID to use for the tool execution
- * @returns Array of Zod-validated tools with execution methods
  */
-export function toZod({
+export function toZod<TReturn = ExecuteToolResponse>({
   tools,
   client,
   userId,
-}: {
-  tools: ToolDefinition[];
-  client: ArcadeClient;
-  userId: string;
-}): ZodTool[] {
-  return tools.map((tool) => createZodTool({ tool, client, userId }));
+  executeFactory: providedExecuteFactory,
+}: CreateMultipleZodToolsInput<TReturn>): ZodTool<TReturn>[] {
+  const factoryToUse =
+    providedExecuteFactory ??
+    (executeZodTool as unknown as (props: ToolExecuteFunctionFactoryInput) => ToolExecuteFunction<TReturn>);
+  return tools.map((tool) => createZodTool<TReturn>({ tool, client, userId, executeFactory: factoryToUse }));
+}
+
+/**
+ * Creates a record of Zod-validated tools with configurable execute functions
+ */
+export function toZodToolSet<TReturn = ExecuteToolResponse>({
+  tools,
+  client,
+  userId,
+  executeFactory: providedExecuteFactory,
+}: CreateMultipleZodToolsInput<TReturn>): Record<string, ZodTool<TReturn>> {
+  const factoryToUse =
+    providedExecuteFactory ??
+    (executeZodTool as unknown as (props: ToolExecuteFunctionFactoryInput) => ToolExecuteFunction<TReturn>);
+  return Object.fromEntries(
+    tools.map((tool) => {
+      const zodTool = createZodTool<TReturn>({ tool, client, userId, executeFactory: factoryToUse });
+      return [zodTool.name, zodTool];
+    }),
+  );
 }
