@@ -47,7 +47,7 @@ export function convertParametersToZodSchema(parameters: ToolDefinition.Input): 
 }
 
 /**
- * Converts Arcade Tool Input Value Schema to Zod schema
+ * Converts a value schema to Zod type
  */
 function convertValueSchemaToZod(schema: {
   val_type: string;
@@ -197,7 +197,7 @@ export function createZodTool<TReturn = ExecuteToolResponse>(
 }
 
 /**
- * Converts formatted tools to full tools with execution capabilities
+ * Converts Arcade tools to zod tools with execution capabilities
  */
 export function toZod<TReturn = ExecuteToolResponse>({
   tools,

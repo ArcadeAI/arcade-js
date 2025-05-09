@@ -14,7 +14,8 @@ export interface ToolAuthorizationResponse {
 }
 
 /**
- * Base interface for all tool schemas with Zod validation
+ * Schema definition for an Arcade tool, containing the tool's name,
+ * description, and Zod-validated parameter structure.
  */
 export interface ZodToolSchema {
   /** Qualified name of the tool */
@@ -26,11 +27,6 @@ export interface ZodToolSchema {
   /** Zod schema for validating tool output (if any) */
   output: z.ZodType | undefined;
 }
-
-/**
- * Union type for all possible tool execution responses
- */
-export type ToolResponse<T extends unknown = unknown> = ExecuteToolResponse | ToolAuthorizationResponse | T;
 
 /**
  * Generic type for any tool execution function
@@ -59,7 +55,7 @@ export interface ToolExecuteFunctionFactoryInput {
   zodToolSchema: ZodToolSchema;
   /** Arcade client instance */
   client: ArcadeClient;
-  /** User ID for tool execution */
+  /** User ID for tool execution/authorization */
   userId: string;
 }
 
