@@ -29,6 +29,7 @@ describe('resource auth', () => {
         provider_type: 'provider_type',
       },
       user_id: 'user_id',
+      next_uri: 'next_uri',
     });
   });
 

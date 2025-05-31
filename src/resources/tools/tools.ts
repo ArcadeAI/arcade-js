@@ -83,6 +83,12 @@ export interface AuthorizeToolRequest {
   tool_name: string;
 
   /**
+   * Optional: if provided, the user will be redirected to this URI after
+   * authorization
+   */
+  next_uri?: string;
+
+  /**
    * Optional: if not provided, any version is used
    */
   tool_version?: string;
@@ -354,6 +360,12 @@ export interface ToolListParams extends OffsetPageParams {
 
 export interface ToolAuthorizeParams {
   tool_name: string;
+
+  /**
+   * Optional: if provided, the user will be redirected to this URI after
+   * authorization
+   */
+  next_uri?: string;
 
   /**
    * Optional: if not provided, any version is used
