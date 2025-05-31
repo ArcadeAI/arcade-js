@@ -125,6 +125,12 @@ export interface AuthRequest {
   auth_requirement: AuthRequest.AuthRequirement;
 
   user_id: string;
+
+  /**
+   * Optional: if provided, the user will be redirected to this URI after
+   * authorization
+   */
+  next_uri?: string;
 }
 
 export namespace AuthRequest {
@@ -155,6 +161,12 @@ export interface AuthAuthorizeParams {
   auth_requirement: AuthAuthorizeParams.AuthRequirement;
 
   user_id: string;
+
+  /**
+   * Optional: if provided, the user will be redirected to this URI after
+   * authorization
+   */
+  next_uri?: string;
 }
 
 export namespace AuthAuthorizeParams {
