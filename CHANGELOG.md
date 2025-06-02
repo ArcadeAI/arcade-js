@@ -1,5 +1,98 @@
 # Changelog
 
+## 1.6.0 (2025-06-02)
+
+Full Changelog: [v1.5.0...v1.6.0](https://github.com/ArcadeAI/arcade-js/compare/v1.5.0...v1.6.0)
+
+### Features
+
+* **api:** add Zod support ([#122](https://github.com/ArcadeAI/arcade-js/issues/122)) ([ffb68f9](https://github.com/ArcadeAI/arcade-js/commit/ffb68f91c6a6ce4106ad152224dd39993b0a3091))
+* **api:** api update ([55a57e3](https://github.com/ArcadeAI/arcade-js/commit/55a57e3523c302a55380eba237e14d54ed33632a))
+* **api:** api update ([657228f](https://github.com/ArcadeAI/arcade-js/commit/657228fc1fd0fe5070968eff3a4d7ea0993fb4a7))
+* **api:** api update ([b3597c8](https://github.com/ArcadeAI/arcade-js/commit/b3597c8ac62c154a82cc35a6a5e58580a8bd364a))
+* **api:** api update ([b07cdec](https://github.com/ArcadeAI/arcade-js/commit/b07cdecb91eb9fe9b66aa1173c5bda4db5aff694))
+* **api:** api update ([75a3e4b](https://github.com/ArcadeAI/arcade-js/commit/75a3e4b87368a6099aaa3747a258c4779a620eb9))
+* **api:** api update ([9859d40](https://github.com/ArcadeAI/arcade-js/commit/9859d40462aef973df0fc322c90b190076a599af))
+* **api:** api update ([#1](https://github.com/ArcadeAI/arcade-js/issues/1)) ([e7968d9](https://github.com/ArcadeAI/arcade-js/commit/e7968d9935a392a108736acfc5ea0e8816b00fc6))
+* **api:** api update ([#10](https://github.com/ArcadeAI/arcade-js/issues/10)) ([1e47656](https://github.com/ArcadeAI/arcade-js/commit/1e476560fd08870d335d574397ab21c0b1de83e5))
+* **api:** api update ([#11](https://github.com/ArcadeAI/arcade-js/issues/11)) ([563e94c](https://github.com/ArcadeAI/arcade-js/commit/563e94cb69fe2282f327dafa3b4011c46fae25de))
+* **api:** api update ([#12](https://github.com/ArcadeAI/arcade-js/issues/12)) ([897472b](https://github.com/ArcadeAI/arcade-js/commit/897472be2a59a5af6f31b51c24558e67b095daaa))
+* **api:** api update ([#14](https://github.com/ArcadeAI/arcade-js/issues/14)) ([1151f08](https://github.com/ArcadeAI/arcade-js/commit/1151f0877fc108e73fe905b293e40ae51d3c4742))
+* **api:** api update ([#16](https://github.com/ArcadeAI/arcade-js/issues/16)) ([6a914f3](https://github.com/ArcadeAI/arcade-js/commit/6a914f3ad24f0a794faee60ed67759ef4448178e))
+* **api:** api update ([#17](https://github.com/ArcadeAI/arcade-js/issues/17)) ([4875282](https://github.com/ArcadeAI/arcade-js/commit/4875282c44ab8fe24b72e2bf43e6b7b28c211d48))
+* **api:** api update ([#21](https://github.com/ArcadeAI/arcade-js/issues/21)) ([1ca22e2](https://github.com/ArcadeAI/arcade-js/commit/1ca22e29808cf2fa8d4a864c74e84d37baa09f79))
+* **api:** api update ([#24](https://github.com/ArcadeAI/arcade-js/issues/24)) ([20fb01c](https://github.com/ArcadeAI/arcade-js/commit/20fb01cca1fadf504bf1ac93d32b04026fd0f0b4))
+* **api:** api update ([#26](https://github.com/ArcadeAI/arcade-js/issues/26)) ([8ec0f02](https://github.com/ArcadeAI/arcade-js/commit/8ec0f02671a61459c084720ed9426905efc3edd3))
+* **api:** api update ([#27](https://github.com/ArcadeAI/arcade-js/issues/27)) ([111ec9b](https://github.com/ArcadeAI/arcade-js/commit/111ec9b319bff4a1fdae6ddd6dae065ceca2eab9))
+* **api:** api update ([#29](https://github.com/ArcadeAI/arcade-js/issues/29)) ([eb2ea4d](https://github.com/ArcadeAI/arcade-js/commit/eb2ea4d2938608fa996447e1a6fb57b154e598e5))
+* **api:** api update ([#31](https://github.com/ArcadeAI/arcade-js/issues/31)) ([ee310ab](https://github.com/ArcadeAI/arcade-js/commit/ee310ab9a70753d18ae814c30fb5f281f6baf87b))
+* **api:** api update ([#32](https://github.com/ArcadeAI/arcade-js/issues/32)) ([fd3d50a](https://github.com/ArcadeAI/arcade-js/commit/fd3d50af03a57b246e1b53bd55d425b48c6f669c))
+* **api:** api update ([#33](https://github.com/ArcadeAI/arcade-js/issues/33)) ([db060d2](https://github.com/ArcadeAI/arcade-js/commit/db060d28daf8e2e6c5122446d444f42a843ce687))
+* **api:** api update ([#38](https://github.com/ArcadeAI/arcade-js/issues/38)) ([ddcc5ba](https://github.com/ArcadeAI/arcade-js/commit/ddcc5ba5d951ba0cadbabcc67abd82f1706d32dc))
+* **api:** api update ([#4](https://github.com/ArcadeAI/arcade-js/issues/4)) ([1b690a3](https://github.com/ArcadeAI/arcade-js/commit/1b690a31872df1a5426f5b7532908cf0a63dd862))
+* **api:** api update ([#5](https://github.com/ArcadeAI/arcade-js/issues/5)) ([10be6fd](https://github.com/ArcadeAI/arcade-js/commit/10be6fd731c5e171d2a897f181500e934c71528c))
+* **api:** api update ([#7](https://github.com/ArcadeAI/arcade-js/issues/7)) ([2bef6fc](https://github.com/ArcadeAI/arcade-js/commit/2bef6fc7ce18294dada955a2b80a62d8c0f3e8ec))
+* **api:** api update ([#75](https://github.com/ArcadeAI/arcade-js/issues/75)) ([36eb88d](https://github.com/ArcadeAI/arcade-js/commit/36eb88ddefc2abfb9d8f550efa20cdacdaf8f283))
+* **api:** api update ([#76](https://github.com/ArcadeAI/arcade-js/issues/76)) ([2f699c1](https://github.com/ArcadeAI/arcade-js/commit/2f699c1ea33aac5bd168a9bafd8924f0185de3d3))
+* **api:** api update ([#78](https://github.com/ArcadeAI/arcade-js/issues/78)) ([1fae253](https://github.com/ArcadeAI/arcade-js/commit/1fae253828f24462b3b327d03b71df0ef157efc5))
+* **api:** api update ([#79](https://github.com/ArcadeAI/arcade-js/issues/79)) ([168b1f5](https://github.com/ArcadeAI/arcade-js/commit/168b1f550f966e6dd6d9d0870f1df32bb4d0eb9a))
+* **api:** api update ([#83](https://github.com/ArcadeAI/arcade-js/issues/83)) ([8b701be](https://github.com/ArcadeAI/arcade-js/commit/8b701be8dc3a2ff9e623b83a601e0c3beb35889e))
+* **api:** api update ([#84](https://github.com/ArcadeAI/arcade-js/issues/84)) ([801c58d](https://github.com/ArcadeAI/arcade-js/commit/801c58da6b947ecd5995740d8bf8afb74c527dd9))
+* **api:** api update ([#90](https://github.com/ArcadeAI/arcade-js/issues/90)) ([2d7892d](https://github.com/ArcadeAI/arcade-js/commit/2d7892d6b4d885756d86f7f5c33a1bb081623757))
+* **api:** api update ([#93](https://github.com/ArcadeAI/arcade-js/issues/93)) ([18eb994](https://github.com/ArcadeAI/arcade-js/commit/18eb9948ab087a4747892110e4bcd9335fabfcc3))
+* **client:** send `X-Stainless-Timeout` header ([#87](https://github.com/ArcadeAI/arcade-js/issues/87)) ([4fef4b4](https://github.com/ArcadeAI/arcade-js/commit/4fef4b414616d4ecfd5809c3ae73ee73fad15193))
+* **internal:** make git install file structure match npm ([#48](https://github.com/ArcadeAI/arcade-js/issues/48)) ([be11980](https://github.com/ArcadeAI/arcade-js/commit/be119808dc75304c3b85320f0cbabe479f7e1a6b))
+
+
+### Bug Fixes
+
+* **api:** fix ArcadeClient type ([#126](https://github.com/ArcadeAI/arcade-js/issues/126)) ([faaf9ed](https://github.com/ArcadeAI/arcade-js/commit/faaf9ed0eb21336b6913433bd1349122c7bb791e))
+* **api:** resolve Arcade type conflict ([#124](https://github.com/ArcadeAI/arcade-js/issues/124)) ([40562b4](https://github.com/ArcadeAI/arcade-js/commit/40562b475eb91e52b238ab6283bd4cb81af1d055))
+* **client:** fix export map for index exports ([#92](https://github.com/ArcadeAI/arcade-js/issues/92)) ([c00087c](https://github.com/ArcadeAI/arcade-js/commit/c00087c1ee8fb8e8d06e754c3f14c854be1bf450))
+* **client:** normalize method ([#61](https://github.com/ArcadeAI/arcade-js/issues/61)) ([7f729f2](https://github.com/ArcadeAI/arcade-js/commit/7f729f27460aa59a4cc3b19c893062fcc4ca7198))
+* **client:** normalize method ([#70](https://github.com/ArcadeAI/arcade-js/issues/70)) ([346cc8a](https://github.com/ArcadeAI/arcade-js/commit/346cc8a5054e6120c1d8e320c98e72e9cd07ccb6))
+
+
+### Chores
+
+* **ci:** bump node version for release workflows ([5c4078a](https://github.com/ArcadeAI/arcade-js/commit/5c4078ab8272e7ede6b308b9ceed38241cb963d4))
+* **docs:** grammar improvements ([85cf666](https://github.com/ArcadeAI/arcade-js/commit/85cf6663ebd82fc2a8274bd2be2ecc5a92823899))
+* improve publish-npm script --latest tag logic ([18435a7](https://github.com/ArcadeAI/arcade-js/commit/18435a7c7a89fd943e1f90f09078877a9f3ee447))
+* **internal:** bump cross-spawn to v7.0.6 ([#53](https://github.com/ArcadeAI/arcade-js/issues/53)) ([d6daed2](https://github.com/ArcadeAI/arcade-js/commit/d6daed2c7f97b908c3b4a78be5ed297d66d6c818))
+* **internal:** codegen related update ([b08b538](https://github.com/ArcadeAI/arcade-js/commit/b08b5381a35d2f730001eeeda62f1fddabdea0c5))
+* **internal:** codegen related update ([fa2c88e](https://github.com/ArcadeAI/arcade-js/commit/fa2c88e7d34b8407242ae48fa55a45fa92db04c6))
+* **internal:** codegen related update ([#46](https://github.com/ArcadeAI/arcade-js/issues/46)) ([e691e31](https://github.com/ArcadeAI/arcade-js/commit/e691e313f21dd618b7f0fab76de7d3d62789d1b0))
+* **internal:** codegen related update ([#47](https://github.com/ArcadeAI/arcade-js/issues/47)) ([b1d7d2b](https://github.com/ArcadeAI/arcade-js/commit/b1d7d2b31905d76142e9e85662a3e3f2f662f620))
+* **internal:** codegen related update ([#55](https://github.com/ArcadeAI/arcade-js/issues/55)) ([e79c1f3](https://github.com/ArcadeAI/arcade-js/commit/e79c1f31ef7a9a9aa8e3beebab2874b236c84343))
+* **internal:** codegen related update ([#63](https://github.com/ArcadeAI/arcade-js/issues/63)) ([0b6a70b](https://github.com/ArcadeAI/arcade-js/commit/0b6a70b4882c5b70ee0f1ee4cff5621263576e11))
+* **internal:** codegen related update ([#64](https://github.com/ArcadeAI/arcade-js/issues/64)) ([4e9b37b](https://github.com/ArcadeAI/arcade-js/commit/4e9b37bb9615b1ee869c4d7116978be04bf27650))
+* **internal:** codegen related update ([#65](https://github.com/ArcadeAI/arcade-js/issues/65)) ([ec268d8](https://github.com/ArcadeAI/arcade-js/commit/ec268d8b98c6a2dbf35a5ffc4006abbec2850fce))
+* **internal:** codegen related update ([#66](https://github.com/ArcadeAI/arcade-js/issues/66)) ([e2944f0](https://github.com/ArcadeAI/arcade-js/commit/e2944f04cff49300381faa8a06a53fd9be23a83d))
+* **internal:** codegen related update ([#67](https://github.com/ArcadeAI/arcade-js/issues/67)) ([0f7971e](https://github.com/ArcadeAI/arcade-js/commit/0f7971eff276dc2b564db624340908036fba9892))
+* **internal:** codegen related update ([#68](https://github.com/ArcadeAI/arcade-js/issues/68)) ([82e6e41](https://github.com/ArcadeAI/arcade-js/commit/82e6e41b778470ce34953905c6c6b669a4ba423e))
+* **internal:** codegen related update ([#69](https://github.com/ArcadeAI/arcade-js/issues/69)) ([1315d00](https://github.com/ArcadeAI/arcade-js/commit/1315d00b4573c6ba6fada3cf71df1d32b11b2ce2))
+* **internal:** codegen related update ([#72](https://github.com/ArcadeAI/arcade-js/issues/72)) ([46e5837](https://github.com/ArcadeAI/arcade-js/commit/46e58375269048cf1a58445b0fe1e266d3416402))
+* **internal:** codegen related update ([#74](https://github.com/ArcadeAI/arcade-js/issues/74)) ([fc4035d](https://github.com/ArcadeAI/arcade-js/commit/fc4035d1067bb9d47bcf3f018d24d1f7bb878a2e))
+* **internal:** codegen related update ([#80](https://github.com/ArcadeAI/arcade-js/issues/80)) ([42ea2ed](https://github.com/ArcadeAI/arcade-js/commit/42ea2ededb9302fba24e48f7787682a7883140f3))
+* **internal:** codegen related update ([#82](https://github.com/ArcadeAI/arcade-js/issues/82)) ([aa80c39](https://github.com/ArcadeAI/arcade-js/commit/aa80c39657c3cec4818f626a22a4266af1f54e94))
+* **internal:** fix devcontainers setup ([#95](https://github.com/ArcadeAI/arcade-js/issues/95)) ([3d3d397](https://github.com/ArcadeAI/arcade-js/commit/3d3d39703b80acf11de2df8999ac2156c4269def))
+* **internal:** fix some typos ([#56](https://github.com/ArcadeAI/arcade-js/issues/56)) ([ed6c13f](https://github.com/ArcadeAI/arcade-js/commit/ed6c13f39246874d3de184e563d3f4328609757c))
+* **internal:** remove unnecessary getRequestClient function ([#51](https://github.com/ArcadeAI/arcade-js/issues/51)) ([e95b9c6](https://github.com/ArcadeAI/arcade-js/commit/e95b9c6978a3185dc75e5af5bc575207cd7469b0))
+* **internal:** version bump ([#57](https://github.com/ArcadeAI/arcade-js/issues/57)) ([cb0999e](https://github.com/ArcadeAI/arcade-js/commit/cb0999e9fcc375d85c08acc21a4e43e95322df0e))
+* rebuild project due to codegen change ([#40](https://github.com/ArcadeAI/arcade-js/issues/40)) ([be75637](https://github.com/ArcadeAI/arcade-js/commit/be756379119aa4ab1e70c57641c84d182687d99d))
+* rebuild project due to codegen change ([#41](https://github.com/ArcadeAI/arcade-js/issues/41)) ([c907244](https://github.com/ArcadeAI/arcade-js/commit/c907244da70b7af2c04a8bb4ffd185440bbaa143))
+* rebuild project due to codegen change ([#42](https://github.com/ArcadeAI/arcade-js/issues/42)) ([f8f4502](https://github.com/ArcadeAI/arcade-js/commit/f8f4502c09bece4a7be8c3e1defba20c76bc303b))
+* rebuild project due to codegen change ([#43](https://github.com/ArcadeAI/arcade-js/issues/43)) ([7c79beb](https://github.com/ArcadeAI/arcade-js/commit/7c79beb80c27a5e20474fd532b3c2e0af17b001c))
+* remove redundant word in comment ([#45](https://github.com/ArcadeAI/arcade-js/issues/45)) ([6997da8](https://github.com/ArcadeAI/arcade-js/commit/6997da8e70cf0372d0b464df64d78f9cb6ecf25d))
+* **types:** nicer error class types + jsdocs ([#54](https://github.com/ArcadeAI/arcade-js/issues/54)) ([d4ba89d](https://github.com/ArcadeAI/arcade-js/commit/d4ba89d66c1803f4bbe761c3fcb565c54238e8b2))
+* update SDK settings ([#35](https://github.com/ArcadeAI/arcade-js/issues/35)) ([0783250](https://github.com/ArcadeAI/arcade-js/commit/0783250cca5c1cc504d41785a412d785f1dd9557))
+
+
+### Documentation
+
+* minor formatting changes ([#71](https://github.com/ArcadeAI/arcade-js/issues/71)) ([0801644](https://github.com/ArcadeAI/arcade-js/commit/0801644c04394818799450624e5afd4ae10feff6))
+* remove suggestion to use `npm` call out ([#44](https://github.com/ArcadeAI/arcade-js/issues/44)) ([e9a72fa](https://github.com/ArcadeAI/arcade-js/commit/e9a72fa97f622339dbe160e020d68da38dcbfcd5))
+
 ## 1.3.0 (2025-05-01)
 
 Full Changelog: [v1.2.1...v1.3.0](https://github.com/ArcadeAI/arcade-js/compare/v1.2.1...v1.3.0)
