@@ -63,11 +63,6 @@ export interface FormattedListParams extends OffsetPageParams {
    * Toolkit name
    */
   toolkit?: string;
-
-  /**
-   * User ID
-   */
-  user_id?: string;
 }
 
 export interface FormattedGetParams {
@@ -75,11 +70,6 @@ export interface FormattedGetParams {
    * Provider format
    */
   format?: string;
-
-  /**
-   * User ID
-   */
-  user_id?: string;
 }
 
 Formatted.FormattedListResponsesOffsetPage = FormattedListResponsesOffsetPage;

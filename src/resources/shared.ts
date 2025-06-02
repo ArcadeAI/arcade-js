@@ -15,7 +15,7 @@ export interface AuthorizationResponse {
 
   scopes?: Array<string>;
 
-  status?: 'not_started' | 'pending' | 'completed' | 'failed';
+  status?: 'pending' | 'completed' | 'failed';
 
   url?: string;
 
