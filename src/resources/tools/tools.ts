@@ -238,6 +238,8 @@ export namespace ToolDefinition {
   export interface Requirements {
     authorization?: Requirements.Authorization;
 
+    met?: boolean;
+
     secrets?: Array<Requirements.Secret>;
   }
 
@@ -250,6 +252,12 @@ export namespace ToolDefinition {
       provider_id?: string;
 
       provider_type?: string;
+
+      status?: 'active' | 'inactive';
+
+      status_reason?: string;
+
+      token_status?: 'not_started' | 'pending' | 'completed' | 'failed';
     }
 
     export namespace Authorization {
@@ -260,6 +268,10 @@ export namespace ToolDefinition {
 
     export interface Secret {
       key: string;
+
+      met?: boolean;
+
+      status_reason?: string;
     }
   }
 }
@@ -356,6 +368,11 @@ export interface ToolListParams extends OffsetPageParams {
    * Toolkit name
    */
   toolkit?: string;
+
+  /**
+   * User ID
+   */
+  user_id?: string;
 }
 
 export interface ToolAuthorizeParams {
@@ -405,6 +422,11 @@ export interface ToolGetParams {
    * Comma separated tool formats that will be included in the response.
    */
   include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
+
+  /**
+   * User ID
+   */
+  user_id?: string;
 }
 
 Tools.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
