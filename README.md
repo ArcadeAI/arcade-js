@@ -26,17 +26,13 @@ const client = new Arcade({
   apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const executeToolResponse = await client.tools.execute({
-    tool_name: 'Google.ListEmails',
-    input: { n_emails: 10 },
-    user_id: 'user@example.com',
-  });
+const executeToolResponse = await client.tools.execute({
+  tool_name: 'Google.ListEmails',
+  input: { n_emails: 10 },
+  user_id: 'user@example.com',
+});
 
-  console.log(executeToolResponse.id);
-}
-
-main();
+console.log(executeToolResponse.id);
 ```
 
 ### Request & Response types
@@ -51,14 +47,10 @@ const client = new Arcade({
   apiKey: process.env['ARCADE_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: Arcade.Chat.CompletionCreateParams = {
-    messages: [{ role: 'user', content: 'Hello, how can I use Arcade?' }],
-  };
-  const chatResponse: Arcade.ChatResponse = await client.chat.completions.create(params);
-}
-
-main();
+const params: Arcade.Chat.CompletionCreateParams = {
+  messages: [{ role: 'user', content: 'Hello, how can I use Arcade?' }],
+};
+const chatResponse: Arcade.ChatResponse = await client.chat.completions.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -71,21 +63,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const chatResponse = await client.chat.completions
-    .create({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade?' }] })
-    .catch(async (err) => {
-      if (err instanceof Arcade.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
-}
-
-main();
+const chatResponse = await client.chat.completions
+  .create({ messages: [{ role: 'user', content: 'Hello, how can I use Arcade?' }] })
+  .catch(async (err) => {
+    if (err instanceof Arcade.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
