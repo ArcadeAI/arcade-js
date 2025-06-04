@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.1 (2025-06-04)
+
+Full Changelog: [v1.6.0...v1.6.1](https://github.com/ArcadeAI/arcade-js/compare/v1.6.0...v1.6.1)
+
+### Chores
+
+* **docs:** use top-level-await in example snippets ([e6314e7](https://github.com/ArcadeAI/arcade-js/commit/e6314e7c3515b8a689cc8521bcb511afe034911a))
+
 ## 1.6.0 (2025-06-02)
 
 Full Changelog: [v1.5.0...v1.6.0](https://github.com/ArcadeAI/arcade-js/compare/v1.5.0...v1.6.0)
