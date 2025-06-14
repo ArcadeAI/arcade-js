@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.6.2 (2025-06-14)
+
+Full Changelog: [v1.6.1...v1.6.2](https://github.com/ArcadeAI/arcade-js/compare/v1.6.1...v1.6.2)
+
+### Bug Fixes
+
+* publish script — handle NPM errors correctly ([a6ca79b](https://github.com/ArcadeAI/arcade-js/commit/a6ca79b7df5c7a702df035b250d6228ef64bf5b7))
+
+
+### Chores
+
+* **internal:** make base APIResource abstract ([3c03f6b](https://github.com/ArcadeAI/arcade-js/commit/3c03f6bd10e84064d3e5665b1bc432875a821e5a))
+
 ## 1.6.1 (2025-06-04)
 
 Full Changelog: [v1.6.0...v1.6.1](https://github.com/ArcadeAI/arcade-js/compare/v1.6.0...v1.6.1)
