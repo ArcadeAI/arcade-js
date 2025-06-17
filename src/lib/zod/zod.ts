@@ -37,7 +37,7 @@ export function convertParametersToZodSchema(parameters: ToolDefinition.Input): 
     let zodType = convertValueSchemaToZod(value_schema);
 
     if (!required) {
-      zodType = zodType.optional();
+      zodType = zodType.nullable().optional();
     }
 
     schemaObj[name] = zodType;
