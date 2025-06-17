@@ -22,6 +22,7 @@ import {
   WorkerUpdateParams,
   Workers,
 } from './resources/workers';
+import { Admin } from './resources/admin/admin';
 import { Chat, ChatMessage, ChatRequest, ChatResponse, Choice, Usage } from './resources/chat/chat';
 import {
   AuthorizeToolRequest,
@@ -154,6 +155,7 @@ export class Arcade extends Core.APIClient {
     this.apiKey = apiKey;
   }
 
+  admin: API.Admin = new API.Admin(this);
   auth: API.Auth = new API.Auth(this);
   health: API.Health = new API.Health(this);
   chat: API.Chat = new API.Chat(this);
@@ -207,6 +209,7 @@ export class Arcade extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
+Arcade.Admin = Admin;
 Arcade.Auth = Auth;
 Arcade.Health = Health;
 Arcade.Chat = Chat;
@@ -219,6 +222,8 @@ export declare namespace Arcade {
 
   export import OffsetPage = Pagination.OffsetPage;
   export { type OffsetPageParams as OffsetPageParams, type OffsetPageResponse as OffsetPageResponse };
+
+  export { Admin as Admin };
 
   export {
     Auth as Auth,
