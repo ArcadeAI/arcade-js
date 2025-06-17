@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.8.0 (2025-06-17)
+
+Full Changelog: [v1.7.0...v1.8.0](https://github.com/ArcadeAI/arcade-js/compare/v1.7.0...v1.8.0)
+
+### Features
+
+* **api:** api update ([cebdf25](https://github.com/ArcadeAI/arcade-js/commit/cebdf257bf68a036ac051e6033d9a2780373d6f6))
+
 ## 1.7.0 (2025-06-17)
 
 Full Changelog: [v1.6.1...v1.7.0](https://github.com/ArcadeAI/arcade-js/compare/v1.6.1...v1.7.0)
