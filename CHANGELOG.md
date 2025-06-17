@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.7.0 (2025-06-17)
+
+Full Changelog: [v1.6.1...v1.7.0](https://github.com/ArcadeAI/arcade-js/compare/v1.6.1...v1.7.0)
+
+### Features
+
+* allow optional parameters to be nullable ([#130](https://github.com/ArcadeAI/arcade-js/issues/130)) ([25b7585](https://github.com/ArcadeAI/arcade-js/commit/25b7585fc4fd78765ac88355fa7d2fb5aedb7e3b))
+* **client:** add support for endpoint-specific base URLs ([179f047](https://github.com/ArcadeAI/arcade-js/commit/179f047e5ad5f382fc6761bd47595469e5dc717f))
+
+
+### Bug Fixes
+
+* publish script — handle NPM errors correctly ([a6ca79b](https://github.com/ArcadeAI/arcade-js/commit/a6ca79b7df5c7a702df035b250d6228ef64bf5b7))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([710a188](https://github.com/ArcadeAI/arcade-js/commit/710a188d531ead70247a9a1c3e5cb4c81016c77b))
+* **internal:** make base APIResource abstract ([3c03f6b](https://github.com/ArcadeAI/arcade-js/commit/3c03f6bd10e84064d3e5665b1bc432875a821e5a))
+
 ## 1.6.1 (2025-06-04)
 
 Full Changelog: [v1.6.0...v1.6.1](https://github.com/ArcadeAI/arcade-js/compare/v1.6.0...v1.6.1)

@@ -2,7 +2,7 @@
 
 import type { Arcade } from './index';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: Arcade;
 
   constructor(client: Arcade) {

@@ -141,6 +141,7 @@ export class Arcade extends Core.APIClient {
 
     super({
       baseURL: options.baseURL!,
+      baseURLOverridden: baseURL ? baseURL !== 'https://api.arcade.dev' : false,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -158,6 +159,13 @@ export class Arcade extends Core.APIClient {
   chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
   workers: API.Workers = new API.Workers(this);
+
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  #baseURLOverridden(): boolean {
+    return this.baseURL !== 'https://api.arcade.dev';
+  }
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
