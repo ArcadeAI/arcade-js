@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export * from './shared';
+export { Admin } from './admin/admin';
 export { Auth, type AuthRequest, type AuthAuthorizeParams, type AuthStatusParams } from './auth';
 export {
   Chat,

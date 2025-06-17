@@ -6,6 +6,48 @@ Types:
 - <code><a href="./src/resources/shared.ts">AuthorizationResponse</a></code>
 - <code><a href="./src/resources/shared.ts">Error</a></code>
 
+# Admin
+
+## UserConnections
+
+Types:
+
+- <code><a href="./src/resources/admin/user-connections.ts">UserConnectionResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/admin/user_connections">client.admin.userConnections.<a href="./src/resources/admin/user-connections.ts">list</a>({ ...params }) -> UserConnectionResponsesOffsetPage</code>
+- <code title="delete /v1/admin/user_connections/{id}">client.admin.userConnections.<a href="./src/resources/admin/user-connections.ts">delete</a>(id) -> void</code>
+
+## AuthProviders
+
+Types:
+
+- <code><a href="./src/resources/admin/auth-providers.ts">AuthProviderCreateRequest</a></code>
+- <code><a href="./src/resources/admin/auth-providers.ts">AuthProviderResponse</a></code>
+- <code><a href="./src/resources/admin/auth-providers.ts">AuthProviderUpdateRequest</a></code>
+- <code><a href="./src/resources/admin/auth-providers.ts">AuthProviderListResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/admin/auth_providers">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">create</a>({ ...params }) -> AuthProviderResponse</code>
+- <code title="get /v1/admin/auth_providers">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">list</a>() -> AuthProviderListResponse</code>
+- <code title="delete /v1/admin/auth_providers/{id}">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">delete</a>(id) -> AuthProviderResponse</code>
+- <code title="get /v1/admin/auth_providers/{id}">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">get</a>(id) -> AuthProviderResponse</code>
+- <code title="patch /v1/admin/auth_providers/{id}">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">patch</a>(pathId, { ...params }) -> AuthProviderResponse</code>
+
+## Secrets
+
+Types:
+
+- <code><a href="./src/resources/admin/secrets.ts">SecretResponse</a></code>
+- <code><a href="./src/resources/admin/secrets.ts">SecretListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/admin/secrets">client.admin.secrets.<a href="./src/resources/admin/secrets.ts">list</a>() -> SecretListResponse</code>
+- <code title="delete /v1/admin/secrets/{secret_id}">client.admin.secrets.<a href="./src/resources/admin/secrets.ts">delete</a>(secretId) -> void</code>
+
 # Auth
 
 Types:
