@@ -93,12 +93,12 @@ export function convertOutputToZodSchema(output: ToolDefinition.Output): z.ZodTy
  * @throws ToolConversionError if the tool is invalid
  */
 export function convertSingleToolToSchema(tool: ToolDefinition): ZodToolSchema {
-  const { qualified_name, description, input, output } = tool;
+  const { qualified_name, description, input, output, name } = tool;
   const zodParameters = convertParametersToZodSchema(input);
   const zodOutput = output ? convertOutputToZodSchema(output) : undefined;
   return {
     name: qualified_name.replace(/\./g, '_'),
-    description,
+    description: description ?? name,
     parameters: zodParameters,
     output: zodOutput,
   };
