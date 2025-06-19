@@ -21,7 +21,7 @@ export interface ZodToolSchema {
   /** Qualified name of the tool */
   name: string;
   /** Optional, human-readable description */
-  description?: string | undefined;
+  description: string;
   /** Zod schema for validating tool parameters */
   parameters: z.ZodType;
   /** Zod schema for validating tool output (if any) */
