@@ -25,7 +25,7 @@ export function isAuthorizationRequiredError(error: Error): boolean {
 /**
  * Converts Arcade Tool Input to Zod schema
  */
-export function convertParametersToZodSchema(parameters: ToolDefinition.Input): z.ZodType {
+export function convertParametersToZodSchema(parameters: ToolDefinition.Input): z.ZodObject<z.ZodRawShape> {
   if (!parameters.parameters || !Array.isArray(parameters.parameters)) {
     return z.object({});
   }

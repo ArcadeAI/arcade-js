@@ -23,7 +23,7 @@ export interface ZodToolSchema {
   /** Optional, human-readable description */
   description?: string | undefined;
   /** Zod schema for validating tool parameters */
-  parameters: z.ZodType;
+  parameters: z.ZodObject<z.ZodRawShape>;
   /** Zod schema for validating tool output (if any) */
   output: z.ZodType | undefined;
 }
