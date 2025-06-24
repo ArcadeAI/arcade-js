@@ -105,7 +105,7 @@ export interface ExecuteToolRequest {
   /**
    * JSON input to the tool, if any
    */
-  input?: Record<string, unknown>;
+  input?: { [key: string]: unknown };
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool
@@ -193,7 +193,7 @@ export interface ToolDefinition {
 
   description?: string;
 
-  formatted_schema?: Record<string, unknown>;
+  formatted_schema?: { [key: string]: unknown };
 
   output?: ToolDefinition.Output;
 
@@ -401,7 +401,7 @@ export interface ToolExecuteParams {
   /**
    * JSON input to the tool, if any
    */
-  input?: Record<string, unknown>;
+  input?: { [key: string]: unknown };
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool

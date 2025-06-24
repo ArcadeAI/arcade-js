@@ -90,13 +90,13 @@ export namespace AuthProviderCreateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface Pkce {
@@ -112,13 +112,13 @@ export namespace AuthProviderCreateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface TokenIntrospectionRequest {
@@ -130,13 +130,13 @@ export namespace AuthProviderCreateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export namespace TokenIntrospectionRequest {
@@ -154,13 +154,13 @@ export namespace AuthProviderCreateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface UserInfoRequest {
@@ -172,13 +172,13 @@ export namespace AuthProviderCreateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export namespace UserInfoRequest {
@@ -248,13 +248,13 @@ export namespace AuthProviderResponse {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: string;
 
       response_content_type?: string;
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface ClientSecret {
@@ -284,13 +284,13 @@ export namespace AuthProviderResponse {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: string;
 
       response_content_type?: string;
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface TokenIntrospectionRequest {
@@ -304,13 +304,13 @@ export namespace AuthProviderResponse {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: string;
 
       response_content_type?: string;
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
 
       triggers?: TokenIntrospectionRequest.Triggers;
     }
@@ -332,13 +332,13 @@ export namespace AuthProviderResponse {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: string;
 
       response_content_type?: string;
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface UserInfoRequest {
@@ -350,13 +350,13 @@ export namespace AuthProviderResponse {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: string;
 
       response_content_type?: string;
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
 
       triggers?: UserInfoRequest.Triggers;
     }
@@ -412,13 +412,13 @@ export namespace AuthProviderUpdateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface Pkce {
@@ -434,13 +434,13 @@ export namespace AuthProviderUpdateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface TokenRequest {
@@ -450,13 +450,13 @@ export namespace AuthProviderUpdateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface UserInfoRequest {
@@ -466,13 +466,13 @@ export namespace AuthProviderUpdateRequest {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
 
       triggers?: UserInfoRequest.Triggers;
     }
@@ -542,13 +542,13 @@ export namespace AuthProviderCreateParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface Pkce {
@@ -564,13 +564,13 @@ export namespace AuthProviderCreateParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface TokenIntrospectionRequest {
@@ -582,13 +582,13 @@ export namespace AuthProviderCreateParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export namespace TokenIntrospectionRequest {
@@ -606,13 +606,13 @@ export namespace AuthProviderCreateParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface UserInfoRequest {
@@ -624,13 +624,13 @@ export namespace AuthProviderCreateParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export namespace UserInfoRequest {
@@ -684,13 +684,13 @@ export namespace AuthProviderPatchParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface Pkce {
@@ -706,13 +706,13 @@ export namespace AuthProviderPatchParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface TokenRequest {
@@ -722,13 +722,13 @@ export namespace AuthProviderPatchParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
     }
 
     export interface UserInfoRequest {
@@ -738,13 +738,13 @@ export namespace AuthProviderPatchParams {
 
       method?: string;
 
-      params?: Record<string, string>;
+      params?: { [key: string]: string };
 
       request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
-      response_map?: Record<string, string>;
+      response_map?: { [key: string]: string };
 
       triggers?: UserInfoRequest.Triggers;
     }
