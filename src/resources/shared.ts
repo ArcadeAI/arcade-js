@@ -3,7 +3,7 @@
 export interface AuthorizationContext {
   token?: string;
 
-  user_info?: Record<string, unknown>;
+  user_info?: { [key: string]: unknown };
 }
 
 export interface AuthorizationResponse {

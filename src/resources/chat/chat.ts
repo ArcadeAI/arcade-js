@@ -63,7 +63,7 @@ export interface ChatRequest {
    * `"logit_bias":{"1639": 6}` refs:
    * https://platform.openai.com/docs/api-reference/chat/create#chat/create-logit_bias
    */
-  logit_bias?: Record<string, number>;
+  logit_bias?: { [key: string]: number };
 
   /**
    * LogProbs indicates whether to return log probabilities of the output tokens or
