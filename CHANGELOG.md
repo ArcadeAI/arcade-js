@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.8.2 (2025-06-28)
+
+Full Changelog: [v1.8.1...v1.8.2](https://github.com/ArcadeAI/arcade-js/compare/v1.8.1...v1.8.2)
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([ebd4ebb](https://github.com/ArcadeAI/arcade-js/commit/ebd4ebb4553752d7ec47eee2b67a7ad5158fbd18))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([087f870](https://github.com/ArcadeAI/arcade-js/commit/087f87073b1f18d30d50c9bcb40b13299dbf4320))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([4283d2a](https://github.com/ArcadeAI/arcade-js/commit/4283d2a03423beaa2307777075c61a7b7e88f88a))
+
 ## 1.8.1 (2025-06-19)
 
 Full Changelog: [v1.8.0...v1.8.1](https://github.com/ArcadeAI/arcade-js/compare/v1.8.0...v1.8.1)
