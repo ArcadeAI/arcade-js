@@ -47,7 +47,7 @@ export interface ScheduledGetResponse {
 
   finished_at?: string;
 
-  input?: Record<string, unknown>;
+  input?: { [key: string]: unknown };
 
   run_at?: string;
 
