@@ -83,6 +83,12 @@ export interface AuthorizeToolRequest {
   tool_name: string;
 
   /**
+   * Optional: if true, the user will be forced to verify their identity (strict
+   * session check). TODO: Remove as soon as this is the default for everyone.
+   */
+  force_verification?: boolean;
+
+  /**
    * Optional: if provided, the user will be redirected to this URI after
    * authorization
    */
@@ -377,6 +383,12 @@ export interface ToolListParams extends OffsetPageParams {
 
 export interface ToolAuthorizeParams {
   tool_name: string;
+
+  /**
+   * Optional: if true, the user will be forced to verify their identity (strict
+   * session check). TODO: Remove as soon as this is the default for everyone.
+   */
+  force_verification?: boolean;
 
   /**
    * Optional: if provided, the user will be redirected to this URI after
