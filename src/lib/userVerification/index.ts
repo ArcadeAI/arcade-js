@@ -1,7 +1,7 @@
 import { APIResource } from '../../resource';
 
 export type ConfirmUserOptions = {
-  host?: string;
+  baseURL?: string;
 };
 
 export interface ConfirmUserResponse {
@@ -14,7 +14,7 @@ const verifyPath: string = '/api/v1/oauth/confirm_user';
 
 export class UserVerification extends APIResource {
   confirm(flow_id: string, user_id: string, options?: ConfirmUserOptions): Promise<ConfirmUserResponse> {
-    let host = options?.host || defaultCoordinator;
+    let host = options?.baseURL || defaultCoordinator;
     if (host.endsWith('/')) {
       host = host.substring(0, host.length - 1);
     }

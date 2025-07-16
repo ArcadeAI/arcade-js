@@ -62,7 +62,7 @@ describe('UserVerification', () => {
       (client as any).fetch = mockFetch;
 
       const response = await client.userVerification.confirm('flow_789', 'user_012', {
-        host: 'https://self-hosted.example.com',
+        baseURL: 'https://self-hosted.example.com',
       });
 
       expect(mockFetch).toHaveBeenCalledWith(
@@ -90,7 +90,7 @@ describe('UserVerification', () => {
       (client as any).fetch = mockFetch;
 
       await client.userVerification.confirm('flow_abc', 'user_def', {
-        host: 'https://trailing-slash.example.com/',
+        baseURL: 'https://trailing-slash.example.com/',
       });
 
       expect(mockFetch).toHaveBeenCalledWith(
