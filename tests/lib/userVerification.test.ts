@@ -26,7 +26,7 @@ describe('UserVerification', () => {
       expect(mockFetch).toHaveBeenCalledWith(
         'https://cloud.arcade.dev/api/v1/oauth/confirm_user',
         expect.objectContaining({
-          method: 'post',
+          method: 'POST',
           headers: expect.objectContaining({
             authorization: 'test-api-key',
             'content-type': 'application/json',
