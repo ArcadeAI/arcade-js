@@ -2,7 +2,7 @@ import { Arcade } from '../src/index';
 
 // Initialize the Arcade client
 // (uses the ARCADE_API_KEY environment variable by default)
-const arcade = new Arcade();
+const client = new Arcade();
 
 async function confirmUser() {
   try {
@@ -13,7 +13,7 @@ async function confirmUser() {
     const user_id = 'user_id';
 
     // Confirm the user
-    const response = await arcade.userVerification.confirm(flow_id, user_id);
+    const response = await client.userVerification.confirm(flow_id, user_id);
 
     console.log('User confirmed successfully!');
     console.log('Auth ID:', response.auth_id);

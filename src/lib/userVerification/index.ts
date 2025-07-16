@@ -26,6 +26,9 @@ export class UserVerification extends APIResource {
         flow_id,
         user_id,
       },
+      headers: {
+        Authorization: 'Bearer ' + this._client.apiKey,
+      },
     });
   }
 }

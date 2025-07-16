@@ -28,7 +28,7 @@ describe('UserVerification', () => {
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({
-            authorization: 'test-api-key',
+            authorization: 'Bearer test-api-key',
             'content-type': 'application/json',
           }),
           body: JSON.stringify(
