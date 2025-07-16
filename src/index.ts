@@ -39,6 +39,7 @@ import {
   Tools,
   ValueSchema,
 } from './resources/tools/tools';
+import { UserVerification } from './lib/userVerification';
 
 export interface ClientOptions {
   /**
@@ -163,6 +164,7 @@ export class Arcade extends Core.APIClient {
   chat: API.Chat = new API.Chat(this);
   tools: API.Tools = new API.Tools(this);
   workers: API.Workers = new API.Workers(this);
+  userVerification: UserVerification = new UserVerification(this);
 
   /**
    * Check whether the base URL is set to its default.
