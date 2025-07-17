@@ -29,7 +29,6 @@ describe('resource auth', () => {
         provider_type: 'provider_type',
       },
       user_id: 'user_id',
-      force_verification: true,
       next_uri: 'next_uri',
     });
   });

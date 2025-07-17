@@ -127,12 +127,6 @@ export interface AuthRequest {
   user_id: string;
 
   /**
-   * Optional: if true, the user will be forced to verify their identity (strict
-   * session check). TODO: Remove as soon as this is the default for everyone.
-   */
-  force_verification?: boolean;
-
-  /**
    * Optional: if provided, the user will be redirected to this URI after
    * authorization
    */
@@ -167,12 +161,6 @@ export interface AuthAuthorizeParams {
   auth_requirement: AuthAuthorizeParams.AuthRequirement;
 
   user_id: string;
-
-  /**
-   * Optional: if true, the user will be forced to verify their identity (strict
-   * session check). TODO: Remove as soon as this is the default for everyone.
-   */
-  force_verification?: boolean;
 
   /**
    * Optional: if provided, the user will be redirected to this URI after
