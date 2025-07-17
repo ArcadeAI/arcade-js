@@ -51,7 +51,6 @@ describe('resource tools', () => {
   test('authorize: required and optional params', async () => {
     const response = await client.tools.authorize({
       tool_name: 'tool_name',
-      force_verification: true,
       next_uri: 'next_uri',
       tool_version: 'tool_version',
       user_id: 'user_id',
