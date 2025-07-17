@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.9.0 (2025-07-17)
+
+Full Changelog: [v1.8.1...v1.9.0](https://github.com/ArcadeAI/arcade-js/compare/v1.8.1...v1.9.0)
+
+### Features
+
+* **api:** api update ([1374bee](https://github.com/ArcadeAI/arcade-js/commit/1374bee6aec3c7350fb38c1afdf420f693f553b4))
+* **api:** api update ([d7a22d6](https://github.com/ArcadeAI/arcade-js/commit/d7a22d6fe871f1bdeb2c2be9873f3ed671b770e3))
+* **api:** api update ([2b683b9](https://github.com/ArcadeAI/arcade-js/commit/2b683b910ae7124c7bae3a3482052f10f4179a12))
+
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([ebd4ebb](https://github.com/ArcadeAI/arcade-js/commit/ebd4ebb4553752d7ec47eee2b67a7ad5158fbd18))
+* **client:** don't send `Content-Type` for bodyless methods ([c288b59](https://github.com/ArcadeAI/arcade-js/commit/c288b591cf89dfb7004524ad39a18817e77c3a48))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([087f870](https://github.com/ArcadeAI/arcade-js/commit/087f87073b1f18d30d50c9bcb40b13299dbf4320))
+* make some internal functions async ([26f2948](https://github.com/ArcadeAI/arcade-js/commit/26f2948edce403f4c91e41b4e44b466f2815e112))
+* mention unit type in timeout docs ([3a70b11](https://github.com/ArcadeAI/arcade-js/commit/3a70b11dce447c850e75ea8e2181b6a07763ef70))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([4283d2a](https://github.com/ArcadeAI/arcade-js/commit/4283d2a03423beaa2307777075c61a7b7e88f88a))
+
 ## 1.8.1 (2025-06-19)
 
 Full Changelog: [v1.8.0...v1.8.1](https://github.com/ArcadeAI/arcade-js/compare/v1.8.0...v1.8.1)
