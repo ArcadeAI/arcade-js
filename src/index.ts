@@ -8,7 +8,15 @@ import * as Pagination from './pagination';
 import { type OffsetPageParams, OffsetPageResponse } from './pagination';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
-import { Auth, AuthAuthorizeParams, AuthRequest, AuthStatusParams } from './resources/auth';
+import {
+  Auth,
+  AuthAuthorizeParams,
+  AuthConfirmUserParams,
+  AuthRequest,
+  AuthStatusParams,
+  ConfirmUserRequest,
+  ConfirmUserResponse,
+} from './resources/auth';
 import { Health, HealthSchema } from './resources/health';
 import {
   CreateWorkerRequest,
@@ -230,7 +238,10 @@ export declare namespace Arcade {
   export {
     Auth as Auth,
     type AuthRequest as AuthRequest,
+    type ConfirmUserRequest as ConfirmUserRequest,
+    type ConfirmUserResponse as ConfirmUserResponse,
     type AuthAuthorizeParams as AuthAuthorizeParams,
+    type AuthConfirmUserParams as AuthConfirmUserParams,
     type AuthStatusParams as AuthStatusParams,
   };
 

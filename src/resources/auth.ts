@@ -63,6 +63,16 @@ export class Auth extends APIResource {
   }
 
   /**
+   * Confirms a user's details during an authorization flow
+   */
+  confirmUser(
+    body: AuthConfirmUserParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConfirmUserResponse> {
+    return this._client.post('/v1/auth/confirm_user', { body, ...options });
+  }
+
+  /**
    * Checks the status of an ongoing authorization process for a specific tool. If
    * 'wait' param is present, does not respond until either the auth status becomes
    * completed or the timeout is reached.
@@ -157,6 +167,18 @@ export namespace AuthRequest {
   }
 }
 
+export interface ConfirmUserRequest {
+  flow_id: string;
+
+  user_id: string;
+}
+
+export interface ConfirmUserResponse {
+  auth_id: string;
+
+  next_uri?: string;
+}
+
 export interface AuthAuthorizeParams {
   auth_requirement: AuthAuthorizeParams.AuthRequirement;
 
@@ -193,6 +215,12 @@ export namespace AuthAuthorizeParams {
   }
 }
 
+export interface AuthConfirmUserParams {
+  flow_id: string;
+
+  user_id: string;
+}
+
 export interface AuthStatusParams {
   /**
    * Authorization ID
@@ -222,7 +250,10 @@ export interface AuthStartOptions {
 export declare namespace Auth {
   export {
     type AuthRequest as AuthRequest,
+    type ConfirmUserRequest as ConfirmUserRequest,
+    type ConfirmUserResponse as ConfirmUserResponse,
     type AuthAuthorizeParams as AuthAuthorizeParams,
+    type AuthConfirmUserParams as AuthConfirmUserParams,
     type AuthStatusParams as AuthStatusParams,
     type AuthStartOptions as AuthStartOptions,
   };

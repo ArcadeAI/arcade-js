@@ -2,7 +2,15 @@
 
 export * from './shared';
 export { Admin } from './admin/admin';
-export { Auth, type AuthRequest, type AuthAuthorizeParams, type AuthStatusParams } from './auth';
+export {
+  Auth,
+  type AuthRequest,
+  type ConfirmUserRequest,
+  type ConfirmUserResponse,
+  type AuthAuthorizeParams,
+  type AuthConfirmUserParams,
+  type AuthStatusParams,
+} from './auth';
 export {
   Chat,
   type ChatMessage,
