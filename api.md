@@ -53,10 +53,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/auth.ts">AuthRequest</a></code>
+- <code><a href="./src/resources/auth.ts">ConfirmUserRequest</a></code>
+- <code><a href="./src/resources/auth.ts">ConfirmUserResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/auth/authorize">client.auth.<a href="./src/resources/auth.ts">authorize</a>({ ...params }) -> AuthorizationResponse</code>
+- <code title="post /v1/auth/confirm_user">client.auth.<a href="./src/resources/auth.ts">confirmUser</a>({ ...params }) -> ConfirmUserResponse</code>
 - <code title="get /v1/auth/status">client.auth.<a href="./src/resources/auth.ts">status</a>({ ...params }) -> AuthorizationResponse</code>
 
 # Health
