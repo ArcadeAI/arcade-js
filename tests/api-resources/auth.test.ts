@@ -33,6 +33,21 @@ describe('resource auth', () => {
     });
   });
 
+  test('confirmUser: only required params', async () => {
+    const responsePromise = client.auth.confirmUser({ flow_id: 'flow_id', user_id: 'user_id' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('confirmUser: required and optional params', async () => {
+    const response = await client.auth.confirmUser({ flow_id: 'flow_id', user_id: 'user_id' });
+  });
+
   test('status: only required params', async () => {
     const responsePromise = client.auth.status({ id: 'id' });
     const rawResponse = await responsePromise.asResponse();
