@@ -59,10 +59,6 @@
     "./shims/web.js",
     "./shims/web.mjs"
   ],
-  "imports": {
-    "@arcadeai/arcadejs": ".",
-    "@arcadeai/arcadejs/*": "./src/*"
-  },
   "exports": {
     "./_shims/auto/*": {
       "deno": {
