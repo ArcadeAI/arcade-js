@@ -24,6 +24,7 @@ describe('resource authProviders', () => {
     const response = await client.admin.authProviders.create({
       id: 'id',
       description: 'description',
+      external_id: 'external_id',
       oauth2: {
         client_id: 'client_id',
         authorize_request: {

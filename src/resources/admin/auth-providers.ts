@@ -52,6 +52,11 @@ export interface AuthProviderCreateRequest {
 
   description?: string;
 
+  /**
+   * The unique external ID for the auth provider
+   */
+  external_id?: string;
+
   oauth2?: AuthProviderCreateRequest.Oauth2;
 
   provider_id?: string;
@@ -226,6 +231,11 @@ export namespace AuthProviderResponse {
     client_secret?: Oauth2.ClientSecret;
 
     pkce?: Oauth2.Pkce;
+
+    /**
+     * The redirect URI required for this provider.
+     */
+    redirect_uri?: string;
 
     refresh_request?: Oauth2.RefreshRequest;
 
@@ -503,6 +513,11 @@ export interface AuthProviderCreateParams {
   id: string;
 
   description?: string;
+
+  /**
+   * The unique external ID for the auth provider
+   */
+  external_id?: string;
 
   oauth2?: AuthProviderCreateParams.Oauth2;
 
