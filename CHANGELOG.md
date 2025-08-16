@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.9.1 (2025-08-16)
+
+Full Changelog: [v1.9.0...v1.9.1](https://github.com/ArcadeAI/arcade-js/compare/v1.9.0...v1.9.1)
+
+### Features
+
+* **api:** api update ([dad8723](https://github.com/ArcadeAI/arcade-js/commit/dad872307f924ec88044439490ea626719cf99fe))
+
+
+### Chores
+
+* **deps:** update dependency node-fetch to v2.6.13 ([78df6d1](https://github.com/ArcadeAI/arcade-js/commit/78df6d1ca7cd51545351db6b980f2aea601db345))
+* **internal:** formatting change ([ffd5735](https://github.com/ArcadeAI/arcade-js/commit/ffd5735d257fc97dec12321cb0048a17ca44d6b8))
+* **internal:** move publish config ([0125977](https://github.com/ArcadeAI/arcade-js/commit/012597763f7c0396ca33761961bd672e1147af40))
+* **internal:** remove redundant imports config ([973de7e](https://github.com/ArcadeAI/arcade-js/commit/973de7eba812e897b4781b548cfbfa1361f22876))
+* **internal:** update comment in script ([a4353bc](https://github.com/ArcadeAI/arcade-js/commit/a4353bc3a852a779ad1b243db1ea485faf592528))
+* update @stainless-api/prism-cli to v5.15.0 ([4f82ee4](https://github.com/ArcadeAI/arcade-js/commit/4f82ee4ee36673270bc7ecd1d1c88854dfb81491))
+
 ## 1.9.0 (2025-07-17)
 
 Full Changelog: [v1.8.1...v1.9.0](https://github.com/ArcadeAI/arcade-js/compare/v1.8.1...v1.9.0)
