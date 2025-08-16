@@ -227,6 +227,7 @@ Arcade.Tools = Tools;
 Arcade.ToolDefinitionsOffsetPage = ToolDefinitionsOffsetPage;
 Arcade.Workers = Workers;
 Arcade.WorkerResponsesOffsetPage = WorkerResponsesOffsetPage;
+
 export declare namespace Arcade {
   export type RequestOptions = Core.RequestOptions;
 
