@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@types/node": "^18.11.18",
-    "@types/node-fetch": "^2.6.4",
+    "@types/node-fetch": "^2.6.13",
     "abort-controller": "^3.0.0",
     "agentkeepalive": "^4.2.1",
     "form-data-encoder": "1.7.2",
@@ -59,6 +59,9 @@
     "./shims/web.js",
     "./shims/web.mjs"
   ],
+  "resolutions": {
+    "form-data": "^4.0.4"
+  },
   "imports": {
     "@arcadeai/arcadejs": ".",
     "@arcadeai/arcadejs/*": "./src/*"
