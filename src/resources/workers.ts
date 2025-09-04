@@ -176,6 +176,8 @@ export interface WorkerResponse {
 
   http?: WorkerResponse.HTTP;
 
+  managed?: boolean;
+
   mcp?: WorkerResponse.Mcp;
 
   oxp?: WorkerResponse.Oxp;
