@@ -103,6 +103,12 @@ export interface ExecuteToolRequest {
   tool_name: string;
 
   /**
+   * Whether to include the error stacktrace in the response. If not provided, the
+   * error stacktrace is not included.
+   */
+  include_error_stacktrace?: boolean;
+
+  /**
    * JSON input to the tool, if any
    */
   input?: { [key: string]: unknown };
@@ -159,15 +165,41 @@ export namespace ExecuteToolResponse {
 
   export namespace Output {
     export interface Error {
+      can_retry: boolean;
+
+      kind:
+        | 'TOOLKIT_LOAD_FAILED'
+        | 'TOOL_DEFINITION_BAD_DEFINITION'
+        | 'TOOL_DEFINITION_BAD_INPUT_SCHEMA'
+        | 'TOOL_DEFINITION_BAD_OUTPUT_SCHEMA'
+        | 'TOOL_REQUIREMENTS_NOT_MET'
+        | 'TOOL_RUNTIME_BAD_INPUT_VALUE'
+        | 'TOOL_RUNTIME_BAD_OUTPUT_VALUE'
+        | 'TOOL_RUNTIME_RETRY'
+        | 'TOOL_RUNTIME_CONTEXT_REQUIRED'
+        | 'TOOL_RUNTIME_FATAL'
+        | 'UPSTREAM_RUNTIME_BAD_REQUEST'
+        | 'UPSTREAM_RUNTIME_AUTH_ERROR'
+        | 'UPSTREAM_RUNTIME_NOT_FOUND'
+        | 'UPSTREAM_RUNTIME_VALIDATION_ERROR'
+        | 'UPSTREAM_RUNTIME_RATE_LIMIT'
+        | 'UPSTREAM_RUNTIME_SERVER_ERROR'
+        | 'UPSTREAM_RUNTIME_UNMAPPED'
+        | 'UNKNOWN';
+
       message: string;
 
       additional_prompt_content?: string;
 
-      can_retry?: boolean;
-
       developer_message?: string;
 
+      extra?: { [key: string]: unknown };
+
       retry_after_ms?: number;
+
+      stacktrace?: string;
+
+      status_code?: number;
     }
 
     export interface Log {
@@ -329,15 +361,41 @@ export namespace ToolExecutionAttempt {
 
   export namespace Output {
     export interface Error {
+      can_retry: boolean;
+
+      kind:
+        | 'TOOLKIT_LOAD_FAILED'
+        | 'TOOL_DEFINITION_BAD_DEFINITION'
+        | 'TOOL_DEFINITION_BAD_INPUT_SCHEMA'
+        | 'TOOL_DEFINITION_BAD_OUTPUT_SCHEMA'
+        | 'TOOL_REQUIREMENTS_NOT_MET'
+        | 'TOOL_RUNTIME_BAD_INPUT_VALUE'
+        | 'TOOL_RUNTIME_BAD_OUTPUT_VALUE'
+        | 'TOOL_RUNTIME_RETRY'
+        | 'TOOL_RUNTIME_CONTEXT_REQUIRED'
+        | 'TOOL_RUNTIME_FATAL'
+        | 'UPSTREAM_RUNTIME_BAD_REQUEST'
+        | 'UPSTREAM_RUNTIME_AUTH_ERROR'
+        | 'UPSTREAM_RUNTIME_NOT_FOUND'
+        | 'UPSTREAM_RUNTIME_VALIDATION_ERROR'
+        | 'UPSTREAM_RUNTIME_RATE_LIMIT'
+        | 'UPSTREAM_RUNTIME_SERVER_ERROR'
+        | 'UPSTREAM_RUNTIME_UNMAPPED'
+        | 'UNKNOWN';
+
       message: string;
 
       additional_prompt_content?: string;
 
-      can_retry?: boolean;
-
       developer_message?: string;
 
+      extra?: { [key: string]: unknown };
+
       retry_after_ms?: number;
+
+      stacktrace?: string;
+
+      status_code?: number;
     }
 
     export interface Log {
@@ -397,6 +455,12 @@ export interface ToolAuthorizeParams {
 
 export interface ToolExecuteParams {
   tool_name: string;
+
+  /**
+   * Whether to include the error stacktrace in the response. If not provided, the
+   * error stacktrace is not included.
+   */
+  include_error_stacktrace?: boolean;
 
   /**
    * JSON input to the tool, if any
