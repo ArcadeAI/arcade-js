@@ -71,6 +71,7 @@ describe('resource tools', () => {
   test('execute: required and optional params', async () => {
     const response = await client.tools.execute({
       tool_name: 'tool_name',
+      include_error_stacktrace: true,
       input: { foo: 'bar' },
       run_at: 'run_at',
       tool_version: 'tool_version',
