@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.10.0 (2025-09-11)
+
+Full Changelog: [v1.9.1...v1.10.0](https://github.com/ArcadeAI/arcade-js/compare/v1.9.1...v1.10.0)
+
+### Features
+
+* **api:** api update ([47c1a7b](https://github.com/ArcadeAI/arcade-js/commit/47c1a7b748b7db56700e1107e0bff05213ec998e))
+* **api:** api update ([1504071](https://github.com/ArcadeAI/arcade-js/commit/15040713fe9cec59d1fb38b7c829f37273aa199a))
+
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([da6addc](https://github.com/ArcadeAI/arcade-js/commit/da6addcf973da52bc5c856fc3c88ef6e3333f6cb))
+
+
+### Chores
+
+* ci build action ([ee9e5f8](https://github.com/ArcadeAI/arcade-js/commit/ee9e5f8a824f6468272fdaa28acb0f036f3ec872))
+* update CI script ([ea3f95f](https://github.com/ArcadeAI/arcade-js/commit/ea3f95fbf75f9783be675df20dcdc1f6b91af8e6))
+
 ## 1.9.1 (2025-08-16)
 
 Full Changelog: [v1.9.0...v1.9.1](https://github.com/ArcadeAI/arcade-js/compare/v1.9.0...v1.9.1)
