@@ -180,8 +180,6 @@ export interface WorkerResponse {
 
   mcp?: WorkerResponse.Mcp;
 
-  oxp?: WorkerResponse.Oxp;
-
   type?: 'http' | 'mcp' | 'unknown';
 }
 
@@ -222,30 +220,6 @@ export namespace WorkerResponse {
     timeout?: number;
 
     uri?: string;
-  }
-
-  export interface Oxp {
-    retry?: number;
-
-    secret?: Oxp.Secret;
-
-    timeout?: number;
-
-    uri?: string;
-  }
-
-  export namespace Oxp {
-    export interface Secret {
-      binding?: 'static' | 'tenant' | 'project' | 'account';
-
-      editable?: boolean;
-
-      exists?: boolean;
-
-      hint?: string;
-
-      value?: string;
-    }
   }
 }
 
