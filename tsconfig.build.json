@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "@arcadeai/arcadejs/*": ["dist/src/*"],
-      "@arcadeai/arcadejs": ["dist/src/index.ts"]
+      "@arcadeai/arcadejs/*": ["./dist/src/*"],
+      "@arcadeai/arcadejs": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
