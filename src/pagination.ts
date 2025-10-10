@@ -58,7 +58,7 @@ export class OffsetPage<Item> extends AbstractPage<Item> implements OffsetPageRe
 
   nextPageInfo(): PageInfo | null {
     const offset = this.offset;
-    if (!offset) {
+    if (typeof offset !== 'number') {
       return null;
     }
 
