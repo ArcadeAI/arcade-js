@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.11.1 (2025-10-10)
+
+Full Changelog: [v1.11.0...v1.11.1](https://github.com/ArcadeAI/arcade-js/compare/v1.11.0...v1.11.1)
+
+### Bug Fixes
+
+* **pagination:** handle offset=0 correctly in nextPageInfo ([4246507](https://github.com/ArcadeAI/arcade-js/commit/4246507d0008dc7cd7a3fb16919cdd4853d383c5))
+
 ## 1.11.0 (2025-10-10)
 
 Full Changelog: [v1.10.0...v1.11.0](https://github.com/ArcadeAI/arcade-js/compare/v1.10.0...v1.11.0)
