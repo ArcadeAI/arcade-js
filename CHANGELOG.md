@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.11.0 (2025-10-10)
+
+Full Changelog: [v1.10.0...v1.11.0](https://github.com/ArcadeAI/arcade-js/compare/v1.10.0...v1.11.0)
+
+### Features
+
+* **api:** api update ([2774d49](https://github.com/ArcadeAI/arcade-js/commit/2774d494ee56c8204f2110294cde4421cd92808c))
+
+
+### Performance Improvements
+
+* faster formatting ([2e812f3](https://github.com/ArcadeAI/arcade-js/commit/2e812f3ffbbdf74581845a75bce2d0df8753b9db))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([22535ef](https://github.com/ArcadeAI/arcade-js/commit/22535ef346a33b239bd0337abe136ffd0a42b956))
+* **internal:** fix incremental formatting in some cases ([e9aeed3](https://github.com/ArcadeAI/arcade-js/commit/e9aeed3eb7ca5580db550c2e7896b58dce4e34a8))
+* **internal:** ignore .eslintcache ([a33a6cd](https://github.com/ArcadeAI/arcade-js/commit/a33a6cddd9e9c21316aa5e0f5ab12b34976bab25))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([aecdf98](https://github.com/ArcadeAI/arcade-js/commit/aecdf98fdc70e2b7c19824282adf7da557778d81))
+* **internal:** use npm pack for build uploads ([5f97867](https://github.com/ArcadeAI/arcade-js/commit/5f9786708095bb6f7bee97a4694a61583ba0512d))
+
 ## 1.10.0 (2025-09-11)
 
 Full Changelog: [v1.9.1...v1.10.0](https://github.com/ArcadeAI/arcade-js/compare/v1.9.1...v1.10.0)
