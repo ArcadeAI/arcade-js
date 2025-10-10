@@ -7,11 +7,10 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "@arcadeai/arcadejs/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "@arcadeai/arcadejs/*": ["src/*"],
-      "@arcadeai/arcadejs": ["src/index.ts"]
+      "@arcadeai/arcadejs/_shims/auto/*": ["./src/_shims/auto/*-node"],
+      "@arcadeai/arcadejs/*": ["./src/*"],
+      "@arcadeai/arcadejs": ["./src/index.ts"]
     },
     "noEmit": true,
 
