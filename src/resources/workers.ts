@@ -180,6 +180,8 @@ export interface WorkerResponse {
 
   mcp?: WorkerResponse.Mcp;
 
+  requirements?: WorkerResponse.Requirements;
+
   type?: 'http' | 'mcp' | 'unknown';
 }
 
@@ -220,6 +222,26 @@ export namespace WorkerResponse {
     timeout?: number;
 
     uri?: string;
+  }
+
+  export interface Requirements {
+    authorization?: Requirements.Authorization;
+
+    met?: boolean;
+  }
+
+  export namespace Requirements {
+    export interface Authorization {
+      met?: boolean;
+
+      oauth2?: Authorization.Oauth2;
+    }
+
+    export namespace Authorization {
+      export interface Oauth2 {
+        met?: boolean;
+      }
+    }
   }
 }
 
