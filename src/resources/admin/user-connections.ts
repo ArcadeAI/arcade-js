@@ -53,6 +53,8 @@ export interface UserConnectionResponse {
 
   provider_id?: string;
 
+  provider_type?: string;
+
   provider_user_info?: unknown;
 
   scopes?: Array<string>;
