@@ -25,7 +25,19 @@ describe('resource workers', () => {
       id: 'id',
       enabled: true,
       http: { retry: 0, secret: 'secret', timeout: 1, uri: 'uri' },
-      mcp: { retry: 0, timeout: 1, uri: 'uri' },
+      mcp: {
+        retry: 0,
+        timeout: 1,
+        uri: 'uri',
+        headers: { foo: 'string' },
+        oauth2: {
+          authorization_url: 'authorization_url',
+          client_id: 'client_id',
+          client_secret: 'client_secret',
+          external_id: 'external_id',
+        },
+        secrets: { foo: 'string' },
+      },
       type: 'type',
     });
   });
