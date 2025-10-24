@@ -126,6 +126,24 @@ export namespace CreateWorkerRequest {
     timeout: number;
 
     uri: string;
+
+    headers?: { [key: string]: string };
+
+    oauth2?: Mcp.Oauth2;
+
+    secrets?: { [key: string]: string };
+  }
+
+  export namespace Mcp {
+    export interface Oauth2 {
+      authorization_url?: string;
+
+      client_id?: string;
+
+      client_secret?: string;
+
+      external_id?: string;
+    }
   }
 }
 
@@ -149,11 +167,27 @@ export namespace UpdateWorkerRequest {
   }
 
   export interface Mcp {
+    headers?: { [key: string]: string };
+
+    oauth2?: Mcp.Oauth2;
+
     retry?: number;
+
+    secrets?: { [key: string]: string };
 
     timeout?: number;
 
     uri?: string;
+  }
+
+  export namespace Mcp {
+    export interface Oauth2 {
+      authorization_url?: string;
+
+      client_id?: string;
+
+      client_secret?: string;
+    }
   }
 }
 
@@ -217,11 +251,55 @@ export namespace WorkerResponse {
   }
 
   export interface Mcp {
+    headers?: { [key: string]: string };
+
+    oauth2?: Mcp.Oauth2;
+
     retry?: number;
+
+    secrets?: { [key: string]: Mcp.Secrets };
 
     timeout?: number;
 
     uri?: string;
+  }
+
+  export namespace Mcp {
+    export interface Oauth2 {
+      authorization_url?: string;
+
+      client_id?: string;
+
+      client_secret?: Oauth2.ClientSecret;
+
+      redirect_uri?: string;
+    }
+
+    export namespace Oauth2 {
+      export interface ClientSecret {
+        binding?: 'static' | 'tenant' | 'project' | 'account';
+
+        editable?: boolean;
+
+        exists?: boolean;
+
+        hint?: string;
+
+        value?: string;
+      }
+    }
+
+    export interface Secrets {
+      binding?: 'static' | 'tenant' | 'project' | 'account';
+
+      editable?: boolean;
+
+      exists?: boolean;
+
+      hint?: string;
+
+      value?: string;
+    }
   }
 
   export interface Requirements {
@@ -274,6 +352,24 @@ export namespace WorkerCreateParams {
     timeout: number;
 
     uri: string;
+
+    headers?: { [key: string]: string };
+
+    oauth2?: Mcp.Oauth2;
+
+    secrets?: { [key: string]: string };
+  }
+
+  export namespace Mcp {
+    export interface Oauth2 {
+      authorization_url?: string;
+
+      client_id?: string;
+
+      client_secret?: string;
+
+      external_id?: string;
+    }
   }
 }
 
@@ -297,11 +393,27 @@ export namespace WorkerUpdateParams {
   }
 
   export interface Mcp {
+    headers?: { [key: string]: string };
+
+    oauth2?: Mcp.Oauth2;
+
     retry?: number;
+
+    secrets?: { [key: string]: string };
 
     timeout?: number;
 
     uri?: string;
+  }
+
+  export namespace Mcp {
+    export interface Oauth2 {
+      authorization_url?: string;
+
+      client_id?: string;
+
+      client_secret?: string;
+    }
   }
 }
 
