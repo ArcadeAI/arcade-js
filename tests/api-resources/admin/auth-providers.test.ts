@@ -29,6 +29,7 @@ describe('resource authProviders', () => {
         client_id: 'client_id',
         authorize_request: {
           endpoint: 'endpoint',
+          auth_header_value_format: 'auth_header_value_format',
           auth_method: 'auth_method',
           method: 'method',
           params: { foo: 'string' },
@@ -40,6 +41,7 @@ describe('resource authProviders', () => {
         pkce: { code_challenge_method: 'code_challenge_method', enabled: true },
         refresh_request: {
           endpoint: 'endpoint',
+          auth_header_value_format: 'auth_header_value_format',
           auth_method: 'auth_method',
           method: 'method',
           params: { foo: 'string' },
@@ -51,6 +53,7 @@ describe('resource authProviders', () => {
         token_introspection_request: {
           endpoint: 'endpoint',
           triggers: { on_token_grant: true, on_token_refresh: true },
+          auth_header_value_format: 'auth_header_value_format',
           auth_method: 'auth_method',
           method: 'method',
           params: { foo: 'string' },
@@ -60,6 +63,7 @@ describe('resource authProviders', () => {
         },
         token_request: {
           endpoint: 'endpoint',
+          auth_header_value_format: 'auth_header_value_format',
           auth_method: 'auth_method',
           method: 'method',
           params: { foo: 'string' },
@@ -70,6 +74,7 @@ describe('resource authProviders', () => {
         user_info_request: {
           endpoint: 'endpoint',
           triggers: { on_token_grant: true, on_token_refresh: true },
+          auth_header_value_format: 'auth_header_value_format',
           auth_method: 'auth_method',
           method: 'method',
           params: { foo: 'string' },
