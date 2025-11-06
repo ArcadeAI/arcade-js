@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.14.0 (2025-11-06)
+
+Full Changelog: [v1.13.0...v1.14.0](https://github.com/ArcadeAI/arcade-js/compare/v1.13.0...v1.14.0)
+
+### Features
+
+* **api:** api update ([555fc21](https://github.com/ArcadeAI/arcade-js/commit/555fc2194beeaa9d133e654c759bed6d85c75249))
+
 ## 1.13.0 (2025-11-06)
 
 Full Changelog: [v1.12.0...v1.13.0](https://github.com/ArcadeAI/arcade-js/compare/v1.12.0...v1.13.0)
