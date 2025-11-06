@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.13.0 (2025-11-06)
+
+Full Changelog: [v1.12.0...v1.13.0](https://github.com/ArcadeAI/arcade-js/compare/v1.12.0...v1.13.0)
+
+### Features
+
+* **api:** api update ([5c17c66](https://github.com/ArcadeAI/arcade-js/commit/5c17c66ea79f34bd31aeb96e97a8956b509b4ece))
+
+
+### Bug Fixes
+
+* **client:** incorrect offset pagination check ([3b3adfb](https://github.com/ArcadeAI/arcade-js/commit/3b3adfb1233333dcb6d5ce7a5a87c05b2967b650))
+
 ## 1.12.0 (2025-10-17)
 
 Full Changelog: [v1.11.1...v1.12.0](https://github.com/ArcadeAI/arcade-js/compare/v1.11.1...v1.12.0)
