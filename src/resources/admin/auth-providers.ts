@@ -91,6 +91,8 @@ export namespace AuthProviderCreateRequest {
     export interface AuthorizeRequest {
       endpoint: string;
 
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       method?: string;
@@ -113,6 +115,8 @@ export namespace AuthProviderCreateRequest {
     export interface RefreshRequest {
       endpoint: string;
 
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       method?: string;
@@ -130,6 +134,8 @@ export namespace AuthProviderCreateRequest {
       endpoint: string;
 
       triggers: TokenIntrospectionRequest.Triggers;
+
+      auth_header_value_format?: string;
 
       auth_method?: string;
 
@@ -155,6 +161,8 @@ export namespace AuthProviderCreateRequest {
     export interface TokenRequest {
       endpoint: string;
 
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       method?: string;
@@ -172,6 +180,8 @@ export namespace AuthProviderCreateRequest {
       endpoint: string;
 
       triggers: UserInfoRequest.Triggers;
+
+      auth_header_value_format?: string;
 
       auth_method?: string;
 
@@ -250,6 +260,8 @@ export namespace AuthProviderResponse {
 
   export namespace Oauth2 {
     export interface AuthorizeRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -286,6 +298,8 @@ export namespace AuthProviderResponse {
     }
 
     export interface RefreshRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -304,6 +318,8 @@ export namespace AuthProviderResponse {
     }
 
     export interface TokenIntrospectionRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       enabled?: boolean;
@@ -334,6 +350,8 @@ export namespace AuthProviderResponse {
     }
 
     export interface TokenRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -352,6 +370,8 @@ export namespace AuthProviderResponse {
     }
 
     export interface UserInfoRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -416,6 +436,8 @@ export namespace AuthProviderUpdateRequest {
 
   export namespace Oauth2 {
     export interface AuthorizeRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -438,6 +460,8 @@ export namespace AuthProviderUpdateRequest {
     }
 
     export interface RefreshRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -454,6 +478,8 @@ export namespace AuthProviderUpdateRequest {
     }
 
     export interface TokenRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -470,6 +496,8 @@ export namespace AuthProviderUpdateRequest {
     }
 
     export interface UserInfoRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -553,6 +581,8 @@ export namespace AuthProviderCreateParams {
     export interface AuthorizeRequest {
       endpoint: string;
 
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       method?: string;
@@ -575,6 +605,8 @@ export namespace AuthProviderCreateParams {
     export interface RefreshRequest {
       endpoint: string;
 
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       method?: string;
@@ -592,6 +624,8 @@ export namespace AuthProviderCreateParams {
       endpoint: string;
 
       triggers: TokenIntrospectionRequest.Triggers;
+
+      auth_header_value_format?: string;
 
       auth_method?: string;
 
@@ -617,6 +651,8 @@ export namespace AuthProviderCreateParams {
     export interface TokenRequest {
       endpoint: string;
 
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       method?: string;
@@ -634,6 +670,8 @@ export namespace AuthProviderCreateParams {
       endpoint: string;
 
       triggers: UserInfoRequest.Triggers;
+
+      auth_header_value_format?: string;
 
       auth_method?: string;
 
@@ -693,6 +731,8 @@ export namespace AuthProviderPatchParams {
 
   export namespace Oauth2 {
     export interface AuthorizeRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -715,6 +755,8 @@ export namespace AuthProviderPatchParams {
     }
 
     export interface RefreshRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -731,6 +773,8 @@ export namespace AuthProviderPatchParams {
     }
 
     export interface TokenRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
@@ -747,6 +791,8 @@ export namespace AuthProviderPatchParams {
     }
 
     export interface UserInfoRequest {
+      auth_header_value_format?: string;
+
       auth_method?: string;
 
       endpoint?: string;
