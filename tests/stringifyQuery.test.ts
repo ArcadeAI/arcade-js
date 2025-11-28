@@ -15,6 +15,15 @@ describe(stringifyQuery, () => {
         'e=f',
       )}=${encodeURIComponent('g&h')}`,
     ],
+    // Test nested objects (issue #148)
+    [{ user: { id: 'user123' } }, 'user%5Bid%5D=user123'],
+    [{ provider: { id: 'provider456' } }, 'provider%5Bid%5D=provider456'],
+    [{ user: { id: 'user123' }, provider: { id: 'provider456' } }, 'user%5Bid%5D=user123&provider%5Bid%5D=provider456'],
+    [{ limit: 10, offset: 0, user: { id: 'user123' } }, 'limit=10&offset=0&user%5Bid%5D=user123'],
+    // Test deeply nested objects
+    [{ filter: { user: { id: 'user123' } } }, 'filter%5Buser%5D%5Bid%5D=user123'],
+    // Test nested objects with multiple properties
+    [{ user: { id: 'user123', name: 'John' } }, 'user%5Bid%5D=user123&user%5Bname%5D=John'],
   ]) {
     it(`${JSON.stringify(input)} -> ${expected}`, () => {
       expect(stringifyQuery(input)).toEqual(expected);

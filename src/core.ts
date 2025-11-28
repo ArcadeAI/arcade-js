@@ -540,7 +540,12 @@ export abstract class APIClient {
 
         const fullKey = prefix ? `${prefix}[${key}]` : key;
 
-        if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+        if (
+          value === null ||
+          typeof value === 'string' ||
+          typeof value === 'number' ||
+          typeof value === 'boolean'
+        ) {
           params.push([fullKey, value]);
         } else if (typeof value === 'object' && !Array.isArray(value)) {
           // Recursively flatten nested objects
