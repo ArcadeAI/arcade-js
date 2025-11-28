@@ -529,18 +529,38 @@ export abstract class APIClient {
   }
 
   protected stringifyQuery(query: Record<string, unknown>): string {
-    return Object.entries(query)
-      .filter(([_, value]) => typeof value !== 'undefined')
-      .map(([key, value]) => {
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+    const flattenParams = (
+      obj: Record<string, unknown>,
+      prefix: string = '',
+    ): Array<[string, string | number | boolean | null]> => {
+      const params: Array<[string, string | number | boolean | null]> = [];
+
+      for (const [key, value] of Object.entries(obj)) {
+        if (typeof value === 'undefined') continue;
+
+        const fullKey = prefix ? `${prefix}[${key}]` : key;
+
+        if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+          params.push([fullKey, value]);
+        } else if (typeof value === 'object' && !Array.isArray(value)) {
+          // Recursively flatten nested objects
+          params.push(...flattenParams(value as Record<string, unknown>, fullKey));
+        } else {
+          throw new ArcadeError(
+            `Cannot stringify type ${typeof value}; Expected string, number, boolean, null, or object.`,
+          );
         }
+      }
+
+      return params;
+    };
+
+    return flattenParams(query)
+      .map(([key, value]) => {
         if (value === null) {
           return `${encodeURIComponent(key)}=`;
         }
-        throw new ArcadeError(
-          `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
-        );
+        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
       })
       .join('&');
   }
