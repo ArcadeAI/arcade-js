@@ -60,6 +60,11 @@ export interface FormattedListParams extends OffsetPageParams {
   format?: string;
 
   /**
+   * Include all versions of each tool
+   */
+  include_all_versions?: boolean;
+
+  /**
    * Toolkit name
    */
   toolkit?: string;
