@@ -418,6 +418,11 @@ export interface ValueSchema {
 
 export interface ToolListParams extends OffsetPageParams {
   /**
+   * Include all versions of each tool
+   */
+  include_all_versions?: boolean;
+
+  /**
    * Comma separated tool formats that will be included in the response.
    */
   include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
