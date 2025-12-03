@@ -31,7 +31,14 @@ describe('resource formatted', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.tools.formatted.list(
-        { format: 'format', limit: 0, offset: 0, toolkit: 'toolkit', user_id: 'user_id' },
+        {
+          format: 'format',
+          include_all_versions: true,
+          limit: 0,
+          offset: 0,
+          toolkit: 'toolkit',
+          user_id: 'user_id',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Arcade.NotFoundError);
