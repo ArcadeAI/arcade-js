@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.15.0 (2025-12-08)
+
+Full Changelog: [v1.14.0...v1.15.0](https://github.com/ArcadeAI/arcade-js/compare/v1.14.0...v1.15.0)
+
+### Features
+
+* **api:** api update ([4ae49e4](https://github.com/ArcadeAI/arcade-js/commit/4ae49e44186d9205e2ce436b81c256d53a36af69))
+
+
+### Chores
+
+* upgrade TypeScript from 4.8.2 to 5.9.3 ([#149](https://github.com/ArcadeAI/arcade-js/issues/149)) ([604de43](https://github.com/ArcadeAI/arcade-js/commit/604de4339c958b97397ca13d2f81986510c85ef9))
+
 ## 1.14.0 (2025-11-06)
 
 Full Changelog: [v1.13.0...v1.14.0](https://github.com/ArcadeAI/arcade-js/compare/v1.13.0...v1.14.0)
