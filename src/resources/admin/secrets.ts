@@ -5,6 +5,17 @@ import * as Core from '../../core';
 
 export class Secrets extends APIResource {
   /**
+   * Create or update a secret
+   */
+  create(
+    secretKey: string,
+    body: SecretCreateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SecretResponse> {
+    return this._client.post(`/v1/admin/secrets/${secretKey}`, { body, ...options });
+  }
+
+  /**
    * List all secrets that are visible to the caller
    */
   list(options?: Core.RequestOptions): Core.APIPromise<SecretListResponse> {
@@ -60,6 +71,16 @@ export interface SecretListResponse {
   total_count?: number;
 }
 
+export interface SecretCreateParams {
+  value: string;
+
+  description?: string;
+}
+
 export declare namespace Secrets {
-  export { type SecretResponse as SecretResponse, type SecretListResponse as SecretListResponse };
+  export {
+    type SecretResponse as SecretResponse,
+    type SecretListResponse as SecretListResponse,
+    type SecretCreateParams as SecretCreateParams,
+  };
 }

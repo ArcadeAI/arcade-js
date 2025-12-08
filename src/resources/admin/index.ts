@@ -10,7 +10,7 @@ export {
   type AuthProviderCreateParams,
   type AuthProviderPatchParams,
 } from './auth-providers';
-export { Secrets, type SecretResponse, type SecretListResponse } from './secrets';
+export { Secrets, type SecretResponse, type SecretListResponse, type SecretCreateParams } from './secrets';
 export {
   UserConnectionResponsesOffsetPage,
   UserConnections,

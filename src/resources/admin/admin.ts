@@ -12,7 +12,7 @@ import {
   AuthProviders,
 } from './auth-providers';
 import * as SecretsAPI from './secrets';
-import { SecretListResponse, SecretResponse, Secrets } from './secrets';
+import { SecretCreateParams, SecretListResponse, SecretResponse, Secrets } from './secrets';
 import * as UserConnectionsAPI from './user-connections';
 import {
   UserConnectionListParams,
@@ -54,5 +54,6 @@ export declare namespace Admin {
     Secrets as Secrets,
     type SecretResponse as SecretResponse,
     type SecretListResponse as SecretListResponse,
+    type SecretCreateParams as SecretCreateParams,
   };
 }
