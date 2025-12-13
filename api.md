@@ -45,6 +45,7 @@ Types:
 
 Methods:
 
+- <code title="post /v1/admin/secrets/{secret_key}">client.admin.secrets.<a href="./src/resources/admin/secrets.ts">create</a>(secretKey, { ...params }) -> SecretResponse</code>
 - <code title="get /v1/admin/secrets">client.admin.secrets.<a href="./src/resources/admin/secrets.ts">list</a>() -> SecretListResponse</code>
 - <code title="delete /v1/admin/secrets/{secret_id}">client.admin.secrets.<a href="./src/resources/admin/secrets.ts">delete</a>(secretId) -> void</code>
 
