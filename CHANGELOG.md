@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.16.0 (2025-12-13)
+
+Full Changelog: [v1.15.0...v1.16.0](https://github.com/ArcadeAI/arcade-js/compare/v1.15.0...v1.16.0)
+
+### Features
+
+* **api:** api update ([b7ca2d2](https://github.com/ArcadeAI/arcade-js/commit/b7ca2d24fa2454a3ee1451728261ac716be89f12))
+
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([fc6bf5a](https://github.com/ArcadeAI/arcade-js/commit/fc6bf5a6ca643e49747cf4ce663493f7bcd42ff4))
+* **mcp:** return correct lines on typescript errors ([d9e2e83](https://github.com/ArcadeAI/arcade-js/commit/d9e2e8373bccfaf57fd379b305ed6b01629d02a0))
+
+
+### Chores
+
+* **internal:** codegen related update ([b0959a9](https://github.com/ArcadeAI/arcade-js/commit/b0959a9b2c05d9343e6eb34e86d007b47913ec25))
+* **internal:** codegen related update ([ca10d38](https://github.com/ArcadeAI/arcade-js/commit/ca10d381ea557762282aa9441b070a7abdfa9e2d))
+
 ## 1.15.0 (2025-12-08)
 
 Full Changelog: [v1.14.0...v1.15.0](https://github.com/ArcadeAI/arcade-js/compare/v1.14.0...v1.15.0)
