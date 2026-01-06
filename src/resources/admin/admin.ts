@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
+import { APIResource } from '../../core/resource';
 import * as AuthProvidersAPI from './auth-providers';
 import {
   AuthProviderCreateParams,
@@ -28,7 +28,6 @@ export class Admin extends APIResource {
 }
 
 Admin.UserConnections = UserConnections;
-Admin.UserConnectionResponsesOffsetPage = UserConnectionResponsesOffsetPage;
 Admin.AuthProviders = AuthProviders;
 Admin.Secrets = Secrets;
 
@@ -36,7 +35,7 @@ export declare namespace Admin {
   export {
     UserConnections as UserConnections,
     type UserConnectionResponse as UserConnectionResponse,
-    UserConnectionResponsesOffsetPage as UserConnectionResponsesOffsetPage,
+    type UserConnectionResponsesOffsetPage as UserConnectionResponsesOffsetPage,
     type UserConnectionListParams as UserConnectionListParams,
   };
 

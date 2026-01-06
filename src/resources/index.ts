@@ -21,8 +21,6 @@ export {
 } from './chat/chat';
 export { Health, type HealthSchema } from './health';
 export {
-  ToolExecutionsOffsetPage,
-  ToolDefinitionsOffsetPage,
   Tools,
   type AuthorizeToolRequest,
   type ExecuteToolRequest,
@@ -35,9 +33,10 @@ export {
   type ToolAuthorizeParams,
   type ToolExecuteParams,
   type ToolGetParams,
+  type ToolExecutionsOffsetPage,
+  type ToolDefinitionsOffsetPage,
 } from './tools/tools';
 export {
-  WorkerResponsesOffsetPage,
   Workers,
   type CreateWorkerRequest,
   type UpdateWorkerRequest,
@@ -47,4 +46,5 @@ export {
   type WorkerUpdateParams,
   type WorkerListParams,
   type WorkerToolsParams,
+  type WorkerResponsesOffsetPage,
 } from './workers';

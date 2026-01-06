@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { OffsetPage, type OffsetPageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Formatted extends APIResource {
   /**
@@ -11,20 +12,10 @@ export class Formatted extends APIResource {
    * toolkit, formatted for a specific provider
    */
   list(
-    query?: FormattedListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<FormattedListResponsesOffsetPage, FormattedListResponse>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<FormattedListResponsesOffsetPage, FormattedListResponse>;
-  list(
-    query: FormattedListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<FormattedListResponsesOffsetPage, FormattedListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/v1/formatted_tools', FormattedListResponsesOffsetPage, {
+    query: FormattedListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<FormattedListResponsesOffsetPage, FormattedListResponse> {
+    return this._client.getAPIList('/v1/formatted_tools', OffsetPage<FormattedListResponse>, {
       query,
       ...options,
     });
@@ -33,21 +24,16 @@ export class Formatted extends APIResource {
   /**
    * Returns the formatted tool specification for a specific tool, given a provider
    */
-  get(name: string, query?: FormattedGetParams, options?: Core.RequestOptions): Core.APIPromise<unknown>;
-  get(name: string, options?: Core.RequestOptions): Core.APIPromise<unknown>;
   get(
     name: string,
-    query: FormattedGetParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<unknown> {
-    if (isRequestOptions(query)) {
-      return this.get(name, {}, query);
-    }
-    return this._client.get(`/v1/formatted_tools/${name}`, { query, ...options });
+    query: FormattedGetParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<unknown> {
+    return this._client.get(path`/v1/formatted_tools/${name}`, { query, ...options });
   }
 }
 
-export class FormattedListResponsesOffsetPage extends OffsetPage<FormattedListResponse> {}
+export type FormattedListResponsesOffsetPage = OffsetPage<FormattedListResponse>;
 
 export type FormattedListResponse = unknown;
 
@@ -87,13 +73,11 @@ export interface FormattedGetParams {
   user_id?: string;
 }
 
-Formatted.FormattedListResponsesOffsetPage = FormattedListResponsesOffsetPage;
-
 export declare namespace Formatted {
   export {
     type FormattedListResponse as FormattedListResponse,
     type FormattedGetResponse as FormattedGetResponse,
-    FormattedListResponsesOffsetPage as FormattedListResponsesOffsetPage,
+    type FormattedListResponsesOffsetPage as FormattedListResponsesOffsetPage,
     type FormattedListParams as FormattedListParams,
     type FormattedGetParams as FormattedGetParams,
   };

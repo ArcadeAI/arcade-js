@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Arcade from '@arcadeai/arcadejs';
-import { Response } from 'node-fetch';
 
 const client = new Arcade({
   apiKey: 'My API Key',

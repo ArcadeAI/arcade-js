@@ -1,10 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import * as Core from '../core';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export const DEFAULT_LONGPOLL_WAIT_TIME = 45;
+export const DEFAULT_WAIT_FOR_COMPLETION_TIMEOUT = 60 * 1000 * 5; // 5 minutes
 
 /**
  * Error thrown when authorization-related operations fail
@@ -18,57 +20,16 @@ export class AuthorizationError extends Error {
 
 export class Auth extends APIResource {
   /**
-   * Starts the authorization process for a given provider and scopes.
-   * @param userId - The user ID for which authorization is being requested
-   * @param provider - The authorization provider (e.g., 'github', 'google', 'linkedin', 'microsoft', 'slack', 'spotify', 'x', 'zoom')
-   * @param options - Optional parameters
-   * @param options.providerType - The type of authorization provider. Defaults to 'oauth2'
-   * @param options.scopes - A list of scopes required for authorization, if any. Defaults to []
-   * @returns The authorization response
-   *
-   * Example:
-   * ```ts
-   * const authResponse = await client.auth.start("user@example.com", "github");
-   * ```
-   */
-  start(
-    userId: string,
-    provider: string,
-    options: AuthStartOptions = {},
-  ): Core.APIPromise<Shared.AuthorizationResponse> {
-    const { providerType = 'oauth2', scopes = [] } = options;
-
-    const authRequirement: AuthAuthorizeParams.AuthRequirement = {
-      provider_id: provider,
-      provider_type: providerType,
-      oauth2: {
-        scopes,
-      },
-    };
-
-    return this.authorize({
-      auth_requirement: authRequirement,
-      user_id: userId,
-    });
-  }
-
-  /**
    * Starts the authorization process for given authorization requirements
    */
-  authorize(
-    body: AuthAuthorizeParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizationResponse> {
+  authorize(body: AuthAuthorizeParams, options?: RequestOptions): APIPromise<Shared.AuthorizationResponse> {
     return this._client.post('/v1/auth/authorize', { body, ...options });
   }
 
   /**
    * Confirms a user's details during an authorization flow
    */
-  confirmUser(
-    body: AuthConfirmUserParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConfirmUserResponse> {
+  confirmUser(body: AuthConfirmUserParams, options?: RequestOptions): APIPromise<ConfirmUserResponse> {
     return this._client.post('/v1/auth/confirm_user', { body, ...options });
   }
 
@@ -77,10 +38,7 @@ export class Auth extends APIResource {
    * 'wait' param is present, does not respond until either the auth status becomes
    * completed or the timeout is reached.
    */
-  status(
-    query: AuthStatusParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizationResponse> {
+  status(query: AuthStatusParams, options?: RequestOptions): APIPromise<Shared.AuthorizationResponse> {
     return this._client.get('/v1/auth/status', { query, ...options });
   }
 
@@ -120,7 +78,10 @@ export class Auth extends APIResource {
       authResponse = authResponseOrId;
     }
 
-    while (authResponse.status !== 'completed') {
+    const startTime = Date.now();
+    const timeout = startTime + DEFAULT_WAIT_FOR_COMPLETION_TIMEOUT;
+
+    while (authResponse.status !== 'completed' && Date.now() < timeout) {
       authResponse = await this.status({
         id: authId,
         wait: DEFAULT_LONGPOLL_WAIT_TIME,
@@ -233,20 +194,6 @@ export interface AuthStatusParams {
   wait?: number;
 }
 
-export interface AuthStartOptions {
-  /**
-   * The type of authorization provider
-   * @default 'oauth2'
-   */
-  providerType?: string;
-
-  /**
-   * A list of scopes required for authorization
-   * @default []
-   */
-  scopes?: string[];
-}
-
 export declare namespace Auth {
   export {
     type AuthRequest as AuthRequest,
@@ -255,6 +202,5 @@ export declare namespace Auth {
     type AuthAuthorizeParams as AuthAuthorizeParams,
     type AuthConfirmUserParams as AuthConfirmUserParams,
     type AuthStatusParams as AuthStatusParams,
-    type AuthStartOptions as AuthStartOptions,
   };
 }
