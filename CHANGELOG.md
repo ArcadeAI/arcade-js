@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.17.0 (2026-01-06)
+
+Full Changelog: [v1.16.0...v1.17.0](https://github.com/ArcadeAI/arcade-js/compare/v1.16.0...v1.17.0)
+
+### Features
+
+* **api:** api update ([8cf9fac](https://github.com/ArcadeAI/arcade-js/commit/8cf9fac20a84e674c16c882ec1c66e52aba546c1))
+* **api:** api update ([8af5fca](https://github.com/ArcadeAI/arcade-js/commit/8af5fca46473c8b03e24c7acff24e2c361c1c4cf))
+
+
+### Chores
+
+* configure new SDK language ([93ea751](https://github.com/ArcadeAI/arcade-js/commit/93ea751205891216163ae78f9824478722336502))
+
+
+### Documentation
+
+* add more examples ([25a83dc](https://github.com/ArcadeAI/arcade-js/commit/25a83dc48ab4f17ad12f0fb6002d1be7f257867b))
+
 ## 1.16.0 (2025-12-13)
 
 Full Changelog: [v1.15.0...v1.16.0](https://github.com/ArcadeAI/arcade-js/compare/v1.15.0...v1.16.0)
