@@ -1,0 +1,6 @@
+{
+  "pkg": "@arcadeai/arcadejs",
+  "githubRepo": "https://github.com/ArcadeAI/arcade-js",
+  "clientClass": "Arcade",
+  "methods": []
+}

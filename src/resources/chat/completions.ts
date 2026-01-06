@@ -1,14 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as ChatAPI from './chat';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Completions extends APIResource {
   /**
-   * Talk to different LLM Chat APIs via OpenAI's API
+   * Interact with language models via OpenAI's chat completions API
    */
-  create(body: CompletionCreateParams, options?: Core.RequestOptions): Core.APIPromise<ChatAPI.ChatResponse> {
+  create(body: CompletionCreateParams, options?: RequestOptions): APIPromise<ChatAPI.ChatResponse> {
     return this._client.post('/v1/chat/completions', { body, ...options });
   }
 }

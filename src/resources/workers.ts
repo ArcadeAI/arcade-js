@@ -1,71 +1,61 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
 import * as ToolsAPI from './tools/tools';
 import { ToolDefinitionsOffsetPage } from './tools/tools';
-import { OffsetPage, type OffsetPageParams } from '../pagination';
+import { APIPromise } from '../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../core/pagination';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Workers extends APIResource {
   /**
    * Create a worker
    */
-  create(body: WorkerCreateParams, options?: Core.RequestOptions): Core.APIPromise<WorkerResponse> {
+  create(body: WorkerCreateParams, options?: RequestOptions): APIPromise<WorkerResponse> {
     return this._client.post('/v1/workers', { body, ...options });
   }
 
   /**
    * Update a worker
    */
-  update(
-    id: string,
-    body: WorkerUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<WorkerResponse> {
-    return this._client.patch(`/v1/workers/${id}`, { body, ...options });
+  update(id: string, body: WorkerUpdateParams, options?: RequestOptions): APIPromise<WorkerResponse> {
+    return this._client.patch(path`/v1/workers/${id}`, { body, ...options });
   }
 
   /**
    * List all workers with their definitions
    */
   list(
-    query?: WorkerListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<WorkerResponsesOffsetPage, WorkerResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<WorkerResponsesOffsetPage, WorkerResponse>;
-  list(
-    query: WorkerListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<WorkerResponsesOffsetPage, WorkerResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/v1/workers', WorkerResponsesOffsetPage, { query, ...options });
+    query: WorkerListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<WorkerResponsesOffsetPage, WorkerResponse> {
+    return this._client.getAPIList('/v1/workers', OffsetPage<WorkerResponse>, { query, ...options });
   }
 
   /**
    * Delete a worker
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/v1/workers/${id}`, {
+  delete(id: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/workers/${id}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
   /**
    * Get a worker by ID
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<WorkerResponse> {
-    return this._client.get(`/v1/workers/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<WorkerResponse> {
+    return this._client.get(path`/v1/workers/${id}`, options);
   }
 
   /**
    * Get the health of a worker
    */
-  health(id: string, options?: Core.RequestOptions): Core.APIPromise<WorkerHealthResponse> {
-    return this._client.get(`/v1/workers/${id}/health`, options);
+  health(id: string, options?: RequestOptions): APIPromise<WorkerHealthResponse> {
+    return this._client.get(path`/v1/workers/${id}/health`, options);
   }
 
   /**
@@ -73,29 +63,17 @@ export class Workers extends APIResource {
    */
   tools(
     id: string,
-    query?: WorkerToolsParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolsAPI.ToolDefinition>;
-  tools(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolsAPI.ToolDefinition>;
-  tools(
-    id: string,
-    query: WorkerToolsParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolDefinitionsOffsetPage, ToolsAPI.ToolDefinition> {
-    if (isRequestOptions(query)) {
-      return this.tools(id, {}, query);
-    }
-    return this._client.getAPIList(`/v1/workers/${id}/tools`, ToolDefinitionsOffsetPage, {
+    query: WorkerToolsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ToolDefinitionsOffsetPage, ToolsAPI.ToolDefinition> {
+    return this._client.getAPIList(path`/v1/workers/${id}/tools`, OffsetPage<ToolsAPI.ToolDefinition>, {
       query,
       ...options,
     });
   }
 }
 
-export class WorkerResponsesOffsetPage extends OffsetPage<WorkerResponse> {}
+export type WorkerResponsesOffsetPage = OffsetPage<WorkerResponse>;
 
 export interface CreateWorkerRequest {
   id: string;
@@ -421,15 +399,13 @@ export interface WorkerListParams extends OffsetPageParams {}
 
 export interface WorkerToolsParams extends OffsetPageParams {}
 
-Workers.WorkerResponsesOffsetPage = WorkerResponsesOffsetPage;
-
 export declare namespace Workers {
   export {
     type CreateWorkerRequest as CreateWorkerRequest,
     type UpdateWorkerRequest as UpdateWorkerRequest,
     type WorkerHealthResponse as WorkerHealthResponse,
     type WorkerResponse as WorkerResponse,
-    WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
+    type WorkerResponsesOffsetPage as WorkerResponsesOffsetPage,
     type WorkerCreateParams as WorkerCreateParams,
     type WorkerUpdateParams as WorkerUpdateParams,
     type WorkerListParams as WorkerListParams,
@@ -437,4 +413,4 @@ export declare namespace Workers {
   };
 }
 
-export { ToolDefinitionsOffsetPage };
+export { type ToolDefinitionsOffsetPage };

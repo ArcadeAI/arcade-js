@@ -1,36 +1,32 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as ToolsAPI from './tools';
 import { ToolExecutionsOffsetPage } from './tools';
-import { type OffsetPageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Scheduled extends APIResource {
   /**
    * Returns a page of scheduled tool executions
    */
   list(
-    query?: ScheduledListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolExecutionsOffsetPage, ToolsAPI.ToolExecution>;
-  list(options?: Core.RequestOptions): Core.PagePromise<ToolExecutionsOffsetPage, ToolsAPI.ToolExecution>;
-  list(
-    query: ScheduledListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ToolExecutionsOffsetPage, ToolsAPI.ToolExecution> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/v1/scheduled_tools', ToolExecutionsOffsetPage, { query, ...options });
+    query: ScheduledListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ToolExecutionsOffsetPage, ToolsAPI.ToolExecution> {
+    return this._client.getAPIList('/v1/scheduled_tools', OffsetPage<ToolsAPI.ToolExecution>, {
+      query,
+      ...options,
+    });
   }
 
   /**
    * Returns the details for a specific scheduled tool execution
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<ScheduledGetResponse> {
-    return this._client.get(`/v1/scheduled_tools/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<ScheduledGetResponse> {
+    return this._client.get(path`/v1/scheduled_tools/${id}`, options);
   }
 }
 
@@ -73,4 +69,4 @@ export declare namespace Scheduled {
   };
 }
 
-export { ToolExecutionsOffsetPage };
+export { type ToolExecutionsOffsetPage };
