@@ -9,7 +9,10 @@ const client = new Arcade({
 
 describe('resource auth', () => {
   test('authorize: only required params', async () => {
-    const responsePromise = client.auth.authorize({ auth_requirement: {}, user_id: 'user_id' });
+    const responsePromise = client.auth.authorize({
+      auth_requirement: {},
+      user_id: 'user_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

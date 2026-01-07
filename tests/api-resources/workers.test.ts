@@ -23,7 +23,12 @@ describe('resource workers', () => {
     const response = await client.workers.create({
       id: 'id',
       enabled: true,
-      http: { retry: 0, secret: 'secret', timeout: 1, uri: 'uri' },
+      http: {
+        retry: 0,
+        secret: 'secret',
+        timeout: 1,
+        uri: 'uri',
+      },
       mcp: {
         retry: 0,
         timeout: 1,
