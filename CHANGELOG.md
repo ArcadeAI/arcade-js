@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.0.0 (2026-01-27)
+
+Full Changelog: [v1.16.0...v2.0.0](https://github.com/ArcadeAI/arcade-js/compare/v1.16.0...v2.0.0)
+
+### Features
+
+* **api:** api update ([7cd3f79](https://github.com/ArcadeAI/arcade-js/commit/7cd3f792463bbb5b59c18fa17188054dd550eff2))
+* complete typescript migration ([#156](https://github.com/ArcadeAI/arcade-js/issues/156)) ([37cb22c](https://github.com/ArcadeAI/arcade-js/commit/37cb22ca58f06a1d634980a7c56c8ca32edd82d4))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([849f4ab](https://github.com/ArcadeAI/arcade-js/commit/849f4abb2e4fb9a4883c4c956016ae3fcb8cc865))
+* **ci:** upgrade `actions/github-script` ([816d0dc](https://github.com/ArcadeAI/arcade-js/commit/816d0dcc4b80c4f072246141700472e7c542c3cb))
+* **internal:** update `actions/checkout` version ([4d7660f](https://github.com/ArcadeAI/arcade-js/commit/4d7660f04fff9feee30d9f2a5e2c258db3a55cd5))
+* **internal:** upgrade babel, qs, js-yaml ([3027d67](https://github.com/ArcadeAI/arcade-js/commit/3027d677183afb53900af7caf2d22bda2cb2ff05))
+* resolve module exports for lib ([c6b975e](https://github.com/ArcadeAI/arcade-js/commit/c6b975ee89990301fee80813801332d4ab4d4a6e))
+* upgrade lock file ([01e8fdf](https://github.com/ArcadeAI/arcade-js/commit/01e8fdfff2930856cada1fd72e65257bbec017a9))
+
 ## 1.16.0 (2025-12-13)
 
 Full Changelog: [v1.15.0...v1.16.0](https://github.com/ArcadeAI/arcade-js/compare/v1.15.0...v1.16.0)
