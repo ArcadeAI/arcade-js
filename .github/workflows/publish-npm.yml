@@ -21,9 +21,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install dependencies
         run: |
-          yarn install
+          pnpm install
 
       - name: Publish to NPM
         run: |
