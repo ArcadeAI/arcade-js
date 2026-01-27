@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
+import { APIResource } from '../core/resource';
 import * as Shared from './shared';
-import * as Core from '../core';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 export const DEFAULT_LONGPOLL_WAIT_TIME = 45;
 
@@ -35,7 +36,7 @@ export class Auth extends APIResource {
     userId: string,
     provider: string,
     options: AuthStartOptions = {},
-  ): Core.APIPromise<Shared.AuthorizationResponse> {
+  ): APIPromise<Shared.AuthorizationResponse> {
     const { providerType = 'oauth2', scopes = [] } = options;
 
     const authRequirement: AuthAuthorizeParams.AuthRequirement = {
@@ -55,20 +56,14 @@ export class Auth extends APIResource {
   /**
    * Starts the authorization process for given authorization requirements
    */
-  authorize(
-    body: AuthAuthorizeParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizationResponse> {
+  authorize(body: AuthAuthorizeParams, options?: RequestOptions): APIPromise<Shared.AuthorizationResponse> {
     return this._client.post('/v1/auth/authorize', { body, ...options });
   }
 
   /**
    * Confirms a user's details during an authorization flow
    */
-  confirmUser(
-    body: AuthConfirmUserParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConfirmUserResponse> {
+  confirmUser(body: AuthConfirmUserParams, options?: RequestOptions): APIPromise<ConfirmUserResponse> {
     return this._client.post('/v1/auth/confirm_user', { body, ...options });
   }
 
@@ -77,10 +72,7 @@ export class Auth extends APIResource {
    * 'wait' param is present, does not respond until either the auth status becomes
    * completed or the timeout is reached.
    */
-  status(
-    query: AuthStatusParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizationResponse> {
+  status(query: AuthStatusParams, options?: RequestOptions): APIPromise<Shared.AuthorizationResponse> {
     return this._client.get('/v1/auth/status', { query, ...options });
   }
 

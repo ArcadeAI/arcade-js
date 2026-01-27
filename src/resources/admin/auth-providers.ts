@@ -1,49 +1,48 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class AuthProviders extends APIResource {
   /**
    * Create a new auth provider
    */
-  create(
-    body: AuthProviderCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AuthProviderResponse> {
+  create(body: AuthProviderCreateParams, options?: RequestOptions): APIPromise<AuthProviderResponse> {
     return this._client.post('/v1/admin/auth_providers', { body, ...options });
   }
 
   /**
    * List a page of auth providers that are available to the caller
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<AuthProviderListResponse> {
+  list(options?: RequestOptions): APIPromise<AuthProviderListResponse> {
     return this._client.get('/v1/admin/auth_providers', options);
   }
 
   /**
    * Delete a specific auth provider
    */
-  delete(id: string, options?: Core.RequestOptions): Core.APIPromise<AuthProviderResponse> {
-    return this._client.delete(`/v1/admin/auth_providers/${id}`, options);
+  delete(id: string, options?: RequestOptions): APIPromise<AuthProviderResponse> {
+    return this._client.delete(path`/v1/admin/auth_providers/${id}`, options);
   }
 
   /**
    * Get the details of a specific auth provider
    */
-  get(id: string, options?: Core.RequestOptions): Core.APIPromise<AuthProviderResponse> {
-    return this._client.get(`/v1/admin/auth_providers/${id}`, options);
+  get(id: string, options?: RequestOptions): APIPromise<AuthProviderResponse> {
+    return this._client.get(path`/v1/admin/auth_providers/${id}`, options);
   }
 
   /**
    * Patch an existing auth provider
    */
   patch(
-    pathId: string,
+    pathID: string,
     body: AuthProviderPatchParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AuthProviderResponse> {
-    return this._client.patch(`/v1/admin/auth_providers/${pathId}`, { body, ...options });
+    options?: RequestOptions,
+  ): APIPromise<AuthProviderResponse> {
+    return this._client.patch(path`/v1/admin/auth_providers/${pathID}`, { body, ...options });
   }
 }
 

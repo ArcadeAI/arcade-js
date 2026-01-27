@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Arcade from '@arcadeai/arcadejs';
-import { Response } from 'node-fetch';
 
 const client = new Arcade({
   apiKey: 'My API Key',
@@ -18,12 +17,5 @@ describe('resource health', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('check: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.health.check({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Arcade.NotFoundError,
-    );
   });
 });

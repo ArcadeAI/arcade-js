@@ -1,34 +1,33 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Secrets extends APIResource {
   /**
    * Create or update a secret
    */
-  create(
-    secretKey: string,
-    body: SecretCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SecretResponse> {
-    return this._client.post(`/v1/admin/secrets/${secretKey}`, { body, ...options });
+  create(secretKey: string, body: SecretCreateParams, options?: RequestOptions): APIPromise<SecretResponse> {
+    return this._client.post(path`/v1/admin/secrets/${secretKey}`, { body, ...options });
   }
 
   /**
    * List all secrets that are visible to the caller
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<SecretListResponse> {
+  list(options?: RequestOptions): APIPromise<SecretListResponse> {
     return this._client.get('/v1/admin/secrets', options);
   }
 
   /**
    * Delete a secret by its ID
    */
-  delete(secretId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/v1/admin/secrets/${secretId}`, {
+  delete(secretID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/v1/admin/secrets/${secretID}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
