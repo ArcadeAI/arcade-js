@@ -31,7 +31,12 @@ describe('resource userConnections', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.admin.userConnections.list(
-        { limit: 0, offset: 0, provider: { id: 'id' }, user: { id: 'id' } },
+        {
+          limit: 0,
+          offset: 0,
+          provider: { id: 'id' },
+          user: { id: 'id' },
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Arcade.NotFoundError);
