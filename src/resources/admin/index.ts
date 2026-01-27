@@ -12,8 +12,8 @@ export {
 } from './auth-providers';
 export { Secrets, type SecretResponse, type SecretListResponse, type SecretCreateParams } from './secrets';
 export {
-  UserConnectionResponsesOffsetPage,
   UserConnections,
   type UserConnectionResponse,
   type UserConnectionListParams,
+  type UserConnectionResponsesOffsetPage,
 } from './user-connections';

@@ -8,7 +8,6 @@ import {
   toZodToolSet,
 } from '@arcadeai/arcadejs/lib/zod/zod';
 import { PermissionDeniedError } from '@arcadeai/arcadejs/error';
-import type { Headers } from '@arcadeai/arcadejs/core';
 import {
   mockAuthorizationResponse,
   mockExecuteResponse,
