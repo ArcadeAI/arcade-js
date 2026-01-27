@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0 (2026-01-27)
+
+Full Changelog: [v2.0.0...v2.1.0](https://github.com/ArcadeAI/arcade-js/compare/v2.0.0...v2.1.0)
+
+### Features
+
+* **api:** api update ([ae91d65](https://github.com/ArcadeAI/arcade-js/commit/ae91d65e5d580188282efe19788d0a297f2de0e6))
+* **zod:** add zod as a dev dependency ([46289b4](https://github.com/ArcadeAI/arcade-js/commit/46289b48ad9ec6c342d25019b7f319621f91188a))
+
 ## 2.0.0 (2026-01-27)
 
 Full Changelog: [v1.16.0...v2.0.0](https://github.com/ArcadeAI/arcade-js/compare/v1.16.0...v2.0.0)
