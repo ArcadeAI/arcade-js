@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.1.1 (2026-02-03)
+
+Full Changelog: [v2.1.0...v2.1.1](https://github.com/ArcadeAI/arcade-js/compare/v2.1.0...v2.1.1)
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([78fa958](https://github.com/ArcadeAI/arcade-js/commit/78fa958eb37992ffc847c3ffe4313cc96a781a42))
+
+
+### Chores
+
+* **client:** do not parse responses with empty content-length ([68c3094](https://github.com/ArcadeAI/arcade-js/commit/68c309464f01b3934446e7ad5c5b556601460422))
+
 ## 2.1.0 (2026-01-27)
 
 Full Changelog: [v2.0.0...v2.1.0](https://github.com/ArcadeAI/arcade-js/compare/v2.0.0...v2.1.0)
