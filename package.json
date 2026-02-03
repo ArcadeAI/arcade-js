@@ -1,6 +1,6 @@
 {
   "name": "@arcadeai/arcadejs",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "The official TypeScript library for the Arcade API",
   "author": "Arcade <dev@arcade.dev>",
   "types": "dist/index.d.ts",
