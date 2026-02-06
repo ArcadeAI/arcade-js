@@ -8,7 +8,7 @@
   "type": "commonjs",
   "repository": "github:ArcadeAI/arcade-js",
   "license": "MIT",
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.27.0",
   "files": [
     "**/*"
   ],
