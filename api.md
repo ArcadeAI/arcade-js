@@ -129,7 +129,7 @@ Types:
 Methods:
 
 - <code title="get /v1/formatted_tools">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">list</a>({ ...params }) -> FormattedListResponsesOffsetPage</code>
-- <code title="get /v1/formatted_tools/{name}">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">get</a>(name, { ...params }) -> unknown</code>
+- <code title="get /v1/formatted_tools/{name}">client.tools.formatted.<a href="./src/resources/tools/formatted.ts">get</a>(name, { ...params }) -> FormattedGetResponse</code>
 
 # Workers
 
