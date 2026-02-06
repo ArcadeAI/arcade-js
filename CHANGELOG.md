@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.2.0 (2026-02-06)
+
+Full Changelog: [v2.1.1...v2.2.0](https://github.com/ArcadeAI/arcade-js/compare/v2.1.1...v2.2.0)
+
+### Features
+
+* **api:** api update ([bf01d02](https://github.com/ArcadeAI/arcade-js/commit/bf01d02cfddbacf1270c1372461c08b38c322d6f))
+
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([9c4802e](https://github.com/ArcadeAI/arcade-js/commit/9c4802e63244418cf2e04f58c2c2e34b8735ba78))
+
+
+### Chores
+
+* **client:** restructure abort controller binding ([1a83b30](https://github.com/ArcadeAI/arcade-js/commit/1a83b3057f9879f7eb0c7252d0baadbd479e51bf))
+* **internal:** fix pagination internals not accepting option promises ([6f96352](https://github.com/ArcadeAI/arcade-js/commit/6f96352e7736a1c9c7776f6c5917ec6ce5356040))
+* **internal:** upgrade pnpm ([332eae9](https://github.com/ArcadeAI/arcade-js/commit/332eae981cc04b4611cd47d354636bc66dd9d8f0))
+
 ## 2.1.1 (2026-02-03)
 
 Full Changelog: [v2.1.0...v2.1.1](https://github.com/ArcadeAI/arcade-js/compare/v2.1.0...v2.1.1)
