@@ -1,6 +1,6 @@
 {
 	"name": "@arcadeai/arcadejs",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"description": "The official TypeScript library for the Arcade API",
 	"author": "Arcade <dev@arcade.dev>",
 	"types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
 	"type": "commonjs",
 	"repository": "github:ArcadeAI/arcade-js",
 	"license": "MIT",
-	"packageManager": "pnpm@10.24.0",
+	"packageManager": "pnpm@10.27.0",
 	"files": [
 		"**/*"
 	],
