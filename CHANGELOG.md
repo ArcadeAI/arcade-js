@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.3.0 (2026-02-12)
+
+Full Changelog: [v2.2.0...v2.3.0](https://github.com/ArcadeAI/arcade-js/compare/v2.2.0...v2.3.0)
+
+### Features
+
+* **api:** api update ([ae5b1fa](https://github.com/ArcadeAI/arcade-js/commit/ae5b1fa2ef81c79c601e35881f94182cbcc84045))
+
+
+### Chores
+
+* **internal:** avoid type checking errors with ts-reset ([f8a5f85](https://github.com/ArcadeAI/arcade-js/commit/f8a5f85d7d81dc26a4b78c4814930f942a88f0e2))
+
 ## 2.2.0 (2026-02-06)
 
 Full Changelog: [v2.1.1...v2.2.0](https://github.com/ArcadeAI/arcade-js/compare/v2.1.1...v2.2.0)
