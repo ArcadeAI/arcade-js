@@ -55,25 +55,15 @@ export interface UserConnectionResponse {
 }
 
 export interface UserConnectionListParams extends OffsetPageParams {
-  provider?: UserConnectionListParams.Provider;
+  /**
+   * Provider ID
+   */
+  provider_id?: string;
 
-  user?: UserConnectionListParams.User;
-}
-
-export namespace UserConnectionListParams {
-  export interface Provider {
-    /**
-     * Provider ID
-     */
-    id?: string;
-  }
-
-  export interface User {
-    /**
-     * User ID
-     */
-    id?: string;
-  }
+  /**
+   * User ID
+   */
+  user_id?: string;
 }
 
 export declare namespace UserConnections {
