@@ -222,8 +222,6 @@ export namespace WorkerResponse {
 
       exists?: boolean;
 
-      hint?: string;
-
       value?: string;
     }
   }
@@ -261,8 +259,6 @@ export namespace WorkerResponse {
 
         exists?: boolean;
 
-        hint?: string;
-
         value?: string;
       }
     }
@@ -273,8 +269,6 @@ export namespace WorkerResponse {
       editable?: boolean;
 
       exists?: boolean;
-
-      hint?: string;
 
       value?: string;
     }
