@@ -15,6 +15,11 @@ export class Health extends APIResource {
 
 export interface HealthSchema {
   healthy?: boolean;
+
+  /**
+   * Optional: explains why unhealthy
+   */
+  reason?: string;
 }
 
 export declare namespace Health {
