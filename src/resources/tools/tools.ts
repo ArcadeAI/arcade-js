@@ -214,6 +214,8 @@ export interface ToolDefinition {
 
   formatted_schema?: { [key: string]: unknown };
 
+  metadata?: ToolDefinition.Metadata;
+
   output?: ToolDefinition.Output;
 
   requirements?: ToolDefinition.Requirements;
@@ -244,6 +246,32 @@ export namespace ToolDefinition {
     description?: string;
 
     version?: string;
+  }
+
+  export interface Metadata {
+    behavior?: Metadata.Behavior;
+
+    classification?: Metadata.Classification;
+
+    extras?: { [key: string]: unknown };
+  }
+
+  export namespace Metadata {
+    export interface Behavior {
+      destructive?: boolean;
+
+      idempotent?: boolean;
+
+      open_world?: boolean;
+
+      operations?: Array<string>;
+
+      read_only?: boolean;
+    }
+
+    export interface Classification {
+      service_domains?: Array<string>;
+    }
   }
 
   export interface Output {
