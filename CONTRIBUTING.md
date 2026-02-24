@@ -60,7 +60,7 @@ $ yarn link @arcadeai/arcadejs
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global @arcadeai/arcadejs
+$ pnpm link --global @arcadeai/arcadejs
 ```
 
 ## Running tests
