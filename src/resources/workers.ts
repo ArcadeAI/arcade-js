@@ -248,6 +248,8 @@ export namespace WorkerResponse {
 
       client_secret?: Oauth2.ClientSecret;
 
+      external_id?: string;
+
       redirect_uri?: string;
 
       supported_scopes?: Array<string>;
