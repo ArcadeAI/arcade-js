@@ -249,6 +249,8 @@ export namespace WorkerResponse {
       client_secret?: Oauth2.ClientSecret;
 
       redirect_uri?: string;
+
+      supported_scopes?: Array<string>;
     }
 
     export namespace Oauth2 {
