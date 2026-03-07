@@ -34,7 +34,7 @@ Methods:
 - <code title="get /v1/admin/auth_providers">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">list</a>() -> AuthProviderListResponse</code>
 - <code title="delete /v1/admin/auth_providers/{id}">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">delete</a>(id) -> AuthProviderResponse</code>
 - <code title="get /v1/admin/auth_providers/{id}">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">get</a>(id) -> AuthProviderResponse</code>
-- <code title="patch /v1/admin/auth_providers/{id}">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">patch</a>(pathID, { ...params }) -> AuthProviderResponse</code>
+- <code title="patch /v1/admin/auth_providers/{id}">client.admin.authProviders.<a href="./src/resources/admin/auth-providers.ts">patch</a>(id, { ...params }) -> AuthProviderResponse</code>
 
 ## Secrets
 
