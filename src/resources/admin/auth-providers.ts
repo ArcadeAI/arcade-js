@@ -38,11 +38,11 @@ export class AuthProviders extends APIResource {
    * Patch an existing auth provider
    */
   patch(
-    pathID: string,
+    id: string,
     body: AuthProviderPatchParams,
     options?: RequestOptions,
   ): APIPromise<AuthProviderResponse> {
-    return this._client.patch(path`/v1/admin/auth_providers/${pathID}`, { body, ...options });
+    return this._client.patch(path`/v1/admin/auth_providers/${id}`, { body, ...options });
   }
 }
 
@@ -694,7 +694,7 @@ export namespace AuthProviderCreateParams {
 }
 
 export interface AuthProviderPatchParams {
-  body_id?: string;
+  id?: string;
 
   description?: string;
 
