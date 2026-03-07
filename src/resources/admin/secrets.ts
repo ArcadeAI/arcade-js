@@ -41,6 +41,8 @@ export interface SecretResponse {
 
   description?: string;
 
+  hint?: string;
+
   key?: string;
 
   last_accessed_at?: string;

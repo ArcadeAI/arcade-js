@@ -222,6 +222,8 @@ export namespace WorkerResponse {
 
       exists?: boolean;
 
+      hint?: string;
+
       value?: string;
     }
   }
@@ -248,11 +250,7 @@ export namespace WorkerResponse {
 
       client_secret?: Oauth2.ClientSecret;
 
-      external_id?: string;
-
       redirect_uri?: string;
-
-      supported_scopes?: Array<string>;
     }
 
     export namespace Oauth2 {
@@ -262,6 +260,8 @@ export namespace WorkerResponse {
         editable?: boolean;
 
         exists?: boolean;
+
+        hint?: string;
 
         value?: string;
       }
@@ -273,6 +273,8 @@ export namespace WorkerResponse {
       editable?: boolean;
 
       exists?: boolean;
+
+      hint?: string;
 
       value?: string;
     }

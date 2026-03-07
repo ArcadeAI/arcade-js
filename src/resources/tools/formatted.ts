@@ -28,16 +28,16 @@ export class Formatted extends APIResource {
     name: string,
     query: FormattedGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<FormattedGetResponse> {
+  ): APIPromise<unknown> {
     return this._client.get(path`/v1/formatted_tools/${name}`, { query, ...options });
   }
 }
 
 export type FormattedListResponsesOffsetPage = OffsetPage<FormattedListResponse>;
 
-export type FormattedListResponse = { [key: string]: unknown };
+export type FormattedListResponse = unknown;
 
-export type FormattedGetResponse = { [key: string]: unknown };
+export type FormattedGetResponse = unknown;
 
 export interface FormattedListParams extends OffsetPageParams {
   /**

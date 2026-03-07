@@ -285,6 +285,8 @@ export namespace AuthProviderResponse {
 
       exists?: boolean;
 
+      hint?: string;
+
       value?: string;
     }
 
