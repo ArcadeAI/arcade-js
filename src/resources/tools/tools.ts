@@ -163,6 +163,8 @@ export namespace ExecuteToolResponse {
         | 'TOOL_RUNTIME_RETRY'
         | 'TOOL_RUNTIME_CONTEXT_REQUIRED'
         | 'TOOL_RUNTIME_FATAL'
+        | 'CONTEXT_CHECK_FAILED'
+        | 'CONTEXT_DENIED'
         | 'UPSTREAM_RUNTIME_BAD_REQUEST'
         | 'UPSTREAM_RUNTIME_AUTH_ERROR'
         | 'UPSTREAM_RUNTIME_NOT_FOUND'
@@ -212,6 +214,8 @@ export interface ToolDefinition {
 
   formatted_schema?: { [key: string]: unknown };
 
+  metadata?: ToolDefinition.Metadata;
+
   output?: ToolDefinition.Output;
 
   requirements?: ToolDefinition.Requirements;
@@ -242,6 +246,32 @@ export namespace ToolDefinition {
     description?: string;
 
     version?: string;
+  }
+
+  export interface Metadata {
+    behavior?: Metadata.Behavior;
+
+    classification?: Metadata.Classification;
+
+    extras?: { [key: string]: unknown };
+  }
+
+  export namespace Metadata {
+    export interface Behavior {
+      destructive?: boolean;
+
+      idempotent?: boolean;
+
+      open_world?: boolean;
+
+      operations?: Array<string>;
+
+      read_only?: boolean;
+    }
+
+    export interface Classification {
+      service_domains?: Array<string>;
+    }
   }
 
   export interface Output {
@@ -359,6 +389,8 @@ export namespace ToolExecutionAttempt {
         | 'TOOL_RUNTIME_RETRY'
         | 'TOOL_RUNTIME_CONTEXT_REQUIRED'
         | 'TOOL_RUNTIME_FATAL'
+        | 'CONTEXT_CHECK_FAILED'
+        | 'CONTEXT_DENIED'
         | 'UPSTREAM_RUNTIME_BAD_REQUEST'
         | 'UPSTREAM_RUNTIME_AUTH_ERROR'
         | 'UPSTREAM_RUNTIME_NOT_FOUND'

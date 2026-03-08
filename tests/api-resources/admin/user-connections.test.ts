@@ -26,8 +26,8 @@ describe('resource userConnections', () => {
         {
           limit: 0,
           offset: 0,
-          provider: { id: 'id' },
-          user: { id: 'id' },
+          provider_id: 'provider_id',
+          user_id: 'user_id',
         },
         { path: '/_stainless_unknown_path' },
       ),
