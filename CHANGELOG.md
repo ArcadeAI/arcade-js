@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.3.0 (2026-03-10)
+
+Full Changelog: [v2.2.0...v2.3.0](https://github.com/ArcadeAI/arcade-js/compare/v2.2.0...v2.3.0)
+
+### Features
+
+* **api:** api update ([3a33fba](https://github.com/ArcadeAI/arcade-js/commit/3a33fba2612584d1d661feefad8ae2ea10dd4295))
+* **api:** api update ([e24ee38](https://github.com/ArcadeAI/arcade-js/commit/e24ee387c0a8a0c509705589091185f98dc23ac8))
+* **api:** api update ([c8c617c](https://github.com/ArcadeAI/arcade-js/commit/c8c617cae35600af227a3ca075eb26c38edd46c9))
+* **api:** api update ([57c8ca8](https://github.com/ArcadeAI/arcade-js/commit/57c8ca8ad5cb81d4f0cd4105fdc0d15da21cd34b))
+* **api:** api update ([6f576da](https://github.com/ArcadeAI/arcade-js/commit/6f576da74d4f4f32d983734ffc109f2ceacef9d4))
+* **api:** api update ([ae5b1fa](https://github.com/ArcadeAI/arcade-js/commit/ae5b1fa2ef81c79c601e35881f94182cbcc84045))
+
+
+### Bug Fixes
+
+* **client:** improve parameter names ([8c8ce46](https://github.com/ArcadeAI/arcade-js/commit/8c8ce46f460c3854de6a014b6da13c3aad51b7df))
+* **client:** preserve URL params already embedded in path ([c913588](https://github.com/ArcadeAI/arcade-js/commit/c9135887a88d7663fc1e5cc091a588321b6196de))
+* **docs/contributing:** correct pnpm link command ([5bb28f3](https://github.com/ArcadeAI/arcade-js/commit/5bb28f3721be68fac136679a037ba08a8e8ccc72))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([76b537d](https://github.com/ArcadeAI/arcade-js/commit/76b537d85bd76604e2b207f69360cb308a0e1153))
+* **internal/client:** fix form-urlencoded requests ([f35400b](https://github.com/ArcadeAI/arcade-js/commit/f35400b09bca0e9a21cbc9f6ce2c0de683201485))
+* **internal:** avoid type checking errors with ts-reset ([f8a5f85](https://github.com/ArcadeAI/arcade-js/commit/f8a5f85d7d81dc26a4b78c4814930f942a88f0e2))
+* **internal:** codegen related update ([a6bd6e2](https://github.com/ArcadeAI/arcade-js/commit/a6bd6e2e49c7f96ac1752568bc724b71e791a092))
+* **internal:** move stringifyQuery implementation to internal function ([abfec4e](https://github.com/ArcadeAI/arcade-js/commit/abfec4e975209d031a81b6897a5f8507c0373207))
+* **internal:** update dependencies to address dependabot vulnerabilities ([a3c32b7](https://github.com/ArcadeAI/arcade-js/commit/a3c32b7748635630d37cbdbdeed9640266bb0016))
+* **internal:** upgrade pnpm version ([ec9d5ba](https://github.com/ArcadeAI/arcade-js/commit/ec9d5ba110c35087e5a937a72b289df59a02dba7))
+* **test:** do not count install time for mock server timeout ([d5cb1f1](https://github.com/ArcadeAI/arcade-js/commit/d5cb1f15a909c98f71ec086e609ef76a572b72fb))
+* update mock server docs ([b968677](https://github.com/ArcadeAI/arcade-js/commit/b96867785215f3a67a532000e414c1beaad7c37a))
+
 ## 2.2.0 (2026-02-06)
 
 Full Changelog: [v2.1.1...v2.2.0](https://github.com/ArcadeAI/arcade-js/compare/v2.1.1...v2.2.0)
