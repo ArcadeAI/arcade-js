@@ -24,6 +24,7 @@ describe('resource formatted', () => {
     await expect(
       client.tools.formatted.list(
         {
+          filter: 'filter',
           format: 'format',
           include_all_versions: true,
           limit: 0,
