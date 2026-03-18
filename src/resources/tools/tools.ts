@@ -25,7 +25,7 @@ export class Tools extends APIResource {
 
   /**
    * Returns a page of tools from the engine configuration, optionally filtered by
-   * toolkit
+   * toolkit and/or metadata
    */
   list(
     query: ToolListParams | null | undefined = {},
@@ -434,6 +434,14 @@ export interface ValueSchema {
 }
 
 export interface ToolListParams extends OffsetPageParams {
+  /**
+   * JSON metadata filter. Array fields (service_domains, operations): shorthand
+   * array or object with any_of/all_of/none_of operators (case-insensitive). Boolean
+   * fields: read_only, destructive, idempotent, open_world. Extras: case-sensitive
+   * key-value subset match.
+   */
+  filter?: string;
+
   /**
    * Include all versions of each tool
    */

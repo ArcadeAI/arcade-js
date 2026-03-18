@@ -24,6 +24,7 @@ describe('resource tools', () => {
     await expect(
       client.tools.list(
         {
+          filter: 'filter',
           include_all_versions: true,
           include_format: ['arcade'],
           limit: 0,
