@@ -227,9 +227,13 @@ export namespace WorkerResponse {
   }
 
   export interface Mcp {
+    external_id?: string;
+
     headers?: { [key: string]: string };
 
     oauth2?: Mcp.Oauth2;
+
+    redirect_uri?: string;
 
     retry?: number;
 
