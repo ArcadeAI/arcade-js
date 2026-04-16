@@ -172,6 +172,9 @@ export namespace ExecuteToolResponse {
         | 'UPSTREAM_RUNTIME_RATE_LIMIT'
         | 'UPSTREAM_RUNTIME_SERVER_ERROR'
         | 'UPSTREAM_RUNTIME_UNMAPPED'
+        | 'NETWORK_TRANSPORT_RUNTIME_TIMEOUT'
+        | 'NETWORK_TRANSPORT_RUNTIME_UNREACHABLE'
+        | 'NETWORK_TRANSPORT_RUNTIME_UNMAPPED'
         | 'UNKNOWN';
 
       message: string;
@@ -398,6 +401,9 @@ export namespace ToolExecutionAttempt {
         | 'UPSTREAM_RUNTIME_RATE_LIMIT'
         | 'UPSTREAM_RUNTIME_SERVER_ERROR'
         | 'UPSTREAM_RUNTIME_UNMAPPED'
+        | 'NETWORK_TRANSPORT_RUNTIME_TIMEOUT'
+        | 'NETWORK_TRANSPORT_RUNTIME_UNREACHABLE'
+        | 'NETWORK_TRANSPORT_RUNTIME_UNMAPPED'
         | 'UNKNOWN';
 
       message: string;
