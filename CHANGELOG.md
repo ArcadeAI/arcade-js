@@ -1,5 +1,36 @@
 # Changelog
 
+## 2.4.0 (2026-04-18)
+
+Full Changelog: [v2.3.0...v2.4.0](https://github.com/ArcadeAI/arcade-js/compare/v2.3.0...v2.4.0)
+
+### Features
+
+* **api:** api update ([bcfa4e5](https://github.com/ArcadeAI/arcade-js/commit/bcfa4e57fdc0260ca78694b3a343f231fa788ebd))
+* **api:** api update ([c055166](https://github.com/ArcadeAI/arcade-js/commit/c055166eebae302570c99ba00ebb57b9d0a9b74f))
+* **api:** api update ([86fb9b7](https://github.com/ArcadeAI/arcade-js/commit/86fb9b73eba443187a68ce2ae672ccc8f350fe82))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([6eb86b4](https://github.com/ArcadeAI/arcade-js/commit/6eb86b474dc089af4619655d6b9ee8a194a042a0))
+* **internal:** codegen related update ([03c83ef](https://github.com/ArcadeAI/arcade-js/commit/03c83ef0b7796991d96ab6a20f657c1967525ea4))
+* **internal:** tweak CI branches ([a4f5461](https://github.com/ArcadeAI/arcade-js/commit/a4f5461fbba69b9c0461673ed4cf20c553a9840c))
+* **internal:** update gitignore ([42e376c](https://github.com/ArcadeAI/arcade-js/commit/42e376c96239d31b92c353743ea7d2602fe3ef5d))
+* **internal:** update multipart form array serialization ([1fc185b](https://github.com/ArcadeAI/arcade-js/commit/1fc185b9e695e67c6a31427091733bb14ba5b7e9))
+* **tests:** bump steady to v0.19.4 ([5b281e0](https://github.com/ArcadeAI/arcade-js/commit/5b281e041629c427dd0b1150eb35c0e71032aefd))
+* **tests:** bump steady to v0.19.5 ([4a7fbca](https://github.com/ArcadeAI/arcade-js/commit/4a7fbca94e370ed9d919182dce7ff2b4cf143b70))
+* **tests:** bump steady to v0.19.6 ([0c0518c](https://github.com/ArcadeAI/arcade-js/commit/0c0518c7c0a73ea8a6827dfd85402875a28fc13b))
+* **tests:** bump steady to v0.19.7 ([b95d4df](https://github.com/ArcadeAI/arcade-js/commit/b95d4df4d2ada95dcc8f06ef233f15379887f267))
+* **tests:** bump steady to v0.20.1 ([f6bbd99](https://github.com/ArcadeAI/arcade-js/commit/f6bbd99b9f1a1bcd160957f47bff5180f6447170))
+* **tests:** bump steady to v0.20.2 ([ad56f20](https://github.com/ArcadeAI/arcade-js/commit/ad56f20c6fee1f7164fed37033b9f45b794f0b4f))
+* **tests:** bump steady to v0.22.1 ([36d8fa3](https://github.com/ArcadeAI/arcade-js/commit/36d8fa3522dcab9af9c21f832ace15ad1b93f74a))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([6d28088](https://github.com/ArcadeAI/arcade-js/commit/6d280888d29864c3230c1e1c30274c15cd3dc63d))
+
 ## 2.3.0 (2026-03-10)
 
 Full Changelog: [v2.2.0...v2.3.0](https://github.com/ArcadeAI/arcade-js/compare/v2.2.0...v2.3.0)
