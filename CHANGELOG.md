@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.4.1 (2026-04-21)
+
+Full Changelog: [v2.4.0...v2.4.1](https://github.com/ArcadeAI/arcade-js/compare/v2.4.0...v2.4.1)
+
+### Chores
+
+* fix package.json indentation and add pnpm security overrides ([#163](https://github.com/ArcadeAI/arcade-js/issues/163)) ([a3afb66](https://github.com/ArcadeAI/arcade-js/commit/a3afb664565887c416c834bd21c361514b992eda))
+
 ## 2.4.0 (2026-04-18)
 
 Full Changelog: [v2.3.0...v2.4.0](https://github.com/ArcadeAI/arcade-js/compare/v2.3.0...v2.4.0)
