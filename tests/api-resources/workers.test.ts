@@ -26,12 +26,12 @@ describe('resource workers', () => {
       http: {
         retry: 0,
         secret: 'secret',
-        timeout: 1,
+        timeout: 0,
         uri: 'uri',
       },
       mcp: {
         retry: 0,
-        timeout: 1,
+        timeout: 0,
         uri: 'uri',
         headers: { foo: 'string' },
         oauth2: {
