@@ -434,9 +434,23 @@ export namespace ToolExecutionAttempt {
 export interface ValueSchema {
   val_type: string;
 
+  description?: string;
+
   enum?: Array<string>;
 
+  inner_properties?: { [key: string]: ValueSchema };
+
+  inner_required_keys?: Array<string>;
+
   inner_val_type?: string;
+
+  items?: ValueSchema;
+
+  nullable?: boolean;
+
+  properties?: { [key: string]: ValueSchema };
+
+  required_keys?: Array<string>;
 }
 
 export interface ToolListParams extends OffsetPageParams {
@@ -456,7 +470,7 @@ export interface ToolListParams extends OffsetPageParams {
   /**
    * Comma separated tool formats that will be included in the response.
    */
-  include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
+  include_format?: Array<'arcade' | 'openai' | 'anthropic' | 'mcp'>;
 
   /**
    * Toolkit name
@@ -521,7 +535,7 @@ export interface ToolGetParams {
   /**
    * Comma separated tool formats that will be included in the response.
    */
-  include_format?: Array<'arcade' | 'openai' | 'anthropic'>;
+  include_format?: Array<'arcade' | 'openai' | 'anthropic' | 'mcp'>;
 
   /**
    * User ID
