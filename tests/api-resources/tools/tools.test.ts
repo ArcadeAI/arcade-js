@@ -29,6 +29,7 @@ describe('resource tools', () => {
           include_format: ['arcade'],
           limit: 0,
           offset: 0,
+          search: 'search',
           toolkit: 'toolkit',
           user_id: 'user_id',
         },

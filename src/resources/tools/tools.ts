@@ -473,6 +473,13 @@ export interface ToolListParams extends OffsetPageParams {
   include_format?: Array<'arcade' | 'openai' | 'anthropic' | 'mcp'>;
 
   /**
+   * Case-insensitive literal substring matched against each tool's name, MCP server
+   * name, qualified name, and description; multiple whitespace-separated terms must
+   * all match. Max 2000 characters.
+   */
+  search?: string;
+
+  /**
    * Toolkit name
    */
   toolkit?: string;
