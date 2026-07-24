@@ -13,7 +13,7 @@ import {
   FormattedListResponsesOffsetPage,
 } from './formatted';
 import * as ScheduledAPI from './scheduled';
-import { Scheduled, ScheduledGetResponse, ScheduledListParams } from './scheduled';
+import { Scheduled } from './scheduled';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
@@ -61,8 +61,6 @@ export class Tools extends APIResource {
 }
 
 export type ToolDefinitionsOffsetPage = OffsetPage<ToolDefinition>;
-
-export type ToolExecutionsOffsetPage = OffsetPage<ToolExecution>;
 
 export interface AuthorizeToolRequest {
   tool_name: string;
@@ -569,11 +567,7 @@ export declare namespace Tools {
     type ToolGetParams as ToolGetParams,
   };
 
-  export {
-    Scheduled as Scheduled,
-    type ScheduledGetResponse as ScheduledGetResponse,
-    type ScheduledListParams as ScheduledListParams,
-  };
+  export { Scheduled as Scheduled };
 
   export {
     Formatted as Formatted,

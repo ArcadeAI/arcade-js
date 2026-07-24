@@ -110,15 +110,6 @@ Methods:
 
 ## Scheduled
 
-Types:
-
-- <code><a href="./src/resources/tools/scheduled.ts">ScheduledGetResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/scheduled_tools">client.tools.scheduled.<a href="./src/resources/tools/scheduled.ts">list</a>({ ...params }) -> ToolExecutionsOffsetPage</code>
-- <code title="get /v1/scheduled_tools/{id}">client.tools.scheduled.<a href="./src/resources/tools/scheduled.ts">get</a>(id) -> ScheduledGetResponse</code>
-
 ## Formatted
 
 Types:

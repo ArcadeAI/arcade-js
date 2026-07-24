@@ -8,7 +8,7 @@ export {
   type FormattedGetParams,
   type FormattedListResponsesOffsetPage,
 } from './formatted';
-export { Scheduled, type ScheduledGetResponse, type ScheduledListParams } from './scheduled';
+export { Scheduled } from './scheduled';
 export {
   Tools,
   type AuthorizeToolRequest,
@@ -22,6 +22,5 @@ export {
   type ToolAuthorizeParams,
   type ToolExecuteParams,
   type ToolGetParams,
-  type ToolExecutionsOffsetPage,
   type ToolDefinitionsOffsetPage,
 } from './tools';

@@ -70,7 +70,6 @@ This affects the following methods:
 - `client.admin.userConnections.list()`
 - `client.tools.list()`
 - `client.tools.get()`
-- `client.tools.scheduled.list()`
 - `client.tools.formatted.list()`
 - `client.tools.formatted.get()`
 - `client.workers.list()`

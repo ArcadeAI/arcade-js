@@ -33,7 +33,6 @@ export {
   type ToolAuthorizeParams,
   type ToolExecuteParams,
   type ToolGetParams,
-  type ToolExecutionsOffsetPage,
   type ToolDefinitionsOffsetPage,
 } from './tools/tools';
 export {
