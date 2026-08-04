@@ -436,7 +436,7 @@ export interface ValueSchema {
 
   enum?: Array<string>;
 
-  inner_properties?: { [key: string]: ValueSchema };
+  inner_properties?: unknown;
 
   inner_required_keys?: Array<string>;
 
@@ -446,7 +446,7 @@ export interface ValueSchema {
 
   nullable?: boolean;
 
-  properties?: { [key: string]: ValueSchema };
+  properties?: unknown;
 
   required_keys?: Array<string>;
 }
