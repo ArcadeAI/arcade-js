@@ -97,6 +97,13 @@ export interface ExecuteToolRequest {
   input?: { [key: string]: unknown };
 
   /**
+   * Optional Condex selection query_id that surfaced this tool. When set, the
+   * execution is correlated to the selection query as training data. Ignored if
+   * empty.
+   */
+  query_id?: string;
+
+  /**
    * The time at which the tool should be run (optional). If not provided, the tool
    * is run immediately. Format ISO 8601: YYYY-MM-DDTHH:MM:SS
    */
@@ -521,6 +528,13 @@ export interface ToolExecuteParams {
    * JSON input to the tool, if any
    */
   input?: { [key: string]: unknown };
+
+  /**
+   * Optional Condex selection query_id that surfaced this tool. When set, the
+   * execution is correlated to the selection query as training data. Ignored if
+   * empty.
+   */
+  query_id?: string;
 
   /**
    * The time at which the tool should be run (optional). If not provided, the tool

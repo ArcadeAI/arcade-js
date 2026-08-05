@@ -74,6 +74,7 @@ describe('resource tools', () => {
       tool_name: 'tool_name',
       include_error_stacktrace: true,
       input: { foo: 'bar' },
+      query_id: 'query_id',
       run_at: 'run_at',
       tool_version: 'tool_version',
       user_id: 'user_id',
