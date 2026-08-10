@@ -222,6 +222,21 @@ export interface ToolDefinition {
 
   formatted_schema?: { [key: string]: unknown };
 
+  /**
+   * IndexState reports whether this tool is available through tool search yet
+   * ("indexed" or "pending"). Populated only when tool search is active for the org
+   * and Condex is reachable; otherwise omitted, so existing callers are unaffected.
+   * The handler derives and injects this value — see the tool-listing enrichment
+   * path.
+   */
+  index_state?: string;
+
+  /**
+   * LastIndexedAt is the tool's last successful index-write time, set only when
+   * IndexState is "indexed" and Condex reported a timestamp.
+   */
+  last_indexed_at?: string;
+
   metadata?: ToolDefinition.Metadata;
 
   output?: ToolDefinition.Output;
