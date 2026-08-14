@@ -227,6 +227,8 @@ export namespace WorkerResponse {
   }
 
   export interface Mcp {
+    authorized_by?: string;
+
     external_id?: string;
 
     headers?: { [key: string]: string };
