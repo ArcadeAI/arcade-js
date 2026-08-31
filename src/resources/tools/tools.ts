@@ -12,15 +12,12 @@ import {
   FormattedListResponse,
   FormattedListResponsesOffsetPage,
 } from './formatted';
-import * as ScheduledAPI from './scheduled';
-import { Scheduled } from './scheduled';
 import { APIPromise } from '../../core/api-promise';
 import { OffsetPage, type OffsetPageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class Tools extends APIResource {
-  scheduled: ScheduledAPI.Scheduled = new ScheduledAPI.Scheduled(this._client);
   formatted: FormattedAPI.Formatted = new FormattedAPI.Formatted(this._client);
 
   /**
@@ -577,7 +574,6 @@ export interface ToolGetParams {
   user_id?: string;
 }
 
-Tools.Scheduled = Scheduled;
 Tools.Formatted = Formatted;
 
 export declare namespace Tools {
@@ -595,8 +591,6 @@ export declare namespace Tools {
     type ToolExecuteParams as ToolExecuteParams,
     type ToolGetParams as ToolGetParams,
   };
-
-  export { Scheduled as Scheduled };
 
   export {
     Formatted as Formatted,
