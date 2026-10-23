@@ -426,6 +426,8 @@ export namespace AuthProviderUpdateRequest {
 
     scope_delimiter?: ',' | ' ';
 
+    token_introspection_request?: Oauth2.TokenIntrospectionRequest;
+
     token_request?: Oauth2.TokenRequest;
 
     user_info_request?: Oauth2.UserInfoRequest;
@@ -472,6 +474,34 @@ export namespace AuthProviderUpdateRequest {
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_map?: { [key: string]: string };
+    }
+
+    export interface TokenIntrospectionRequest {
+      auth_header_value_format?: string;
+
+      auth_method?: string;
+
+      endpoint?: string;
+
+      method?: string;
+
+      params?: { [key: string]: string };
+
+      request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
+
+      response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
+
+      response_map?: { [key: string]: string };
+
+      triggers?: TokenIntrospectionRequest.Triggers;
+    }
+
+    export namespace TokenIntrospectionRequest {
+      export interface Triggers {
+        on_token_grant?: boolean;
+
+        on_token_refresh?: boolean;
+      }
     }
 
     export interface TokenRequest {
@@ -721,6 +751,8 @@ export namespace AuthProviderPatchParams {
 
     scope_delimiter?: ',' | ' ';
 
+    token_introspection_request?: Oauth2.TokenIntrospectionRequest;
+
     token_request?: Oauth2.TokenRequest;
 
     user_info_request?: Oauth2.UserInfoRequest;
@@ -767,6 +799,34 @@ export namespace AuthProviderPatchParams {
       response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
 
       response_map?: { [key: string]: string };
+    }
+
+    export interface TokenIntrospectionRequest {
+      auth_header_value_format?: string;
+
+      auth_method?: string;
+
+      endpoint?: string;
+
+      method?: string;
+
+      params?: { [key: string]: string };
+
+      request_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
+
+      response_content_type?: 'application/x-www-form-urlencoded' | 'application/json';
+
+      response_map?: { [key: string]: string };
+
+      triggers?: TokenIntrospectionRequest.Triggers;
+    }
+
+    export namespace TokenIntrospectionRequest {
+      export interface Triggers {
+        on_token_grant?: boolean;
+
+        on_token_refresh?: boolean;
+      }
     }
 
     export interface TokenRequest {

@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.5.0 (2026-09-04)
+
+Full Changelog: [v2.4.1...v2.5.0](https://github.com/ArcadeAI/arcade-js/compare/v2.4.1...v2.5.0)
+
+### Features
+
+* **api:** api update ([25d521b](https://github.com/ArcadeAI/arcade-js/commit/25d521b624cd24563855f64d2a3da207ce9fcd33))
+* support setting headers via env ([ec4360f](https://github.com/ArcadeAI/arcade-js/commit/ec4360f75515f44b9f341a72f347682186cb9913))
+
+
+### Chores
+
+* **deps:** bump @arethetypeswrong/cli to ^0.18.5 ([98581a1](https://github.com/ArcadeAI/arcade-js/commit/98581a17bf280d7941da019f8ac5618830e5b8c5))
+* **deps:** fix open Dependabot alerts via pnpm overrides ([4f56439](https://github.com/ArcadeAI/arcade-js/commit/4f56439e9d5ec4d054a002581a19ae68face1c10))
+* **format:** run eslint and prettier separately ([57fdb90](https://github.com/ArcadeAI/arcade-js/commit/57fdb907a1f0b59e3ec63343e1a90ad6caa1269a))
+* **internal:** codegen related update ([e26d328](https://github.com/ArcadeAI/arcade-js/commit/e26d328fe55f921c6eeda6fab24aa9963718725f))
+* **internal:** more robust bootstrap script ([73a38bc](https://github.com/ArcadeAI/arcade-js/commit/73a38bc38b738e6b0ad3600fce6a6c50448f37a7))
+
 ## 2.4.1 (2026-04-21)
 
 Full Changelog: [v2.4.0...v2.4.1](https://github.com/ArcadeAI/arcade-js/compare/v2.4.0...v2.4.1)
